@@ -1,4 +1,104 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Client" representedClassName="Client" syncable="YES">
+        <attribute name="clientCodeInServer" optional="YES" attributeType="String"/>
+        <attribute name="clientFullName" optional="YES" attributeType="String"/>
+        <attribute name="clientId" optional="YES" attributeType="String"/>
+        <attribute name="clientInfo" optional="YES" attributeType="String"/>
+        <attribute name="clientName" optional="YES" attributeType="String"/>
+        <attribute name="comment" optional="YES" attributeType="String"/>
+        <attribute name="counterInfo" optional="YES" attributeType="String"/>
+        <attribute name="counterpartyFullName" optional="YES" attributeType="String"/>
+        <attribute name="counterpartyId" optional="YES" attributeType="String"/>
+        <attribute name="deletionMark" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="firstClientId" optional="YES" attributeType="String"/>
+        <attribute name="managerId" optional="YES" attributeType="String"/>
+        <attribute name="registrationDate" optional="YES" attributeType="String"/>
+        <attribute name="unp" optional="YES" attributeType="String"/>
+        <relationship name="contact" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contact" inverseName="client" inverseEntity="Contact"/>
+        <relationship name="order" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Order" inverseName="client" inverseEntity="Order"/>
+        <relationship name="partner" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Partner" inverseName="client" inverseEntity="Partner"/>
+    </entity>
+    <entity name="Contact" representedClassName="Contact" syncable="YES">
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="view" optional="YES" attributeType="String"/>
+        <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="contact" inverseEntity="Client"/>
+        <relationship name="partner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Partner" inverseName="contact" inverseEntity="Partner"/>
+    </entity>
+    <entity name="Group" representedClassName="Group" syncable="YES">
+        <attribute name="groupId" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="parentId" optional="YES" attributeType="String"/>
+        <relationship name="product" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="group" inverseEntity="Product"/>
+    </entity>
+    <entity name="Order" representedClassName="Order" syncable="YES">
+        <attribute name="comment" optional="YES" attributeType="String"/>
+        <attribute name="deliveryDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="manager" optional="YES" attributeType="String"/>
+        <attribute name="orderDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="orderNumber" optional="YES" attributeType="String"/>
+        <attribute name="orderSent" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="orderTypePriceId" optional="YES" attributeType="String"/>
+        <attribute name="orderTypePriceName" optional="YES" attributeType="String"/>
+        <attribute name="selfId" optional="YES" attributeType="String"/>
+        <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="order" inverseEntity="Client"/>
+        <relationship name="partner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Partner" inverseName="order" inverseEntity="Partner"/>
+        <relationship name="product" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OrderProduct" inverseName="order" inverseEntity="OrderProduct"/>
+    </entity>
+    <entity name="OrderProduct" representedClassName="OrderProduct" syncable="YES">
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="productId" optional="YES" attributeType="String"/>
+        <attribute name="productName" optional="YES" attributeType="String"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="selfId" optional="YES" attributeType="String"/>
+        <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="product" inverseEntity="Order"/>
+    </entity>
+    <entity name="Partner" representedClassName="Partner" syncable="YES">
+        <attribute name="codeInServer" optional="YES" attributeType="String"/>
+        <attribute name="comment" optional="YES" attributeType="String"/>
+        <attribute name="deletionMark" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="info" optional="YES" attributeType="String"/>
+        <attribute name="managerId" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="parentId" optional="YES" attributeType="String"/>
+        <attribute name="registrationDate" optional="YES" attributeType="String"/>
+        <attribute name="selfId" optional="YES" attributeType="String"/>
+        <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="partner" inverseEntity="Client"/>
+        <relationship name="contact" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contact" inverseName="partner" inverseEntity="Contact"/>
+        <relationship name="order" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Order" inverseName="partner" inverseEntity="Order"/>
+    </entity>
+    <entity name="Price" representedClassName="Price" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="productId" optional="YES" attributeType="String"/>
+        <attribute name="selfId" optional="YES" attributeType="String"/>
+        <attribute name="unit" optional="YES" attributeType="String"/>
+        <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="prices" inverseEntity="Product"/>
+    </entity>
+    <entity name="Product" representedClassName="Product" syncable="YES">
+        <attribute name="barcode" optional="YES" attributeType="String"/>
+        <attribute name="fee" optional="YES" attributeType="String"/>
+        <attribute name="groupId" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="manufacturer" optional="YES" attributeType="String"/>
+        <attribute name="manufacturerId" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="percentFee" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="selfId" optional="YES" attributeType="String"/>
+        <attribute name="unit" optional="YES" attributeType="String"/>
+        <attribute name="vendorcode" optional="YES" attributeType="String"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="product" inverseEntity="Group"/>
+        <relationship name="prices" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Price" inverseName="product" inverseEntity="Price"/>
+    </entity>
+    <elements>
+        <element name="Client" positionX="-45" positionY="0" width="128" height="284"/>
+        <element name="Contact" positionX="-18" positionY="153" width="128" height="89"/>
+        <element name="Group" positionX="9" positionY="162" width="128" height="89"/>
+        <element name="Order" positionX="27" positionY="171" width="128" height="209"/>
+        <element name="OrderProduct" positionX="45" positionY="216" width="128" height="119"/>
+        <element name="Partner" positionX="0" positionY="162" width="128" height="209"/>
+        <element name="Price" positionX="9" positionY="171" width="128" height="119"/>
+        <element name="Product" positionX="18" positionY="180" width="128" height="239"/>
+    </elements>
 </model>

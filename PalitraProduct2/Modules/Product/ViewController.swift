@@ -1,0 +1,234 @@
+import UIKit
+import AEXML
+
+final class ViewController: UIViewController, PropertyVCDelegate {
+    
+    @IBOutlet private weak var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+            tableView.dataSource = self
+        }
+    }
+    
+    @IBOutlet private weak var editBarButton: UIBarButtonItem!
+    @IBOutlet private weak var saveButton: UIBarButtonItem!
+    
+    var delegate: PropertyVCDelegate?
+    var orderDelegate: AddOrderProductDelegate?
+    
+    private var selectCell: NSInteger = -1
+    var order: Order = Order()
+    private var viewModel: ProductVMProtocol = ProductVM()
+    
+    // searchBar --------------------------------------------------------------------
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var sortedArray: [Product] = []
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else {return false}
+        return text.isEmpty
+    }
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
+    
+    // ---------- --------------------------------------------------------------------
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        viewModel.update = tableView.reloadData
+        viewModel.loadProducts()
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Поиск"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
+    func serachNewOrder(orderId: String) {
+        order = viewModel.loadOrder(orderId: orderId)
+    }
+    
+    func updateDate(typeId: String, typeName: String) {
+        tableView.reloadData()
+        
+    }
+    
+    @IBAction private func editButtonDidTap() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let propertyVC = storyboard.instantiateViewController(withIdentifier: "\(PropertyVC.self)") as? PropertyVC else {return}
+        propertyVC.delegate = self
+        propertyVC.modalPresentationStyle = .overCurrentContext
+        present(propertyVC, animated: false)
+    }
+    
+    @IBAction func didSwipe() {
+        editButtonDidTap()
+    }
+    
+    private func setOrderProduct(product: Product, quantity: String) {
+        ProductVM.typePriceID = self.order.orderTypePriceId ?? ""
+        var flag: Bool = false
+        var orderProductId: String = ""
+        self.order.allProduct.forEach({
+            if $0.productId == product.selfId {
+                orderProductId = $0.selfId ?? ""
+                flag = true
+            }
+        })
+        if flag {
+            CoreDataService.mainContext.perform {
+                if let orderProduct = OrderProduct.getById(id: orderProductId) {
+                    orderProduct.quantity = Int16(quantity) ?? 0
+                }
+                CoreDataService.saveContext()
+            }
+            
+        } else {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "ddhhss"
+            CoreDataService.mainContext.perform {
+                let orderProduct = OrderProduct(context: CoreDataService.mainContext)
+                orderProduct.selfId = self.order.selfId ?? "" + dateFormatter.string(from: Date.now)
+                orderProduct.quantity = Int16(quantity) ?? 0
+                orderProduct.productId = product.selfId
+                orderProduct.productName = product.name
+                product.allPrices.forEach({
+                    if $0.selfId == ProductVM.typePriceID {
+                        if $0.price != 0.00 {
+                            orderProduct.price = $0.price
+                        } else {
+                            product.allPrices.forEach({
+                                if $0.selfId == ProductVM.defaultPriceID {
+                                    orderProduct.price = $0.price
+                                }
+                            })
+                        }
+                    }
+                })
+                
+                if let order = Order.getById(id: self.order.selfId ?? "") {
+                    orderProduct.order = order
+                }
+            }
+        }
+    }
+    
+    func showAlert(product: Product) {
+        let alert = UIAlertController(title: "Добавить в заказ?", message: "Доступно \(product.quantity) шт", preferredStyle: .alert)
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Введите количество"
+            textField.keyboardType = .numberPad
+        }
+        let saveAction = UIAlertAction(title: "Добавить", style: .default, handler: { [weak alert] _ in
+            guard let textFields = alert?.textFields else { return }
+            if let quantityInOrder = textFields[0].text {
+                if product.quantity >= Int16(quantityInOrder) ?? 0 {
+                    self.setOrderProduct(product: product, quantity: quantityInOrder)
+                    print("Message: Текущий остаток - \(product.quantity)")
+                    self.tableView.reloadData()
+                } else {
+//FIXME: - добавить алерт
+                    print("Message: Превышен допустимый остаток")
+                    print("Message: Текущий остаток - \(product.quantity)")
+                }
+                print("Message: Добавлено в заказ - \(quantityInOrder)")
+            }
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: { (action : UIAlertAction!) -> Void in })
+        
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction private func saveButtonDidTap() {
+        
+        orderDelegate?.updateTableView()
+        dismiss(animated: true)
+    }
+    
+}
+// MARK: - UITableViewDelegate
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering {
+            return sortedArray.count
+        }
+        return viewModel.products.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if orderDelegate == nil {
+            if selectCell == indexPath.row {
+                return 200
+            } else {
+                return ProductTableViewCell.rowHeight
+            }
+        } else { return ProductTableViewCell.rowHeight }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var product: [Product] = []
+        if isFiltering {
+            product = sortedArray
+        } else {
+            product = viewModel.products
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(ProductTableViewCell.self)", for: indexPath) as? ProductTableViewCell
+        cell?.setup(product: product[indexPath.row], orderProduct: order.allProduct)
+        cell?.delegate = self
+        return cell ?? .init()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if isFiltering {
+            if orderDelegate != nil {
+                tableView.deselectRow(at: indexPath, animated: true)
+                showAlert(product: sortedArray[indexPath.row])
+            } else {
+                tableView.deselectRow(at: indexPath, animated: false)
+                if selectCell == indexPath.row {
+                    selectCell = -1
+                } else {
+                    selectCell = indexPath.row
+                }
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            }
+        } else {
+            if orderDelegate != nil {
+                tableView.deselectRow(at: indexPath, animated: true)
+                showAlert(product: viewModel.products[indexPath.row])
+            } else {
+                tableView.deselectRow(at: indexPath, animated: false)
+                if selectCell == indexPath.row {
+                    selectCell = -1
+                } else {
+                    selectCell = indexPath.row
+                }
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            }
+        }
+        
+    }
+}
+// MARK: - extension SerchBar
+extension ViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    private func filterContentForSearchText (_ text: String) {
+        sortedArray = viewModel.products.filter({ product in
+            return product.name.lowercased().contains(text.lowercased())
+        })
+        tableView.reloadData()
+    }
+}

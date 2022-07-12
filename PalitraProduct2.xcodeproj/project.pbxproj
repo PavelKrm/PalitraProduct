@@ -9,23 +9,92 @@
 /* Begin PBXBuildFile section */
 		EE06A397287DB6EB0086594D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A396287DB6EB0086594D /* AppDelegate.swift */; };
 		EE06A399287DB6EB0086594D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A398287DB6EB0086594D /* SceneDelegate.swift */; };
-		EE06A39B287DB6EB0086594D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A39A287DB6EB0086594D /* ViewController.swift */; };
-		EE06A39E287DB6EB0086594D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE06A39C287DB6EB0086594D /* Main.storyboard */; };
 		EE06A3A1287DB6EB0086594D /* PalitraProduct2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EE06A39F287DB6EB0086594D /* PalitraProduct2.xcdatamodeld */; };
 		EE06A3A3287DB6EC0086594D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE06A3A2287DB6EC0086594D /* Assets.xcassets */; };
 		EE06A3A6287DB6EC0086594D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE06A3A4287DB6EC0086594D /* LaunchScreen.storyboard */; };
+		EE06A3AF287DB71F0086594D /* AEXML in Frameworks */ = {isa = PBXBuildFile; productRef = EE06A3AE287DB71F0086594D /* AEXML */; };
+		EE06A3C1287DBAA10086594D /* Order+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3B1287DBAA10086594D /* Order+CoreDataClass.swift */; };
+		EE06A3C2287DBAA10086594D /* Order+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3B2287DBAA10086594D /* Order+CoreDataProperties.swift */; };
+		EE06A3C3287DBAA10086594D /* Price+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3B3287DBAA10086594D /* Price+CoreDataClass.swift */; };
+		EE06A3C4287DBAA10086594D /* Price+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3B4287DBAA10086594D /* Price+CoreDataProperties.swift */; };
+		EE06A3C5287DBAA10086594D /* Product+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3B5287DBAA10086594D /* Product+CoreDataClass.swift */; };
+		EE06A3C6287DBAA10086594D /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3B6287DBAA10086594D /* Product+CoreDataProperties.swift */; };
+		EE06A3C7287DBAA10086594D /* Contact+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3B7287DBAA10086594D /* Contact+CoreDataClass.swift */; };
+		EE06A3C8287DBAA10086594D /* Contact+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3B8287DBAA10086594D /* Contact+CoreDataProperties.swift */; };
+		EE06A3C9287DBAA10086594D /* Group+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3B9287DBAA10086594D /* Group+CoreDataClass.swift */; };
+		EE06A3CA287DBAA10086594D /* Group+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3BA287DBAA10086594D /* Group+CoreDataProperties.swift */; };
+		EE06A3CB287DBAA10086594D /* Client+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3BB287DBAA10086594D /* Client+CoreDataClass.swift */; };
+		EE06A3CC287DBAA10086594D /* Client+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3BC287DBAA10086594D /* Client+CoreDataProperties.swift */; };
+		EE06A3CD287DBAA10086594D /* OrderProduct+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3BD287DBAA10086594D /* OrderProduct+CoreDataClass.swift */; };
+		EE06A3CE287DBAA10086594D /* OrderProduct+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3BE287DBAA10086594D /* OrderProduct+CoreDataProperties.swift */; };
+		EE06A3CF287DBAA10086594D /* Partner+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3BF287DBAA10086594D /* Partner+CoreDataClass.swift */; };
+		EE06A3D0287DBAA10086594D /* Partner+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3C0287DBAA10086594D /* Partner+CoreDataProperties.swift */; };
+		EE06A3D3287DBBA00086594D /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3D2287DBBA00086594D /* CoreDataService.swift */; };
+		EE06A3D5287DBBC10086594D /* FirstLoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3D4287DBBC10086594D /* FirstLoadService.swift */; };
+		EE06A3DA287DBD2E0086594D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3D9287DBD2E0086594D /* ViewController.swift */; };
+		EE06A3E2287DBE380086594D /* ProductVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3E1287DBE380086594D /* ProductVM.swift */; };
+		EE06A3E5287DBE810086594D /* TypePriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3E4287DBE810086594D /* TypePriceTableViewCell.swift */; };
+		EE06A3E7287DBEAD0086594D /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3E6287DBEAD0086594D /* ProductTableViewCell.swift */; };
+		EE06A3E9287DBEDE0086594D /* PriceTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3E8287DBEDE0086594D /* PriceTypeCell.swift */; };
+		EE06A3EB287DBF210086594D /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3EA287DBF210086594D /* OrdersVC.swift */; };
+		EE06A3ED287DBF2C0086594D /* OrdersVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3EC287DBF2C0086594D /* OrdersVM.swift */; };
+		EE06A3EF287DBF380086594D /* AddOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3EE287DBF380086594D /* AddOrderVC.swift */; };
+		EE06A3F2287DBF4B0086594D /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3F1287DBF4B0086594D /* OrderCell.swift */; };
+		EE06A3F4287DBF5C0086594D /* ProductOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3F3287DBF5C0086594D /* ProductOrderCell.swift */; };
+		EE06A3F6287DBFF20086594D /* ClientsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3F5287DBFF20086594D /* ClientsVC.swift */; };
+		EE06A3F8287DBFFF0086594D /* ClientsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3F7287DBFFF0086594D /* ClientsVM.swift */; };
+		EE06A3FA287DC00E0086594D /* PartnerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3F9287DC00E0086594D /* PartnerVC.swift */; };
+		EE06A3FD287DC0270086594D /* ClientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3FC287DC0270086594D /* ClientCell.swift */; };
+		EE06A3FF287DC05E0086594D /* PropertyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3FE287DC05E0086594D /* PropertyVC.swift */; };
+		EE06A401287DC0E30086594D /* TypePriceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A400287DC0E30086594D /* TypePriceModel.swift */; };
+		EE06A403287DC10A0086594D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE06A402287DC10A0086594D /* Main.storyboard */; };
+		EE06A406287DC15E0086594D /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A405287DC15E0086594D /* ProfileVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EE06A393287DB6EB0086594D /* PalitraProduct2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PalitraProduct2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE06A396287DB6EB0086594D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE06A398287DB6EB0086594D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EE06A39A287DB6EB0086594D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EE06A39D287DB6EB0086594D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EE06A3A0287DB6EB0086594D /* PalitraProduct2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PalitraProduct2.xcdatamodel; sourceTree = "<group>"; };
 		EE06A3A2287DB6EC0086594D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE06A3A5287DB6EC0086594D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE06A3A7287DB6EC0086594D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE06A3B1287DBAA10086594D /* Order+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EE06A3B2287DBAA10086594D /* Order+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EE06A3B3287DBAA10086594D /* Price+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Price+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EE06A3B4287DBAA10086594D /* Price+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Price+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EE06A3B5287DBAA10086594D /* Product+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EE06A3B6287DBAA10086594D /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EE06A3B7287DBAA10086594D /* Contact+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EE06A3B8287DBAA10086594D /* Contact+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EE06A3B9287DBAA10086594D /* Group+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EE06A3BA287DBAA10086594D /* Group+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EE06A3BB287DBAA10086594D /* Client+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EE06A3BC287DBAA10086594D /* Client+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EE06A3BD287DBAA10086594D /* OrderProduct+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderProduct+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EE06A3BE287DBAA10086594D /* OrderProduct+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderProduct+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EE06A3BF287DBAA10086594D /* Partner+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Partner+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EE06A3C0287DBAA10086594D /* Partner+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Partner+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EE06A3D2287DBBA00086594D /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		EE06A3D4287DBBC10086594D /* FirstLoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLoadService.swift; sourceTree = "<group>"; };
+		EE06A3D9287DBD2E0086594D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EE06A3E1287DBE380086594D /* ProductVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVM.swift; sourceTree = "<group>"; };
+		EE06A3E4287DBE810086594D /* TypePriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePriceTableViewCell.swift; sourceTree = "<group>"; };
+		EE06A3E6287DBEAD0086594D /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		EE06A3E8287DBEDE0086594D /* PriceTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTypeCell.swift; sourceTree = "<group>"; };
+		EE06A3EA287DBF210086594D /* OrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersVC.swift; sourceTree = "<group>"; };
+		EE06A3EC287DBF2C0086594D /* OrdersVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersVM.swift; sourceTree = "<group>"; };
+		EE06A3EE287DBF380086594D /* AddOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrderVC.swift; sourceTree = "<group>"; };
+		EE06A3F1287DBF4B0086594D /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
+		EE06A3F3287DBF5C0086594D /* ProductOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOrderCell.swift; sourceTree = "<group>"; };
+		EE06A3F5287DBFF20086594D /* ClientsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsVC.swift; sourceTree = "<group>"; };
+		EE06A3F7287DBFFF0086594D /* ClientsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsVM.swift; sourceTree = "<group>"; };
+		EE06A3F9287DC00E0086594D /* PartnerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerVC.swift; sourceTree = "<group>"; };
+		EE06A3FC287DC0270086594D /* ClientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCell.swift; sourceTree = "<group>"; };
+		EE06A3FE287DC05E0086594D /* PropertyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyVC.swift; sourceTree = "<group>"; };
+		EE06A400287DC0E30086594D /* TypePriceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePriceModel.swift; sourceTree = "<group>"; };
+		EE06A402287DC10A0086594D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		EE06A405287DC15E0086594D /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE06A3AF287DB71F0086594D /* AEXML in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,16 +128,138 @@
 		EE06A395287DB6EB0086594D /* PalitraProduct2 */ = {
 			isa = PBXGroup;
 			children = (
-				EE06A396287DB6EB0086594D /* AppDelegate.swift */,
+				EE06A3D1287DBB8D0086594D /* Services */,
+				EE06A3B0287DBA840086594D /* Models */,
+				EE06A3DC287DBD970086594D /* Modules */,
 				EE06A398287DB6EB0086594D /* SceneDelegate.swift */,
-				EE06A39A287DB6EB0086594D /* ViewController.swift */,
-				EE06A39C287DB6EB0086594D /* Main.storyboard */,
+				EE06A396287DB6EB0086594D /* AppDelegate.swift */,
+				EE06A402287DC10A0086594D /* Main.storyboard */,
 				EE06A3A2287DB6EC0086594D /* Assets.xcassets */,
 				EE06A3A4287DB6EC0086594D /* LaunchScreen.storyboard */,
 				EE06A3A7287DB6EC0086594D /* Info.plist */,
 				EE06A39F287DB6EB0086594D /* PalitraProduct2.xcdatamodeld */,
 			);
 			path = PalitraProduct2;
+			sourceTree = "<group>";
+		};
+		EE06A3B0287DBA840086594D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EE06A3B1287DBAA10086594D /* Order+CoreDataClass.swift */,
+				EE06A3B2287DBAA10086594D /* Order+CoreDataProperties.swift */,
+				EE06A3B3287DBAA10086594D /* Price+CoreDataClass.swift */,
+				EE06A3B4287DBAA10086594D /* Price+CoreDataProperties.swift */,
+				EE06A3B5287DBAA10086594D /* Product+CoreDataClass.swift */,
+				EE06A3B6287DBAA10086594D /* Product+CoreDataProperties.swift */,
+				EE06A3B7287DBAA10086594D /* Contact+CoreDataClass.swift */,
+				EE06A3B8287DBAA10086594D /* Contact+CoreDataProperties.swift */,
+				EE06A3B9287DBAA10086594D /* Group+CoreDataClass.swift */,
+				EE06A3BA287DBAA10086594D /* Group+CoreDataProperties.swift */,
+				EE06A3BB287DBAA10086594D /* Client+CoreDataClass.swift */,
+				EE06A3BC287DBAA10086594D /* Client+CoreDataProperties.swift */,
+				EE06A3BD287DBAA10086594D /* OrderProduct+CoreDataClass.swift */,
+				EE06A3BE287DBAA10086594D /* OrderProduct+CoreDataProperties.swift */,
+				EE06A3BF287DBAA10086594D /* Partner+CoreDataClass.swift */,
+				EE06A3C0287DBAA10086594D /* Partner+CoreDataProperties.swift */,
+				EE06A400287DC0E30086594D /* TypePriceModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EE06A3D1287DBB8D0086594D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EE06A3D2287DBBA00086594D /* CoreDataService.swift */,
+				EE06A3D4287DBBC10086594D /* FirstLoadService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		EE06A3DC287DBD970086594D /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				EE06A404287DC14F0086594D /* Profile */,
+				EE06A3E0287DBDE10086594D /* Product */,
+				EE06A3DF287DBDD00086594D /* Order */,
+				EE06A3DE287DBDCA0086594D /* Client */,
+				EE06A3DD287DBDC20086594D /* Property */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		EE06A3DD287DBDC20086594D /* Property */ = {
+			isa = PBXGroup;
+			children = (
+				EE06A3FE287DC05E0086594D /* PropertyVC.swift */,
+			);
+			path = Property;
+			sourceTree = "<group>";
+		};
+		EE06A3DE287DBDCA0086594D /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				EE06A3FB287DC01A0086594D /* Cell */,
+				EE06A3F5287DBFF20086594D /* ClientsVC.swift */,
+				EE06A3F7287DBFFF0086594D /* ClientsVM.swift */,
+				EE06A3F9287DC00E0086594D /* PartnerVC.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		EE06A3DF287DBDD00086594D /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				EE06A3F0287DBF3D0086594D /* Cell */,
+				EE06A3EA287DBF210086594D /* OrdersVC.swift */,
+				EE06A3EC287DBF2C0086594D /* OrdersVM.swift */,
+				EE06A3EE287DBF380086594D /* AddOrderVC.swift */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
+		EE06A3E0287DBDE10086594D /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				EE06A3E3287DBE620086594D /* Cell */,
+				EE06A3D9287DBD2E0086594D /* ViewController.swift */,
+				EE06A3E1287DBE380086594D /* ProductVM.swift */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		EE06A3E3287DBE620086594D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EE06A3E4287DBE810086594D /* TypePriceTableViewCell.swift */,
+				EE06A3E6287DBEAD0086594D /* ProductTableViewCell.swift */,
+				EE06A3E8287DBEDE0086594D /* PriceTypeCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		EE06A3F0287DBF3D0086594D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EE06A3F1287DBF4B0086594D /* OrderCell.swift */,
+				EE06A3F3287DBF5C0086594D /* ProductOrderCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		EE06A3FB287DC01A0086594D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EE06A3FC287DC0270086594D /* ClientCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		EE06A404287DC14F0086594D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				EE06A405287DC15E0086594D /* ProfileVC.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,6 +278,9 @@
 			dependencies = (
 			);
 			name = PalitraProduct2;
+			packageProductDependencies = (
+				EE06A3AE287DB71F0086594D /* AEXML */,
+			);
 			productName = PalitraProduct2;
 			productReference = EE06A393287DB6EB0086594D /* PalitraProduct2.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +309,9 @@
 				Base,
 			);
 			mainGroup = EE06A38A287DB6EB0086594D;
+			packageReferences = (
+				EE06A3AD287DB71F0086594D /* XCRemoteSwiftPackageReference "AEXML" */,
+			);
 			productRefGroup = EE06A394287DB6EB0086594D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -130,7 +328,7 @@
 			files = (
 				EE06A3A6287DB6EC0086594D /* LaunchScreen.storyboard in Resources */,
 				EE06A3A3287DB6EC0086594D /* Assets.xcassets in Resources */,
-				EE06A39E287DB6EB0086594D /* Main.storyboard in Resources */,
+				EE06A403287DC10A0086594D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,24 +339,50 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE06A401287DC0E30086594D /* TypePriceModel.swift in Sources */,
+				EE06A3C8287DBAA10086594D /* Contact+CoreDataProperties.swift in Sources */,
+				EE06A3F6287DBFF20086594D /* ClientsVC.swift in Sources */,
+				EE06A3F8287DBFFF0086594D /* ClientsVM.swift in Sources */,
+				EE06A3C6287DBAA10086594D /* Product+CoreDataProperties.swift in Sources */,
+				EE06A3C2287DBAA10086594D /* Order+CoreDataProperties.swift in Sources */,
+				EE06A3FA287DC00E0086594D /* PartnerVC.swift in Sources */,
+				EE06A3ED287DBF2C0086594D /* OrdersVM.swift in Sources */,
+				EE06A3FD287DC0270086594D /* ClientCell.swift in Sources */,
+				EE06A3CF287DBAA10086594D /* Partner+CoreDataClass.swift in Sources */,
+				EE06A3DA287DBD2E0086594D /* ViewController.swift in Sources */,
+				EE06A3E9287DBEDE0086594D /* PriceTypeCell.swift in Sources */,
+				EE06A3CD287DBAA10086594D /* OrderProduct+CoreDataClass.swift in Sources */,
+				EE06A3E2287DBE380086594D /* ProductVM.swift in Sources */,
+				EE06A3C3287DBAA10086594D /* Price+CoreDataClass.swift in Sources */,
+				EE06A3CC287DBAA10086594D /* Client+CoreDataProperties.swift in Sources */,
+				EE06A3D3287DBBA00086594D /* CoreDataService.swift in Sources */,
+				EE06A3F4287DBF5C0086594D /* ProductOrderCell.swift in Sources */,
+				EE06A3EF287DBF380086594D /* AddOrderVC.swift in Sources */,
 				EE06A3A1287DB6EB0086594D /* PalitraProduct2.xcdatamodeld in Sources */,
-				EE06A39B287DB6EB0086594D /* ViewController.swift in Sources */,
 				EE06A397287DB6EB0086594D /* AppDelegate.swift in Sources */,
+				EE06A3E7287DBEAD0086594D /* ProductTableViewCell.swift in Sources */,
+				EE06A406287DC15E0086594D /* ProfileVC.swift in Sources */,
+				EE06A3C5287DBAA10086594D /* Product+CoreDataClass.swift in Sources */,
+				EE06A3C1287DBAA10086594D /* Order+CoreDataClass.swift in Sources */,
+				EE06A3C7287DBAA10086594D /* Contact+CoreDataClass.swift in Sources */,
+				EE06A3CE287DBAA10086594D /* OrderProduct+CoreDataProperties.swift in Sources */,
+				EE06A3FF287DC05E0086594D /* PropertyVC.swift in Sources */,
 				EE06A399287DB6EB0086594D /* SceneDelegate.swift in Sources */,
+				EE06A3EB287DBF210086594D /* OrdersVC.swift in Sources */,
+				EE06A3F2287DBF4B0086594D /* OrderCell.swift in Sources */,
+				EE06A3C4287DBAA10086594D /* Price+CoreDataProperties.swift in Sources */,
+				EE06A3D0287DBAA10086594D /* Partner+CoreDataProperties.swift in Sources */,
+				EE06A3C9287DBAA10086594D /* Group+CoreDataClass.swift in Sources */,
+				EE06A3CA287DBAA10086594D /* Group+CoreDataProperties.swift in Sources */,
+				EE06A3D5287DBBC10086594D /* FirstLoadService.swift in Sources */,
+				EE06A3CB287DBAA10086594D /* Client+CoreDataClass.swift in Sources */,
+				EE06A3E5287DBE810086594D /* TypePriceTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		EE06A39C287DB6EB0086594D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EE06A39D287DB6EB0086594D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EE06A3A4287DB6EC0086594D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -362,6 +586,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EE06A3AD287DB71F0086594D /* XCRemoteSwiftPackageReference "AEXML" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tadija/AEXML.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EE06A3AE287DB71F0086594D /* AEXML */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE06A3AD287DB71F0086594D /* XCRemoteSwiftPackageReference "AEXML" */;
+			productName = AEXML;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		EE06A39F287DB6EB0086594D /* PalitraProduct2.xcdatamodeld */ = {
