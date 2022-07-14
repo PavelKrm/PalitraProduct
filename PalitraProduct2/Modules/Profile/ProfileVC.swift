@@ -6,5 +6,9 @@ final class ProfileVC: UIViewController {
         super.viewDidLoad()
 
     }
+    
+    @IBAction private func readXmlDidTap() {
+        FirstLoadData.readXml()
+    }
    
 }

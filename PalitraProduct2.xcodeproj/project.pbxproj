@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E9E277A1287EBB0D00360F67 /* import_files in Resources */ = {isa = PBXBuildFile; fileRef = E9E277A0287EBB0D00360F67 /* import_files */; };
+		E9E277A5287EF47400360F67 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E277A4287EF47400360F67 /* OrderModel.swift */; };
+		E9E277A7287EF7FC00360F67 /* ShowOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E277A6287EF7FC00360F67 /* ShowOrderVC.swift */; };
+		E9E277A9287EF83A00360F67 /* ShowOrderVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E277A8287EF83A00360F67 /* ShowOrderVM.swift */; };
+		E9E277AB287EF88200360F67 /* AddOrderVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E277AA287EF88200360F67 /* AddOrderVM.swift */; };
 		EE06A397287DB6EB0086594D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A396287DB6EB0086594D /* AppDelegate.swift */; };
 		EE06A399287DB6EB0086594D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A398287DB6EB0086594D /* SceneDelegate.swift */; };
 		EE06A3A1287DB6EB0086594D /* PalitraProduct2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EE06A39F287DB6EB0086594D /* PalitraProduct2.xcdatamodeld */; };
@@ -52,6 +57,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E9E277A0287EBB0D00360F67 /* import_files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = import_files; sourceTree = "<group>"; };
+		E9E277A4287EF47400360F67 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
+		E9E277A6287EF7FC00360F67 /* ShowOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOrderVC.swift; sourceTree = "<group>"; };
+		E9E277A8287EF83A00360F67 /* ShowOrderVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOrderVM.swift; sourceTree = "<group>"; };
+		E9E277AA287EF88200360F67 /* AddOrderVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrderVM.swift; sourceTree = "<group>"; };
 		EE06A393287DB6EB0086594D /* PalitraProduct2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PalitraProduct2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE06A396287DB6EB0086594D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE06A398287DB6EB0086594D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +119,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E9E277A3287EF3FF00360F67 /* CoreDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				EE06A3B1287DBAA10086594D /* Order+CoreDataClass.swift */,
+				EE06A3B2287DBAA10086594D /* Order+CoreDataProperties.swift */,
+				EE06A3B3287DBAA10086594D /* Price+CoreDataClass.swift */,
+				EE06A3B4287DBAA10086594D /* Price+CoreDataProperties.swift */,
+				EE06A3B5287DBAA10086594D /* Product+CoreDataClass.swift */,
+				EE06A3B6287DBAA10086594D /* Product+CoreDataProperties.swift */,
+				EE06A3B7287DBAA10086594D /* Contact+CoreDataClass.swift */,
+				EE06A3B8287DBAA10086594D /* Contact+CoreDataProperties.swift */,
+				EE06A3B9287DBAA10086594D /* Group+CoreDataClass.swift */,
+				EE06A3BA287DBAA10086594D /* Group+CoreDataProperties.swift */,
+				EE06A3BB287DBAA10086594D /* Client+CoreDataClass.swift */,
+				EE06A3BC287DBAA10086594D /* Client+CoreDataProperties.swift */,
+				EE06A3BD287DBAA10086594D /* OrderProduct+CoreDataClass.swift */,
+				EE06A3BE287DBAA10086594D /* OrderProduct+CoreDataProperties.swift */,
+				EE06A3BF287DBAA10086594D /* Partner+CoreDataClass.swift */,
+				EE06A3C0287DBAA10086594D /* Partner+CoreDataProperties.swift */,
+				EE06A400287DC0E30086594D /* TypePriceModel.swift */,
+			);
+			path = CoreDataModels;
+			sourceTree = "<group>";
+		};
 		EE06A38A287DB6EB0086594D = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +172,7 @@
 				EE06A3A4287DB6EC0086594D /* LaunchScreen.storyboard */,
 				EE06A3A7287DB6EC0086594D /* Info.plist */,
 				EE06A39F287DB6EB0086594D /* PalitraProduct2.xcdatamodeld */,
+				E9E277A0287EBB0D00360F67 /* import_files */,
 			);
 			path = PalitraProduct2;
 			sourceTree = "<group>";
@@ -145,23 +180,8 @@
 		EE06A3B0287DBA840086594D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EE06A3B1287DBAA10086594D /* Order+CoreDataClass.swift */,
-				EE06A3B2287DBAA10086594D /* Order+CoreDataProperties.swift */,
-				EE06A3B3287DBAA10086594D /* Price+CoreDataClass.swift */,
-				EE06A3B4287DBAA10086594D /* Price+CoreDataProperties.swift */,
-				EE06A3B5287DBAA10086594D /* Product+CoreDataClass.swift */,
-				EE06A3B6287DBAA10086594D /* Product+CoreDataProperties.swift */,
-				EE06A3B7287DBAA10086594D /* Contact+CoreDataClass.swift */,
-				EE06A3B8287DBAA10086594D /* Contact+CoreDataProperties.swift */,
-				EE06A3B9287DBAA10086594D /* Group+CoreDataClass.swift */,
-				EE06A3BA287DBAA10086594D /* Group+CoreDataProperties.swift */,
-				EE06A3BB287DBAA10086594D /* Client+CoreDataClass.swift */,
-				EE06A3BC287DBAA10086594D /* Client+CoreDataProperties.swift */,
-				EE06A3BD287DBAA10086594D /* OrderProduct+CoreDataClass.swift */,
-				EE06A3BE287DBAA10086594D /* OrderProduct+CoreDataProperties.swift */,
-				EE06A3BF287DBAA10086594D /* Partner+CoreDataClass.swift */,
-				EE06A3C0287DBAA10086594D /* Partner+CoreDataProperties.swift */,
-				EE06A400287DC0E30086594D /* TypePriceModel.swift */,
+				E9E277A4287EF47400360F67 /* OrderModel.swift */,
+				E9E277A3287EF3FF00360F67 /* CoreDataModels */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -212,7 +232,10 @@
 				EE06A3F0287DBF3D0086594D /* Cell */,
 				EE06A3EA287DBF210086594D /* OrdersVC.swift */,
 				EE06A3EC287DBF2C0086594D /* OrdersVM.swift */,
+				E9E277A6287EF7FC00360F67 /* ShowOrderVC.swift */,
+				E9E277A8287EF83A00360F67 /* ShowOrderVM.swift */,
 				EE06A3EE287DBF380086594D /* AddOrderVC.swift */,
+				E9E277AA287EF88200360F67 /* AddOrderVM.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -327,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE06A3A6287DB6EC0086594D /* LaunchScreen.storyboard in Resources */,
+				E9E277A1287EBB0D00360F67 /* import_files in Resources */,
 				EE06A3A3287DB6EC0086594D /* Assets.xcassets in Resources */,
 				EE06A403287DC10A0086594D /* Main.storyboard in Resources */,
 			);
@@ -341,6 +365,7 @@
 			files = (
 				EE06A401287DC0E30086594D /* TypePriceModel.swift in Sources */,
 				EE06A3C8287DBAA10086594D /* Contact+CoreDataProperties.swift in Sources */,
+				E9E277A7287EF7FC00360F67 /* ShowOrderVC.swift in Sources */,
 				EE06A3F6287DBFF20086594D /* ClientsVC.swift in Sources */,
 				EE06A3F8287DBFFF0086594D /* ClientsVM.swift in Sources */,
 				EE06A3C6287DBAA10086594D /* Product+CoreDataProperties.swift in Sources */,
@@ -350,11 +375,13 @@
 				EE06A3FD287DC0270086594D /* ClientCell.swift in Sources */,
 				EE06A3CF287DBAA10086594D /* Partner+CoreDataClass.swift in Sources */,
 				EE06A3DA287DBD2E0086594D /* ViewController.swift in Sources */,
+				E9E277A9287EF83A00360F67 /* ShowOrderVM.swift in Sources */,
 				EE06A3E9287DBEDE0086594D /* PriceTypeCell.swift in Sources */,
 				EE06A3CD287DBAA10086594D /* OrderProduct+CoreDataClass.swift in Sources */,
 				EE06A3E2287DBE380086594D /* ProductVM.swift in Sources */,
 				EE06A3C3287DBAA10086594D /* Price+CoreDataClass.swift in Sources */,
 				EE06A3CC287DBAA10086594D /* Client+CoreDataProperties.swift in Sources */,
+				E9E277A5287EF47400360F67 /* OrderModel.swift in Sources */,
 				EE06A3D3287DBBA00086594D /* CoreDataService.swift in Sources */,
 				EE06A3F4287DBF5C0086594D /* ProductOrderCell.swift in Sources */,
 				EE06A3EF287DBF380086594D /* AddOrderVC.swift in Sources */,
@@ -365,6 +392,7 @@
 				EE06A3C5287DBAA10086594D /* Product+CoreDataClass.swift in Sources */,
 				EE06A3C1287DBAA10086594D /* Order+CoreDataClass.swift in Sources */,
 				EE06A3C7287DBAA10086594D /* Contact+CoreDataClass.swift in Sources */,
+				E9E277AB287EF88200360F67 /* AddOrderVM.swift in Sources */,
 				EE06A3CE287DBAA10086594D /* OrderProduct+CoreDataProperties.swift in Sources */,
 				EE06A3FF287DC05E0086594D /* PropertyVC.swift in Sources */,
 				EE06A399287DB6EB0086594D /* SceneDelegate.swift in Sources */,

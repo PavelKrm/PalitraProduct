@@ -6,10 +6,13 @@ protocol AddOrderVCDelegate {
 }
 
 protocol AddOrderDetailClientDelegate {
+    
     func setOrder(client: Client, partner: Partner)
 }
 
 protocol AddOrderProductDelegate {
+    
+    func setProductInOrder(products: [ProductInOrder])
     func updateTableView()
 }
 
@@ -20,7 +23,6 @@ final class AddOrderVC: UIViewController {
             chooseClientButton.layer.cornerRadius = 5.0
             chooseClientButton.clipsToBounds = true
             chooseClientButton.backgroundColor = .systemGray5
-            chooseClientButton.setTitle(order.client?.clientName, for: .normal)
         }
     }
     @IBOutlet private weak var choosePartnerButton: UIButton! {
@@ -28,7 +30,6 @@ final class AddOrderVC: UIViewController {
             choosePartnerButton.layer.cornerRadius = 5.0
             choosePartnerButton.clipsToBounds = true
             choosePartnerButton.backgroundColor = .systemGray5
-            choosePartnerButton.setTitle(order.partner?.name, for: .normal)
         }
     }
     
@@ -37,18 +38,13 @@ final class AddOrderVC: UIViewController {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "EEEE, dd MMMM"
             dateFormatter.locale = Locale(identifier: "Ru-ru")
-            chooseDeliveryDateTextField.text = dateFormatter.string(from: order.deliveryDate ?? Date())
         }
     }
     @IBOutlet private weak var chooseTypePriceButton: UIButton! {
         didSet {
-            chooseClientButton.isEnabled = false
-            chooseClientButton.isHidden = false
             chooseTypePriceButton.layer.cornerRadius = 5.0
             chooseTypePriceButton.clipsToBounds = true
             chooseTypePriceButton.backgroundColor = .systemGray5
-            chooseTypePriceButton.setTitle(order.orderTypePriceId, for: .normal)
-            
         }
     }
     @IBOutlet private weak var tableView: UITableView! {
@@ -63,23 +59,15 @@ final class AddOrderVC: UIViewController {
     
     var delegate: AddOrderVCDelegate?
     var delegeteData: AddOrderDetailClientDelegate?
-//    var delegateProduct: AddOrderProductDelegate?
-    private var viewModel: OrdersVMDelegate = OrdersVM()
-    private var order: Order = Order() {
-        didSet {
-            clientId = order.client?.clientId ?? ""
-            partnerId = order.partner?.selfId ?? ""
-            typePriceId = order.orderTypePriceId ?? ""
-            typePriceName = order.orderTypePriceName ?? ""
-        }
-    }
-    private var newOrderId: String = ""
+
+    
+    private var orderId: String = ""
     private var deliveryDate: Date = Date.now
     private var clientId: String = ""
     private var partnerId: String = ""
     private var typePriceId: String = ""
     private var typePriceName: String = ""
-    
+    private var productInOrder: [ProductInOrder] = []
         //FIXME: - изменить после добавления регистрации
     private var manager: String = "Павел Крампульс"
     
@@ -98,6 +86,7 @@ final class AddOrderVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .inline
         datePicker.datePickerMode = .date
@@ -130,26 +119,20 @@ final class AddOrderVC: UIViewController {
         guard let productVC = storyboard.instantiateViewController(withIdentifier: "\(ViewController.self)") as? ViewController else {return}
         let nc = UINavigationController(rootViewController: productVC)
         productVC.orderDelegate = self
-        if delegate != nil {
-            productVC.order = self.order
-        } else {
-            productVC.serachNewOrder(orderId: newOrderId)
-        }
         
         self.present(nc, animated:true, completion: nil)
-        saveButtonDidTap()
     }
     
     @IBAction private func saveButtonDidTap() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "ddhhss"
+        var orderId: String = ""
        
-        if order.selfId == nil {
             CoreDataService.mainContext.perform {
                 let addingOrder = Order(context: CoreDataService.mainContext)
 //FIXME: -  добавить коммент
                 addingOrder.selfId = String(Date.now.timeIntervalSince1970)
-                self.newOrderId = addingOrder.selfId ?? ""
+                self.orderId = addingOrder.selfId ?? ""
                 addingOrder.orderNumber = dateFormatter.string(from: Date.now)
                 addingOrder.orderDate = Date.now
                 addingOrder.deliveryDate = self.deliveryDate
@@ -165,30 +148,25 @@ final class AddOrderVC: UIViewController {
                     addingOrder.partner = orderPartner
                 }
                 
+                
+                orderId = addingOrder.selfId ?? ""
                 CoreDataService.saveContext()
             }
-
-        } else {
-           
+        
+        
+        for product in productInOrder {
             CoreDataService.mainContext.perform {
-                if let order = Order.getById(id: self.order.selfId ?? "") {
-//                    order.selfId = self.order.selfId
-//                    order.orderNumber = self.order.orderNumber
-//                    order.orderDate = self.order.orderDate
-                    order.deliveryDate = self.deliveryDate
-                    order.manager = self.manager
-                    order.orderSent = false
-                    order.orderTypePriceId = self.typePriceId
-//FIXME: -  добавить коммент
-                    
-                    if let orderClient = Client.getById(id: self.clientId) {
-                        order.client = orderClient
-                    }
-                    
-                    if let orderPartner = Partner.getById(id: self.partnerId) {
-                        order.partner = orderPartner
-                    }
+                let orderProduct = OrderProduct(context: CoreDataService.mainContext)
+                orderProduct.selfId = product.id
+                orderProduct.productId = product.productId
+                orderProduct.productName = product.productName
+                orderProduct.quantity = product.quantity
+                orderProduct.price = product.price
+                
+                if let order = Order.getById(id: orderId) {
+                    orderProduct.order = order
                 }
+                
                 CoreDataService.saveContext()
             }
         }
@@ -197,24 +175,17 @@ final class AddOrderVC: UIViewController {
 //        navigationController?.popViewController(animated: true)
         dismiss(animated: true)
     }
-    
-    func setOrder(order: Order) {
-        self.order = order
-       
-    }
-    
-    
 }
 // MARK: - extension AddOrderVC: UITableViewDelegate
 extension AddOrderVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return order.allProduct.count
+        return productInOrder.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(ProductOrderCell.self)", for: indexPath) as? ProductOrderCell
-        cell?.setup(orderProduct: order.allProduct[indexPath.row])
+        cell?.setupNewOrder(orderProduct: productInOrder[indexPath.row])
         return cell ?? .init()
     }
     
@@ -235,6 +206,9 @@ extension AddOrderVC: AddOrderDetailClientDelegate {
 // MARK: - extension AddOrderProductDelegate
 extension AddOrderVC: AddOrderProductDelegate {
    
+    func setProductInOrder(products: [ProductInOrder]) {
+        self.productInOrder = products
+    }
     func updateTableView() {
         tableView.reloadData()
     }

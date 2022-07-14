@@ -5,7 +5,7 @@ import AEXML
 
 final class FirstLoadData {
     
-    func readXml() {
+    static func readXml() {
         guard
             let xmlPath = Bundle.main.path(forResource: "import_files/import0_1", ofType: "xml"),
             let data = try? Data(contentsOf: URL(fileURLWithPath: xmlPath)),

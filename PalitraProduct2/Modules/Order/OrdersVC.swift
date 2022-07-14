@@ -19,10 +19,6 @@ class OrdersVC: UIViewController, AddOrderVCDelegate {
         viewModel.loadDate()
     }
     
-//    func setOrder(order: Order) {
-//        viewModel.addOrder(order: order)
-//    }
-    
     func setupOrder(order: Order) {
         viewModel.order = order
     }
@@ -37,13 +33,12 @@ class OrdersVC: UIViewController, AddOrderVCDelegate {
         self.present(nc, animated:true, completion: nil)
     }
     
-    private func openOrder(order: Order) {
+    private func openOrder(orderId: String) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let orderVC = storyboard.instantiateViewController(withIdentifier: "\(AddOrderVC.self)") as? AddOrderVC else {return}
-        let nc = UINavigationController(rootViewController: orderVC)
-        orderVC.setOrder(order: order)
-        self.present(nc, animated:true, completion: nil)
+        guard let orderVC = storyboard.instantiateViewController(withIdentifier: "\(ShowOrderVC.self)") as? ShowOrderVC else {return}
+        orderVC.orderId = orderId
+        navigationController?.pushViewController(orderVC, animated: true)
 
     }
     
@@ -79,7 +74,7 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        openOrder(order: viewModel.orders[indexPath.row])
+        openOrder(orderId: viewModel.orders[indexPath.row].selfId ?? "")
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

@@ -15,8 +15,8 @@ class OrderCell: UITableViewCell {
     @IBOutlet private weak var totalPriceLabel: UILabel!
 
     func setup(order: Order) {
-        numberOrderLabel.text = "\(order.orderNumber)"
-        orderDateLabel.text = "\(order.orderDate)"
+        numberOrderLabel.text = "\(order.orderNumber ?? "")"
+        orderDateLabel.text = "\(order.orderDate ?? Date())"
         clientNameLabel.text = order.client?.clientName
         partnerNameLabel.text = order.partner?.name
         

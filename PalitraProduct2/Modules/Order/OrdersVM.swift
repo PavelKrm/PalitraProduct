@@ -35,6 +35,7 @@ final class OrdersVM: OrdersVMDelegate {
     
     func removeOrder(order: Order) {
         CoreDataService.mainContext.delete(order)
+        CoreDataService.saveContext()
     }
     
     func addOrder(order: Order) {

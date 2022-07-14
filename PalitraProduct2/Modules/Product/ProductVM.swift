@@ -42,7 +42,7 @@ final class ProductVM: ProductVMProtocol {
         request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Product.name), ascending: true)]
         let products = try? CoreDataService.mainContext.fetch(request)
         self.products = products ?? []
-        loadTypePrices(product: products?[0] ?? Product())
+        loadTypePrices(product: products?.first ?? Product())
     }
 
     private func loadTypePrices(product: Product) {

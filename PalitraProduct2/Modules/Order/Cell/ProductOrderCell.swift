@@ -17,16 +17,27 @@ class ProductOrderCell: UITableViewCell {
     @IBOutlet private weak var quantityLabel: UILabel!
     @IBOutlet private weak var imageProduct: UIImageView!
 
-    func setup(orderProduct: OrderProduct) {
-        let product: Product = Product.getById(id: orderProduct.productId ?? "") ?? Product()
+    func setupNewOrder(orderProduct: ProductInOrder) {
+        let product: Product = Product.getById(id: orderProduct.productId) ?? Product()
         nameLabel.text = product.name
         barcodeLabel.text = product.barcode
         vendorcodeLabel.text = product.vendorcode
-        quantityLabel.text = "\(product.quantity) \(unitViewer(product.unit ?? "", productID: product.selfId ?? ""))"
+        quantityLabel.text = "\(orderProduct.quantity) \(unitViewer(product.unit ?? "", productID: product.selfId ?? ""))"
         imageProduct.image = getImage(imagePath: product.image ?? "")
         priceLabel.text = "\(orderProduct.price)"
         priceWithFeeLabel.text = "\(priceWithFee(price: orderProduct.price, fee: product.percentFee))"
         
+    }
+    
+    func setupOldOrder(orderProduct: OrderProduct) {
+        let product: Product = Product.getById(id: orderProduct.productId ?? "") ?? Product()
+        nameLabel.text = product.name
+        barcodeLabel.text = product.barcode
+        vendorcodeLabel.text = product.vendorcode
+        quantityLabel.text = "\(orderProduct.quantity) \(unitViewer(product.unit ?? "", productID: product.selfId ?? ""))"
+        imageProduct.image = getImage(imagePath: product.image ?? "")
+        priceLabel.text = "\(orderProduct.price)"
+        priceWithFeeLabel.text = "\(priceWithFee(price: orderProduct.price, fee: product.percentFee))"
     }
     
     func unitViewer(_ unit: String, productID: String) -> String {

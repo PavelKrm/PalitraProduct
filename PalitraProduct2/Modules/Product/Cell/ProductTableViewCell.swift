@@ -24,15 +24,17 @@ class ProductTableViewCell: UITableViewCell {
         collectionView.reloadData()
     }
     
-    func setup(product: Product, orderProduct: [OrderProduct]) {
+    func setup(product: Product
+//               , orderProduct: [OrderProduct]
+    ) {
         
-        orderProduct.forEach({
-            if product.selfId == $0.productId {
-                self.backgroundColor = .yellow
-            } else {
-                self.backgroundColor = .systemBackground
-            }
-        })
+//        orderProduct.forEach({
+//            if product.selfId == $0.productId {
+//                self.backgroundColor = .yellow
+//            } else {
+//                self.backgroundColor = .systemBackground
+//            }
+//        })
         layer.cornerRadius = 15.0
         layer.borderColor = UIColor.gray.cgColor
         layer.borderWidth = 1.0

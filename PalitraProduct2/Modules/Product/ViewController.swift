@@ -17,8 +17,9 @@ final class ViewController: UIViewController, PropertyVCDelegate {
     var orderDelegate: AddOrderProductDelegate?
     
     private var selectCell: NSInteger = -1
-    var order: Order = Order()
+
     private var viewModel: ProductVMProtocol = ProductVM()
+    private var productInOrder: [ProductInOrder] = []
     
     // searchBar --------------------------------------------------------------------
     private let searchController = UISearchController(searchResultsController: nil)
@@ -46,10 +47,6 @@ final class ViewController: UIViewController, PropertyVCDelegate {
         definesPresentationContext = true
     }
     
-    func serachNewOrder(orderId: String) {
-        order = viewModel.loadOrder(orderId: orderId)
-    }
-    
     func updateDate(typeId: String, typeName: String) {
         tableView.reloadData()
         
@@ -68,51 +65,21 @@ final class ViewController: UIViewController, PropertyVCDelegate {
     }
     
     private func setOrderProduct(product: Product, quantity: String) {
-        ProductVM.typePriceID = self.order.orderTypePriceId ?? ""
-        var flag: Bool = false
-        var orderProductId: String = ""
-        self.order.allProduct.forEach({
-            if $0.productId == product.selfId {
-                orderProductId = $0.selfId ?? ""
-                flag = true
+        var price: Double = 0.0
+        product.allPrices.forEach({
+            if $0.selfId == ProductVM.typePriceID {
+                price = $0.price
             }
         })
-        if flag {
-            CoreDataService.mainContext.perform {
-                if let orderProduct = OrderProduct.getById(id: orderProductId) {
-                    orderProduct.quantity = Int16(quantity) ?? 0
-                }
-                CoreDataService.saveContext()
-            }
-            
-        } else {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "ddhhss"
-            CoreDataService.mainContext.perform {
-                let orderProduct = OrderProduct(context: CoreDataService.mainContext)
-                orderProduct.selfId = self.order.selfId ?? "" + dateFormatter.string(from: Date.now)
-                orderProduct.quantity = Int16(quantity) ?? 0
-                orderProduct.productId = product.selfId
-                orderProduct.productName = product.name
-                product.allPrices.forEach({
-                    if $0.selfId == ProductVM.typePriceID {
-                        if $0.price != 0.00 {
-                            orderProduct.price = $0.price
-                        } else {
-                            product.allPrices.forEach({
-                                if $0.selfId == ProductVM.defaultPriceID {
-                                    orderProduct.price = $0.price
-                                }
-                            })
-                        }
-                    }
-                })
-                
-                if let order = Order.getById(id: self.order.selfId ?? "") {
-                    orderProduct.order = order
-                }
-            }
-        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "ddhhss"
+        productInOrder.append(
+            ProductInOrder(id: "\(dateFormatter.string(from: Date.now))",
+                           productId: product.selfId ?? "",
+                           quantity: Int16(quantity) ?? 0,
+                           price: price,
+                           productName: product.name)
+        )
     }
     
     func showAlert(product: Product) {
@@ -146,7 +113,7 @@ final class ViewController: UIViewController, PropertyVCDelegate {
     }
     
     @IBAction private func saveButtonDidTap() {
-        
+        orderDelegate?.setProductInOrder(products: productInOrder)
         orderDelegate?.updateTableView()
         dismiss(animated: true)
     }
@@ -180,7 +147,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             product = viewModel.products
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(ProductTableViewCell.self)", for: indexPath) as? ProductTableViewCell
-        cell?.setup(product: product[indexPath.row], orderProduct: order.allProduct)
+        cell?.setup(product: product[indexPath.row])
         cell?.delegate = self
         return cell ?? .init()
     }
