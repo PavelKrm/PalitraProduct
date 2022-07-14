@@ -17,4 +17,5 @@ struct ProductInOrder {
     var quantity: Int16
     var price: Double
     var productName: String
+    var fee: Double
 }

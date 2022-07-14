@@ -60,14 +60,25 @@ final class AddOrderVC: UIViewController {
     var delegate: AddOrderVCDelegate?
     var delegeteData: AddOrderDetailClientDelegate?
 
-    
     private var orderId: String = ""
     private var deliveryDate: Date = Date.now
     private var clientId: String = ""
     private var partnerId: String = ""
     private var typePriceId: String = ""
     private var typePriceName: String = ""
-    private var productInOrder: [ProductInOrder] = []
+    private var productInOrder: [ProductInOrder] = [] {
+        didSet {
+            var sumWithoutFee: Double = 0.0
+            var sumWithFee: Double = 0.0
+            productInOrder.forEach({
+                sumWithoutFee += $0.price
+                sumWithFee += (($0.price * $0.fee) / 100.0) + $0.price
+            })
+            productCountLabel.text = "Всего товаров: \(productInOrder.count)"
+            sumWithoutFeeLabel.text = "Сумма без НДС: \(doubleInString(price: sumWithoutFee))"
+            sumWithFeeLabel.text = "Сумма c НДС: \(doubleInString(price: sumWithFee))"
+        }
+    }
         //FIXME: - изменить после добавления регистрации
     private var manager: String = "Павел Крампульс"
     
@@ -148,11 +159,9 @@ final class AddOrderVC: UIViewController {
                     addingOrder.partner = orderPartner
                 }
                 
-                
                 orderId = addingOrder.selfId ?? ""
                 CoreDataService.saveContext()
             }
-        
         
         for product in productInOrder {
             CoreDataService.mainContext.perform {
@@ -162,6 +171,7 @@ final class AddOrderVC: UIViewController {
                 orderProduct.productName = product.productName
                 orderProduct.quantity = product.quantity
                 orderProduct.price = product.price
+                orderProduct.percentFee = product.fee
                 
                 if let order = Order.getById(id: orderId) {
                     orderProduct.order = order
@@ -171,9 +181,11 @@ final class AddOrderVC: UIViewController {
             }
         }
         
-
-//        navigationController?.popViewController(animated: true)
         dismiss(animated: true)
+    }
+    
+    func doubleInString(price: Double) -> NSString {
+        return NSString(format:"%.2f", price)
     }
 }
 // MARK: - extension AddOrderVC: UITableViewDelegate

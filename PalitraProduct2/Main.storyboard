@@ -512,22 +512,29 @@
                                     <action selector="selectTypePriceDidTap" destination="FHQ-Nk-0Tw" eventType="touchUpInside" id="JXL-qh-Ef9"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Всего:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K40-f0-j9z">
-                                <rect key="frame" x="20" y="850" width="70" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сумма без НДС:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvS-UU-FfW">
-                                <rect key="frame" x="98" y="850" width="232" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="с НДС:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvA-Rj-cJ6">
-                                <rect key="frame" x="338" y="850" width="70" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Всего:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K40-f0-j9z">
+                                <rect key="frame" x="20" y="840" width="120" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="qOS-rR-eBX"/>
+                                    <constraint firstAttribute="height" constant="42" id="TwW-av-oeR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сумма без НДС:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvS-UU-FfW">
+                                <rect key="frame" x="148" y="840" width="132" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="QXi-nL-YFg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="с НДС:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvA-Rj-cJ6">
+                                <rect key="frame" x="288" y="840" width="120" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="lvh-Eh-w6M"/>
+                                    <constraint firstAttribute="width" constant="120" id="qOS-rR-eBX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -539,8 +546,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="COf-4f-fDC">
-                                <rect key="frame" x="0.0" y="374" width="428" height="468"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="83" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="COf-4f-fDC">
+                                <rect key="frame" x="0.0" y="374" width="428" height="458"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductOrderCell" rowHeight="83" id="okH-zL-oPS" customClass="ProductOrderCell" customModule="PalitraProduct2">
@@ -681,7 +688,7 @@
                             <constraint firstItem="ZvS-UU-FfW" firstAttribute="centerX" secondItem="GOP-Xs-REL" secondAttribute="centerX" id="3ma-Ut-jN2"/>
                             <constraint firstItem="Rdp-rk-jx4" firstAttribute="trailing" secondItem="COf-4f-fDC" secondAttribute="trailing" id="4D2-ct-nBL"/>
                             <constraint firstItem="2AM-OO-XE5" firstAttribute="top" secondItem="WUG-mE-01j" secondAttribute="bottom" constant="20" id="8LV-Mm-JTd"/>
-                            <constraint firstItem="Rdp-rk-jx4" firstAttribute="bottom" secondItem="COf-4f-fDC" secondAttribute="bottom" constant="50" id="IbR-Kz-ez2"/>
+                            <constraint firstItem="Rdp-rk-jx4" firstAttribute="bottom" secondItem="COf-4f-fDC" secondAttribute="bottom" constant="60" id="IbR-Kz-ez2"/>
                             <constraint firstItem="Rdp-rk-jx4" firstAttribute="trailing" secondItem="ucY-Hm-cHh" secondAttribute="trailing" constant="20" id="Ity-UR-J7j"/>
                             <constraint firstItem="WUG-mE-01j" firstAttribute="top" secondItem="ynP-QZ-6hI" secondAttribute="bottom" constant="8" id="Jow-To-XAy"/>
                             <constraint firstItem="1Kh-J0-htB" firstAttribute="leading" secondItem="Rdp-rk-jx4" secondAttribute="leading" constant="20" id="KIh-2o-rg9"/>
@@ -1068,22 +1075,29 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Виды цен"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Всего:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3se-lL-bf6">
-                                <rect key="frame" x="20" y="850" width="70" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сумма без НДС:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJT-AE-J45">
-                                <rect key="frame" x="98" y="850" width="232" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="с НДС:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOA-2s-taY">
-                                <rect key="frame" x="338" y="850" width="70" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Всего:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3se-lL-bf6">
+                                <rect key="frame" x="20" y="840" width="120" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="NCN-xV-v5p"/>
+                                    <constraint firstAttribute="height" constant="42" id="bZp-r9-Ugg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сумма без НДС:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJT-AE-J45">
+                                <rect key="frame" x="148" y="840" width="132" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="ivN-JO-nS0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="с НДС:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOA-2s-taY">
+                                <rect key="frame" x="288" y="840" width="120" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="3t9-VB-TRG"/>
+                                    <constraint firstAttribute="width" constant="120" id="NCN-xV-v5p"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -1095,8 +1109,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YUy-VS-jqp">
-                                <rect key="frame" x="0.0" y="330" width="428" height="512"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="83" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YUy-VS-jqp">
+                                <rect key="frame" x="0.0" y="330" width="428" height="502"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductOrderCell" rowHeight="83" id="Awm-uA-zpM" customClass="ProductOrderCell" customModule="PalitraProduct2">
@@ -1249,7 +1263,7 @@
                             <constraint firstItem="yOA-2s-taY" firstAttribute="leading" secondItem="xJT-AE-J45" secondAttribute="trailing" constant="8" id="e1d-iB-PUb"/>
                             <constraint firstItem="XrL-ZA-1hk" firstAttribute="leading" secondItem="fMr-gl-rf1" secondAttribute="leading" constant="20" id="esr-ql-Nh6"/>
                             <constraint firstItem="UfA-6j-ezZ" firstAttribute="centerY" secondItem="nhq-Q4-cSC" secondAttribute="centerY" id="hFx-We-E44"/>
-                            <constraint firstItem="fMr-gl-rf1" firstAttribute="bottom" secondItem="YUy-VS-jqp" secondAttribute="bottom" constant="50" id="hSR-da-oQU"/>
+                            <constraint firstItem="fMr-gl-rf1" firstAttribute="bottom" secondItem="YUy-VS-jqp" secondAttribute="bottom" constant="60" id="hSR-da-oQU"/>
                             <constraint firstItem="Yvo-7E-ch3" firstAttribute="leading" secondItem="fMr-gl-rf1" secondAttribute="leading" constant="20" id="j0R-tK-m59"/>
                             <constraint firstItem="fMr-gl-rf1" firstAttribute="trailing" secondItem="DgT-Ci-SYD" secondAttribute="trailing" constant="20" id="lfd-Ih-rsM"/>
                             <constraint firstItem="tyo-Qx-I2B" firstAttribute="centerY" secondItem="KG2-tf-fCC" secondAttribute="centerY" id="mMA-Xf-0bX"/>

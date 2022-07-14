@@ -46,6 +46,7 @@
         <relationship name="product" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OrderProduct" inverseName="order" inverseEntity="OrderProduct"/>
     </entity>
     <entity name="OrderProduct" representedClassName="OrderProduct" syncable="YES">
+        <attribute name="percentFee" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="productId" optional="YES" attributeType="String"/>
         <attribute name="productName" optional="YES" attributeType="String"/>
@@ -96,7 +97,7 @@
         <element name="Contact" positionX="-18" positionY="153" width="128" height="89"/>
         <element name="Group" positionX="9" positionY="162" width="128" height="89"/>
         <element name="Order" positionX="27" positionY="171" width="128" height="209"/>
-        <element name="OrderProduct" positionX="45" positionY="216" width="128" height="119"/>
+        <element name="OrderProduct" positionX="45" positionY="216" width="128" height="134"/>
         <element name="Partner" positionX="0" positionY="162" width="128" height="209"/>
         <element name="Price" positionX="9" positionY="171" width="128" height="119"/>
         <element name="Product" positionX="18" positionY="180" width="128" height="239"/>

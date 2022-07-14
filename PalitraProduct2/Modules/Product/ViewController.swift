@@ -78,7 +78,8 @@ final class ViewController: UIViewController, PropertyVCDelegate {
                            productId: product.selfId ?? "",
                            quantity: Int16(quantity) ?? 0,
                            price: price,
-                           productName: product.name)
+                           productName: product.name,
+                           fee: Double(product.percentFee))
         )
     }
     

@@ -20,8 +20,8 @@ class ProductOrderCell: UITableViewCell {
     func setupNewOrder(orderProduct: ProductInOrder) {
         let product: Product = Product.getById(id: orderProduct.productId) ?? Product()
         nameLabel.text = product.name
-        barcodeLabel.text = product.barcode
-        vendorcodeLabel.text = product.vendorcode
+        barcodeLabel.text = "шк.\(product.barcode ?? "")"
+        vendorcodeLabel.text = "арт. \(product.vendorcode ?? "")"
         quantityLabel.text = "\(orderProduct.quantity) \(unitViewer(product.unit ?? "", productID: product.selfId ?? ""))"
         imageProduct.image = getImage(imagePath: product.image ?? "")
         priceLabel.text = "\(orderProduct.price)"
@@ -32,8 +32,8 @@ class ProductOrderCell: UITableViewCell {
     func setupOldOrder(orderProduct: OrderProduct) {
         let product: Product = Product.getById(id: orderProduct.productId ?? "") ?? Product()
         nameLabel.text = product.name
-        barcodeLabel.text = product.barcode
-        vendorcodeLabel.text = product.vendorcode
+        barcodeLabel.text = "шк.\(product.barcode ?? "")"
+        vendorcodeLabel.text = "арт. \(product.vendorcode ?? "")"
         quantityLabel.text = "\(orderProduct.quantity) \(unitViewer(product.unit ?? "", productID: product.selfId ?? ""))"
         imageProduct.image = getImage(imagePath: product.image ?? "")
         priceLabel.text = "\(orderProduct.price)"
