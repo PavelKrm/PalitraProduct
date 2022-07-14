@@ -1,10 +1,6 @@
 
 import UIKit
 
-protocol AddOrderVCDelegate {
-    func setupOrder(order: Order)
-}
-
 protocol AddOrderDetailClientDelegate {
     
     func setOrder(client: Client, partner: Partner)
@@ -57,7 +53,6 @@ final class AddOrderVC: UIViewController {
     @IBOutlet private weak var sumWithoutFeeLabel: UILabel!
     @IBOutlet private weak var sumWithFeeLabel: UILabel!
     
-    var delegate: AddOrderVCDelegate?
     var delegeteData: AddOrderDetailClientDelegate?
 
     private var orderId: String = ""
@@ -180,7 +175,7 @@ final class AddOrderVC: UIViewController {
                 CoreDataService.saveContext()
             }
         }
-        
+       
         dismiss(animated: true)
     }
     

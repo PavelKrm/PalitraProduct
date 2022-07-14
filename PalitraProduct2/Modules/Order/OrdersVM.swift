@@ -3,23 +3,16 @@ import CoreData
 
 protocol OrdersVMDelegate {
     
-    var order: Order { get set }
     var orders: [Order] { get }
     var update: (() ->Void)? { get set }
     
     func loadDate()
     func removeOrder(order: Order)
-    func addOrder(order: Order)
     
 }
 
 final class OrdersVM: OrdersVMDelegate {
-    
-    var order: Order = Order() {
-        didSet {
-            addOrder(order: order)
-        }
-    }
+        
     var orders: [Order] = [] {
         didSet {  update?() }
     }
@@ -36,15 +29,6 @@ final class OrdersVM: OrdersVMDelegate {
     func removeOrder(order: Order) {
         CoreDataService.mainContext.delete(order)
         CoreDataService.saveContext()
-    }
-    
-    func addOrder(order: Order) {
-        CoreDataService.mainContext.perform {
-            let addingOrder = Order(context: CoreDataService.mainContext)
-            addingOrder.selfId = order.selfId
-            CoreDataService.saveContext()
-        }
-        loadDate()
     }
     
 }

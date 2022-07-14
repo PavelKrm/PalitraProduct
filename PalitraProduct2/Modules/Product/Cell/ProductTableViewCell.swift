@@ -17,24 +17,14 @@ class ProductTableViewCell: UITableViewCell {
     private var product: Product!
     
     var delegate: PropertyVCDelegate?
-    var orderDelegate: AddOrderVCDelegate?
     
     override func prepareForReuse() {
         super.prepareForReuse()
         collectionView.reloadData()
     }
     
-    func setup(product: Product
-//               , orderProduct: [OrderProduct]
-    ) {
+    func setup(product: Product) {
         
-//        orderProduct.forEach({
-//            if product.selfId == $0.productId {
-//                self.backgroundColor = .yellow
-//            } else {
-//                self.backgroundColor = .systemBackground
-//            }
-//        })
         layer.cornerRadius = 15.0
         layer.borderColor = UIColor.gray.cgColor
         layer.borderWidth = 1.0
@@ -44,7 +34,7 @@ class ProductTableViewCell: UITableViewCell {
         self.product = product
         
         manufacturerLabel.text = product.manufacturer
-        feeLabale.text = "\(product.fee) \(product.percentFee)%"
+        feeLabale.text = "\(product.fee ?? "") \(product.percentFee)%"
         nameLabel.text = product.name
         imageProduct.image = getImage(imagePath: product.image ?? "")
         barcodeLabel.text = product.barcode

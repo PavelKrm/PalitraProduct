@@ -1,7 +1,8 @@
 
 import UIKit
 
-class OrdersVC: UIViewController, AddOrderVCDelegate {
+
+class OrdersVC: UIViewController {
     
     @IBOutlet private weak var tableview: UITableView! {
         didSet {
@@ -18,13 +19,7 @@ class OrdersVC: UIViewController, AddOrderVCDelegate {
         viewModel.update = tableview.reloadData
         viewModel.loadDate()
     }
-    
-    func setupOrder(order: Order) {
-        viewModel.order = order
-    }
-    
 
-    
     @IBAction private func addButtonDidTap() {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
