@@ -19,7 +19,10 @@ final class ProfileVC: UIViewController {
     }
     
     @IBAction private func checkFirebase() {
-        viewModel.readDataCheck()
-    }
+            
+            viewModel.checkFirestore { message in
+                self.chekMessageLabel.text = message
+            }
+        }
    
 }

@@ -72,6 +72,7 @@
 		EE06A4152885F3A60086594D /* GroupVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A4142885F3A60086594D /* GroupVM.swift */; };
 		EEBC4B912886C9C5003CBAE3 /* GroupVCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBC4B902886C9C5003CBAE3 /* GroupVCModel.swift */; };
 		EEBC4B942886DFAA003CBAE3 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBC4B932886DFAA003CBAE3 /* GroupCell.swift */; };
+		EEBC4B9728880424003CBAE3 /* FirebaseChekModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBC4B9628880424003CBAE3 /* FirebaseChekModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +129,7 @@
 		EE06A4142885F3A60086594D /* GroupVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupVM.swift; sourceTree = "<group>"; };
 		EEBC4B902886C9C5003CBAE3 /* GroupVCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupVCModel.swift; sourceTree = "<group>"; };
 		EEBC4B932886DFAA003CBAE3 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
+		EEBC4B9628880424003CBAE3 /* FirebaseChekModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseChekModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 				E9E277A4287EF47400360F67 /* OrderModel.swift */,
 				EE06A400287DC0E30086594D /* TypePriceModel.swift */,
 				EEBC4B902886C9C5003CBAE3 /* GroupVCModel.swift */,
+				EEBC4B9628880424003CBAE3 /* FirebaseChekModel.swift */,
 				E9E277A3287EF3FF00360F67 /* CoreDataModels */,
 			);
 			path = Models;
@@ -455,6 +458,7 @@
 				EE06A3CD287DBAA10086594D /* OrderProduct+CoreDataClass.swift in Sources */,
 				EE06A3E2287DBE380086594D /* ProductVM.swift in Sources */,
 				EE06A3C3287DBAA10086594D /* Price+CoreDataClass.swift in Sources */,
+				EEBC4B9728880424003CBAE3 /* FirebaseChekModel.swift in Sources */,
 				EE06A3CC287DBAA10086594D /* Client+CoreDataProperties.swift in Sources */,
 				E9E277A5287EF47400360F67 /* OrderModel.swift in Sources */,
 				EE06A3D3287DBBA00086594D /* CoreDataService.swift in Sources */,

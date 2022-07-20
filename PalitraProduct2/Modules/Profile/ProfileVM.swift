@@ -8,27 +8,40 @@
 import Foundation
 import FirebaseCore
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 protocol ProfileVMProtocol {
-    func readDataCheck()
+    
+    var message: String { get }
+    
+    func checkFirestore(completion: @escaping ((String) -> Void))
+    func testFirebase()
 }
 
 final class ProfileVM: ProfileVMProtocol {
     
     let db = Firestore.firestore()
     
-    func readDataCheck() {
-        
-        
-        db.collection("check").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
+    var message: String = ""
     
-                    print("\(document.documentID) => \(document.data())")
-                }
+    
+    // load data in firestore
+    func checkFirestore(completion: @escaping ((String) -> Void)) {
+        let docRef = db.collection("check").document("Check")
+
+        docRef.getDocument(as: Check.self) { result in
+            switch result {
+                
+            case .success(let check):
+                completion(check.message)
+                
+            case .failure(let error):
+                print("Error decoding city: \(error)")
             }
         }
+    }
+    
+    func testFirebase() {
+        
     }
 }
