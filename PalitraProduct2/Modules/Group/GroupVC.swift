@@ -4,14 +4,14 @@ final class GroupVC: UIViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(GroupCell.self, forCellReuseIdentifier: "\(GroupCell.self)")
         
         return tableView
     }()
     
     private var selectCell: NSInteger = -1
     private var viewModel: GroupVMProtocol = GroupVM()
-    private var firstGroupId: String = "1a"
+    private var firstGroupId: String = "a2f53673-6bce-11ec-b76a-b3fbe64f3794"
     private var sectionsGroup: [Section] = []
     
     
@@ -31,12 +31,6 @@ final class GroupVC: UIViewController {
         
         tableView.frame = view.bounds
     }
-    
-//    private func tapToRow(id: String) {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        guard let nextVC = storyboard.instantiateViewController(withIdentifier: "\(Group.self)") as? GroupVC else { return }
-//
-//    }
 }
 
 //MARK: - extension UITableView
@@ -56,16 +50,15 @@ extension GroupVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let cellGroup = tableView.dequeueReusableCell(withIdentifier: "\(GroupCell.self)", for: indexPath) as? GroupCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(GroupCell.self)", for: indexPath) as? GroupCell
         
         if indexPath.row == 0 {
-            cell.textLabel?.text = sectionsGroup[indexPath.section].title
+            cell?.setupSectionCell(with: sectionsGroup[indexPath.section])
         } else {
-            cellGroup?.setupCell(with: sectionsGroup[indexPath.section].options[indexPath.row - 1])
+            cell?.setupCell(with: sectionsGroup[indexPath.section].options[indexPath.row - 1])
         }
         
-        return cell
+        return cell ?? .init()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
