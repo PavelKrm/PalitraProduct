@@ -11,6 +11,10 @@ import CoreData
 
 @objc(Group)
 public class Group: NSManagedObject {
+    
+    var allProduct: [Product] {
+            return (product?.allObjects as? [Product]) ?? []
+        }
 
     static func getArrayById(id: String) -> [Group]? {
         let request = Group.fetchRequest()

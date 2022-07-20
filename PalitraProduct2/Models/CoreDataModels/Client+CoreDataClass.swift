@@ -13,7 +13,7 @@ import CoreData
 public class Client: NSManagedObject {
 
     var allPartner: [Partner] {
-        print(partner?.allObjects as? [Partner])
+        print(partner?.allObjects as? [Partner] ?? Partner())
             return (partner?.allObjects as? [Partner]) ?? []
         
         }

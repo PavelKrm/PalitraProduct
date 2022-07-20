@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WwO-de-Ijs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sPv-Al-74h">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -380,18 +380,43 @@
                                     <action selector="readXmlDidTap" destination="rRy-hy-gNp" eventType="touchUpInside" id="3fE-Db-saz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WpA-RB-VdX">
+                                <rect key="frame" x="20" y="218" width="388" height="30"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Проверить подключение">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="checkFirebase" destination="rRy-hy-gNp" eventType="touchUpInside" id="f5M-c9-EIu"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CheckMessage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJY-vM-Iiw">
+                                <rect key="frame" x="155" y="256" width="118" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ilO-aC-Z8Q"/>
                         <color key="backgroundColor" systemColor="systemGray2Color"/>
                         <constraints>
+                            <constraint firstItem="TJY-vM-Iiw" firstAttribute="centerX" secondItem="Psl-KB-OOt" secondAttribute="centerX" id="3Vp-mv-QJ6"/>
+                            <constraint firstItem="ilO-aC-Z8Q" firstAttribute="trailing" secondItem="WpA-RB-VdX" secondAttribute="trailing" constant="20" id="8I6-IM-0n9"/>
+                            <constraint firstItem="TJY-vM-Iiw" firstAttribute="centerY" secondItem="Psl-KB-OOt" secondAttribute="centerY" constant="-196.5" id="8oz-r2-tiE"/>
                             <constraint firstItem="VgG-ih-FgQ" firstAttribute="centerY" secondItem="Psl-KB-OOt" secondAttribute="centerY" id="EYz-91-cFa"/>
+                            <constraint firstItem="WpA-RB-VdX" firstAttribute="top" secondItem="9J4-q3-c3L" secondAttribute="bottom" constant="50" id="Gyl-41-zOX"/>
                             <constraint firstItem="9J4-q3-c3L" firstAttribute="top" secondItem="ilO-aC-Z8Q" secondAttribute="top" constant="50" id="Qts-GJ-XHN"/>
                             <constraint firstItem="VgG-ih-FgQ" firstAttribute="centerX" secondItem="Psl-KB-OOt" secondAttribute="centerX" id="jsN-nY-Jze"/>
                             <constraint firstItem="ilO-aC-Z8Q" firstAttribute="trailing" secondItem="9J4-q3-c3L" secondAttribute="trailing" constant="20" id="s60-Yt-nd3"/>
                             <constraint firstItem="9J4-q3-c3L" firstAttribute="leading" secondItem="ilO-aC-Z8Q" secondAttribute="leading" constant="20" id="u8h-NT-a8w"/>
+                            <constraint firstItem="WpA-RB-VdX" firstAttribute="leading" secondItem="ilO-aC-Z8Q" secondAttribute="leading" constant="20" id="xs0-ws-oUP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Настройки" id="THa-EA-nSc"/>
+                    <connections>
+                        <outlet property="chekMessageLabel" destination="TJY-vM-Iiw" id="IUY-OZ-GXR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tzS-Qz-chv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -796,6 +821,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gxv-yO-aXd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2934" y="1034"/>
+        </scene>
+        <!--GroupVC-->
+        <scene sceneID="4u4-ls-Z5S">
+            <objects>
+                <viewController storyboardIdentifier="GroupVC" id="sPv-Al-74h" customClass="GroupVC" customModule="PalitraProduct2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vef-ji-1Zj">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="8Xh-3u-znF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9mM-qs-glD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-62" y="319"/>
         </scene>
         <!--Настройки-->
         <scene sceneID="evP-bA-1d6">
@@ -1305,6 +1345,9 @@
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
         <image name="nosign" catalog="system" width="128" height="121"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -1325,6 +1368,9 @@
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
