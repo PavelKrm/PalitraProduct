@@ -218,10 +218,10 @@
 		EE06A3B0287DBA840086594D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EEE0F7E828882741009893D3 /* FirebaseModels */,
 				E9E277A4287EF47400360F67 /* OrderModel.swift */,
 				EE06A400287DC0E30086594D /* TypePriceModel.swift */,
 				EEBC4B902886C9C5003CBAE3 /* GroupVCModel.swift */,
-				EEBC4B9628880424003CBAE3 /* FirebaseChekModel.swift */,
 				E9E277A3287EF3FF00360F67 /* CoreDataModels */,
 			);
 			path = Models;
@@ -343,6 +343,14 @@
 				EEBC4B932886DFAA003CBAE3 /* GroupCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		EEE0F7E828882741009893D3 /* FirebaseModels */ = {
+			isa = PBXGroup;
+			children = (
+				EEBC4B9628880424003CBAE3 /* FirebaseChekModel.swift */,
+			);
+			path = FirebaseModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

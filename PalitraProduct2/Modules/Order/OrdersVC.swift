@@ -52,6 +52,22 @@ class OrdersVC: UIViewController {
         alert.addAction(cancelButton)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    private func showSendAlert(indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Отправить заказ?", message: "После отправки заказ нельзя редактировать!", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Ок", style: .default) { _ in
+            //
+        }
+        
+        let cancelButton = UIAlertAction(title: "Отмена", style: .cancel, handler: { (action : UIAlertAction) -> Void in })
+        alert.addAction(okButton)
+        alert.addAction(cancelButton)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func sentOrder(order: Order) {
+        
+    }
 }
 
 //MARK: - extension OrdersVC: UITableViewDelegate-/-DataSource

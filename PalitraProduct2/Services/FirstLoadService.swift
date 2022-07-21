@@ -135,8 +135,7 @@ final class FirstLoadData {
 
             let readXmlClients = try AEXMLDocument(xml: clientData, options: options)
             if let counterInfo = readXmlClients.root["v8msg:Body"]["v8de:Changes"]["v8de:Data"]["CatalogObject.Контрагенты"].all {
-                var countFalseMatch: Int = 0
-                var countTrueMatch: Int = 0
+
                 for counter in counterInfo {
                     if let partnerInfo = readXmlClients.root["v8msg:Body"]["v8de:Changes"]["v8de:Data"]["CatalogObject.Партнеры"].all {
                         for partner in partnerInfo {
@@ -158,17 +157,15 @@ final class FirstLoadData {
                                     client.unp = counter["ИНН"].value ?? ""
                                     client.clientCodeInServer = partner["Code"].value ?? ""
                                     print("Save")
-                                    countTrueMatch += 1
+
                                     CoreDataService.saveContext()
                                 }
                             } else {
-                                countFalseMatch += 1
                                 print("no match")
                             }
                         }
                     }
                 }
-                print("count true - \(countTrueMatch)\nfalse - \(countFalseMatch)\ntotal - \(countTrueMatch + countFalseMatch)")
                 
             }
             

@@ -120,7 +120,7 @@ final class ViewController: UIViewController, PropertyVCDelegate {
     }
     
 }
-// MARK: - UITableViewDelegate
+// MARK: - UITableView
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

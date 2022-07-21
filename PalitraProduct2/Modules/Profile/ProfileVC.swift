@@ -20,9 +20,15 @@ final class ProfileVC: UIViewController {
     
     @IBAction private func checkFirebase() {
             
-            viewModel.checkFirestore { message in
-                self.chekMessageLabel.text = message
+            viewModel.checkFirestore { check in
+                
+                self.chekMessageLabel.text = check.message
+                
             }
         }
+    @IBAction private func addPrdouctsInFirebase() {
+        viewModel.udateDocumentCheckFB()
+    }
    
+    
 }

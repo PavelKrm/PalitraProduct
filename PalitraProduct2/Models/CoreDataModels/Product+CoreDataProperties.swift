@@ -2,7 +2,7 @@
 //  Product+CoreDataProperties.swift
 //  PalitraProduct2
 //
-//  Created by Pol Krm on 12.07.22.
+//  Created by Pol Krm on 21.07.22.
 //
 //
 
@@ -28,6 +28,7 @@ extension Product {
     @NSManaged public var selfId: String?
     @NSManaged public var unit: String?
     @NSManaged public var vendorcode: String?
+    @NSManaged public var lastUpdated: Date?
     @NSManaged public var group: Group?
     @NSManaged public var prices: NSSet?
 

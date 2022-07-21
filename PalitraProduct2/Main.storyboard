@@ -136,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a2l-Gw-WQ6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2195" y="305"/>
+            <point key="canvasLocation" x="2194" y="319"/>
         </scene>
         <!--Товары-->
         <scene sceneID="tne-QT-ifu">
@@ -397,6 +397,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ok9-Y0-XPf">
+                                <rect key="frame" x="20" y="327" width="388" height="30"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="WDU-Gc-3Je"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Выгрузить продукты">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="addPrdouctsInFirebase" destination="rRy-hy-gNp" eventType="touchUpInside" id="oFL-Gy-epX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ilO-aC-Z8Q"/>
                         <color key="backgroundColor" systemColor="systemGray2Color"/>
@@ -404,12 +418,15 @@
                             <constraint firstItem="TJY-vM-Iiw" firstAttribute="centerX" secondItem="Psl-KB-OOt" secondAttribute="centerX" id="3Vp-mv-QJ6"/>
                             <constraint firstItem="ilO-aC-Z8Q" firstAttribute="trailing" secondItem="WpA-RB-VdX" secondAttribute="trailing" constant="20" id="8I6-IM-0n9"/>
                             <constraint firstItem="TJY-vM-Iiw" firstAttribute="centerY" secondItem="Psl-KB-OOt" secondAttribute="centerY" constant="-196.5" id="8oz-r2-tiE"/>
+                            <constraint firstItem="ok9-Y0-XPf" firstAttribute="leading" secondItem="ilO-aC-Z8Q" secondAttribute="leading" constant="20" id="AqO-8w-HeZ"/>
                             <constraint firstItem="VgG-ih-FgQ" firstAttribute="centerY" secondItem="Psl-KB-OOt" secondAttribute="centerY" id="EYz-91-cFa"/>
                             <constraint firstItem="WpA-RB-VdX" firstAttribute="top" secondItem="9J4-q3-c3L" secondAttribute="bottom" constant="50" id="Gyl-41-zOX"/>
+                            <constraint firstItem="ok9-Y0-XPf" firstAttribute="top" secondItem="TJY-vM-Iiw" secondAttribute="bottom" constant="50" id="K31-15-hmb"/>
                             <constraint firstItem="9J4-q3-c3L" firstAttribute="top" secondItem="ilO-aC-Z8Q" secondAttribute="top" constant="50" id="Qts-GJ-XHN"/>
                             <constraint firstItem="VgG-ih-FgQ" firstAttribute="centerX" secondItem="Psl-KB-OOt" secondAttribute="centerX" id="jsN-nY-Jze"/>
                             <constraint firstItem="ilO-aC-Z8Q" firstAttribute="trailing" secondItem="9J4-q3-c3L" secondAttribute="trailing" constant="20" id="s60-Yt-nd3"/>
                             <constraint firstItem="9J4-q3-c3L" firstAttribute="leading" secondItem="ilO-aC-Z8Q" secondAttribute="leading" constant="20" id="u8h-NT-a8w"/>
+                            <constraint firstItem="ilO-aC-Z8Q" firstAttribute="trailing" secondItem="ok9-Y0-XPf" secondAttribute="trailing" constant="20" id="ube-Ce-MSm"/>
                             <constraint firstItem="WpA-RB-VdX" firstAttribute="leading" secondItem="ilO-aC-Z8Q" secondAttribute="leading" constant="20" id="xs0-ws-oUP"/>
                         </constraints>
                     </view>
@@ -1015,10 +1032,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="gzz-kv-KIE" kind="relationship" relationship="viewControllers" id="Iu1-P6-drq"/>
-                        <segue destination="ln6-hj-Sr2" kind="relationship" relationship="viewControllers" id="zlh-OS-BWa"/>
-                        <segue destination="EIu-Io-DTd" kind="relationship" relationship="viewControllers" id="nhW-fF-SG1"/>
-                        <segue destination="M4m-6J-hPI" kind="relationship" relationship="viewControllers" id="M0A-ee-uVh"/>
+                        <segue destination="M4m-6J-hPI" kind="relationship" relationship="viewControllers" id="tZi-sO-a5Y"/>
+                        <segue destination="gzz-kv-KIE" kind="relationship" relationship="viewControllers" id="aCy-xK-bkv"/>
+                        <segue destination="ln6-hj-Sr2" kind="relationship" relationship="viewControllers" id="kiV-6X-gak"/>
+                        <segue destination="EIu-Io-DTd" kind="relationship" relationship="viewControllers" id="84K-1g-bbQ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JEx-OM-Rut" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1320,9 +1337,7 @@
                             <constraint firstItem="DgT-Ci-SYD" firstAttribute="leading" secondItem="fMr-gl-rf1" secondAttribute="leading" constant="20" id="y61-53-nwt"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Новый заказ" id="1lD-rg-KAW">
-                        <barButtonItem key="rightBarButtonItem" title="Сохранить" id="HJg-FF-x59"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Title" id="DHK-Ta-jTx"/>
                     <connections>
                         <outlet property="chooseClientBatton" destination="snJ-Np-SmH" id="CKi-lJ-VU2"/>
                         <outlet property="chooseDeliveryDateTextField" destination="UfA-6j-ezZ" id="bH8-YP-IX4"/>

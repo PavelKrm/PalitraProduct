@@ -2,7 +2,7 @@
 //  Order+CoreDataProperties.swift
 //  PalitraProduct2
 //
-//  Created by Pol Krm on 12.07.22.
+//  Created by Pol Krm on 21.07.22.
 //
 //
 
@@ -25,6 +25,7 @@ extension Order {
     @NSManaged public var orderTypePriceId: String?
     @NSManaged public var orderTypePriceName: String?
     @NSManaged public var selfId: String?
+    @NSManaged public var lastUpdated: Date?
     @NSManaged public var client: Client?
     @NSManaged public var partner: Partner?
     @NSManaged public var product: NSSet?

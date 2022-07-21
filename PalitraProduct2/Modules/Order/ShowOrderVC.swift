@@ -58,6 +58,7 @@ final class ShowOrderVC: UIViewController {
     func doubleInString(price: Double) -> NSString {
         return NSString(format:"%.2f", price)
     }
+    
 }
 
 extension ShowOrderVC: UITableViewDelegate, UITableViewDataSource {
