@@ -36,17 +36,17 @@ final class AuthPickerView: UITextField {
         self.inputView?.layer.cornerRadius = 10.0
         self.inputView?.clipsToBounds = true
         self.inputView?.layer.borderWidth = 1.0
-        self.inputView?.layer.borderColor = UIColor.red.cgColor
+        self.inputView?.layer.borderColor = UIColor.systemGray2.cgColor
 
-        let toolBar = UIToolbar()
-        toolBar.barStyle = .default
-        toolBar.sizeToFit()
-        toolBar.backgroundColor = .systemBackground
-        
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: "Выбрать", style: .plain, target: self, action: #selector(self.doneButtonDidTap))
-        toolBar.setItems([spaceButton, doneButton], animated: false)
-        self.inputAccessoryView = toolBar
+//        let toolBar = UIToolbar()
+//        toolBar.barStyle = .default
+//        toolBar.sizeToFit()
+//        toolBar.backgroundColor = .systemBackground
+//        
+//        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+//        let doneButton = UIBarButtonItem(title: "Выбрать", style: .plain, target: self, action: #selector(self.doneButtonDidTap))
+//        toolBar.setItems([spaceButton, doneButton], animated: false)
+//        self.inputAccessoryView = toolBar
     }
      
     private func updateText() {

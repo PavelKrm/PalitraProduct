@@ -4,9 +4,31 @@ import UIKit
 
 final class AuthVC: UIViewController {
     
-    @IBOutlet private weak var loginTextField: AuthPickerView!
-    @IBOutlet private weak var passTextField: UITextField!
-    @IBOutlet private weak var signInButton: UIButton!
+    @IBOutlet private weak var loginTextField: AuthPickerView! {
+        didSet {
+            loginTextField.layer.cornerRadius = 5.0
+            loginTextField.layer.borderWidth = 1.0
+            loginTextField.layer.borderColor = UIColor.systemGray2.cgColor
+        }
+    }
+    @IBOutlet private weak var passTextField: UITextField! {
+        didSet {
+            passTextField.layer.cornerRadius = 5.0
+            passTextField.layer.borderWidth = 1.0
+            passTextField.layer.borderColor = UIColor.systemGray2.cgColor
+        }
+    }
+    @IBOutlet private weak var logInButton: UIButton! {
+        didSet {
+            logInButton.layer.cornerRadius = 5.0
+            logInButton.layer.borderWidth = 1.0
+            logInButton.layer.borderColor = UIColor.systemGray.cgColor
+            logInButton.backgroundColor = .systemBlue
+            logInButton.setTitleColor(.lightText, for: .normal)
+        }
+    }
+    
+    @IBOutlet private weak var forgotPassButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

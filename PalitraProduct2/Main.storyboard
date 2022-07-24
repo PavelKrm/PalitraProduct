@@ -1059,13 +1059,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Логин" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zYm-IX-miX" customClass="AuthPickerView" customModule="PalitraProduct2" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Логин" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zYm-IX-miX" customClass="AuthPickerView" customModule="PalitraProduct2" customModuleProvider="target">
                                 <rect key="frame" x="50" y="338" width="328" height="34"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="username"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WaP-gg-U2X">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WaP-gg-U2X">
                                 <rect key="frame" x="50" y="380" width="328" height="34"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1082,13 +1082,21 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Войти"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KoW-Gf-apq">
+                                <rect key="frame" x="162.66666666666666" y="516.66666666666663" width="102.99999999999997" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Забыли пароль?"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mGk-5U-bh8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="KoW-Gf-apq" firstAttribute="centerX" secondItem="QpM-jg-0Se" secondAttribute="centerX" id="2EU-n0-Xci"/>
                             <constraint firstItem="mGk-5U-bh8" firstAttribute="trailing" secondItem="zYm-IX-miX" secondAttribute="trailing" constant="50" id="5HV-wO-pTT"/>
                             <constraint firstItem="WaP-gg-U2X" firstAttribute="top" secondItem="zYm-IX-miX" secondAttribute="bottom" constant="8" symbolic="YES" id="7Gh-I5-EUH"/>
                             <constraint firstItem="7AV-tJ-7ub" firstAttribute="leading" secondItem="mGk-5U-bh8" secondAttribute="leading" constant="100" id="CvU-Vw-JQd"/>
+                            <constraint firstItem="KoW-Gf-apq" firstAttribute="centerY" secondItem="QpM-jg-0Se" secondAttribute="centerY" constant="67.5" id="GBl-B3-c2P"/>
                             <constraint firstItem="mGk-5U-bh8" firstAttribute="trailing" secondItem="WaP-gg-U2X" secondAttribute="trailing" constant="50" id="HHX-c1-2KG"/>
                             <constraint firstAttribute="trailing" secondItem="6iK-hn-Dxf" secondAttribute="trailing" constant="20" id="NXs-ty-MQp"/>
                             <constraint firstItem="zYm-IX-miX" firstAttribute="top" secondItem="6iK-hn-Dxf" secondAttribute="bottom" constant="39" id="OqW-sY-2YP"/>
@@ -1102,7 +1110,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="Utf-PQ-U9Z"/>
                     <connections>
+                        <outlet property="forgotPassButton" destination="KoW-Gf-apq" id="PMY-pz-zsZ"/>
+                        <outlet property="logInButton" destination="7AV-tJ-7ub" id="MCa-uW-7gR"/>
                         <outlet property="loginTextField" destination="zYm-IX-miX" id="lBI-pI-8NF"/>
+                        <outlet property="passTextField" destination="WaP-gg-U2X" id="uxP-bU-9QF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L8f-BJ-blX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
