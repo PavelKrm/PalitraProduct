@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E9029D44288AC7DB0041CDE3 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9029D43288AC7DB0041CDE3 /* DatabaseService.swift */; };
 		E993252928815A8D0018D3CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E993252828815A8D0018D3CA /* GoogleService-Info.plist */; };
 		E993252C28815C950018D3CA /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E993252B28815C950018D3CA /* FirebaseAnalytics */; };
 		E993252E28815C950018D3CA /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = E993252D28815C950018D3CA /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -73,9 +74,13 @@
 		EEBC4B912886C9C5003CBAE3 /* GroupVCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBC4B902886C9C5003CBAE3 /* GroupVCModel.swift */; };
 		EEBC4B942886DFAA003CBAE3 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBC4B932886DFAA003CBAE3 /* GroupCell.swift */; };
 		EEBC4B9728880424003CBAE3 /* FirebaseChekModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBC4B9628880424003CBAE3 /* FirebaseChekModel.swift */; };
+		EEE0F7EB288D85B6009893D3 /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE0F7EA288D85B6009893D3 /* AuthVC.swift */; };
+		EEE0F7ED288D85CB009893D3 /* AuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE0F7EC288D85CB009893D3 /* AuthVM.swift */; };
+		EEE0F7EF288DDC2B009893D3 /* AuthPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE0F7EE288DDC2B009893D3 /* AuthPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E9029D43288AC7DB0041CDE3 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		E993252828815A8D0018D3CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E9932551288189A80018D3CA /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		E9E277A0287EBB0D00360F67 /* import_files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = import_files; sourceTree = "<group>"; };
@@ -130,6 +135,9 @@
 		EEBC4B902886C9C5003CBAE3 /* GroupVCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupVCModel.swift; sourceTree = "<group>"; };
 		EEBC4B932886DFAA003CBAE3 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		EEBC4B9628880424003CBAE3 /* FirebaseChekModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseChekModel.swift; sourceTree = "<group>"; };
+		EEE0F7EA288D85B6009893D3 /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
+		EEE0F7EC288D85CB009893D3 /* AuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVM.swift; sourceTree = "<group>"; };
+		EEE0F7EE288DDC2B009893D3 /* AuthPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,7 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				EEE0F7E828882741009893D3 /* FirebaseModels */,
-				E9E277A4287EF47400360F67 /* OrderModel.swift */,
 				EE06A400287DC0E30086594D /* TypePriceModel.swift */,
 				EEBC4B902886C9C5003CBAE3 /* GroupVCModel.swift */,
 				E9E277A3287EF3FF00360F67 /* CoreDataModels */,
@@ -232,6 +239,7 @@
 			children = (
 				EE06A3D2287DBBA00086594D /* CoreDataService.swift */,
 				EE06A3D4287DBBC10086594D /* FirstLoadService.swift */,
+				E9029D43288AC7DB0041CDE3 /* DatabaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -239,6 +247,7 @@
 		EE06A3DC287DBD970086594D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				EEE0F7E9288D859C009893D3 /* Authentification */,
 				EE06A4112885F3680086594D /* Group */,
 				EE06A404287DC14F0086594D /* Profile */,
 				EE06A3E0287DBDE10086594D /* Product */,
@@ -348,9 +357,20 @@
 		EEE0F7E828882741009893D3 /* FirebaseModels */ = {
 			isa = PBXGroup;
 			children = (
+				E9E277A4287EF47400360F67 /* OrderModel.swift */,
 				EEBC4B9628880424003CBAE3 /* FirebaseChekModel.swift */,
 			);
 			path = FirebaseModels;
+			sourceTree = "<group>";
+		};
+		EEE0F7E9288D859C009893D3 /* Authentification */ = {
+			isa = PBXGroup;
+			children = (
+				EEE0F7EA288D85B6009893D3 /* AuthVC.swift */,
+				EEE0F7EE288DDC2B009893D3 /* AuthPickerView.swift */,
+				EEE0F7EC288D85CB009893D3 /* AuthVM.swift */,
+			);
+			path = Authentification;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,16 +466,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEE0F7ED288D85CB009893D3 /* AuthVM.swift in Sources */,
 				EE06A4152885F3A60086594D /* GroupVM.swift in Sources */,
 				EE06A401287DC0E30086594D /* TypePriceModel.swift in Sources */,
 				EE06A3C8287DBAA10086594D /* Contact+CoreDataProperties.swift in Sources */,
 				E9E277A7287EF7FC00360F67 /* ShowOrderVC.swift in Sources */,
 				EE06A3F6287DBFF20086594D /* ClientsVC.swift in Sources */,
 				EE06A3F8287DBFFF0086594D /* ClientsVM.swift in Sources */,
+				E9029D44288AC7DB0041CDE3 /* DatabaseService.swift in Sources */,
 				EE06A3C6287DBAA10086594D /* Product+CoreDataProperties.swift in Sources */,
 				EE06A3C2287DBAA10086594D /* Order+CoreDataProperties.swift in Sources */,
 				EE06A3FA287DC00E0086594D /* PartnerVC.swift in Sources */,
 				EE06A3ED287DBF2C0086594D /* OrdersVM.swift in Sources */,
+				EEE0F7EB288D85B6009893D3 /* AuthVC.swift in Sources */,
 				EE06A3FD287DC0270086594D /* ClientCell.swift in Sources */,
 				EE06A3CF287DBAA10086594D /* Partner+CoreDataClass.swift in Sources */,
 				EE06A3DA287DBD2E0086594D /* ViewController.swift in Sources */,
@@ -467,6 +490,7 @@
 				EE06A3E2287DBE380086594D /* ProductVM.swift in Sources */,
 				EE06A3C3287DBAA10086594D /* Price+CoreDataClass.swift in Sources */,
 				EEBC4B9728880424003CBAE3 /* FirebaseChekModel.swift in Sources */,
+				EEE0F7EF288DDC2B009893D3 /* AuthPickerView.swift in Sources */,
 				EE06A3CC287DBAA10086594D /* Client+CoreDataProperties.swift in Sources */,
 				E9E277A5287EF47400360F67 /* OrderModel.swift in Sources */,
 				EE06A3D3287DBBA00086594D /* CoreDataService.swift in Sources */,

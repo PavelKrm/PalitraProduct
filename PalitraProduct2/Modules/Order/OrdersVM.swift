@@ -12,14 +12,14 @@ protocol OrdersVMDelegate {
     
     func loadDate()
     func removeOrder(order: Order)
-    func sentOrder(order: Order)
+    func sendOrder(_ order: Order)
     
 }
 
 final class OrdersVM: OrdersVMDelegate {
     
     let db = Firestore.firestore()
-        
+    
     var orders: [Order] = [] {
         didSet {  update?() }
     }
@@ -39,42 +39,21 @@ final class OrdersVM: OrdersVMDelegate {
         
     }
     
-    func sentOrder(order: Order) {
-        
-        let orderRef = db.collection("orders")
-        
-        let orderData: [String: Any] = [
-            "selfId": order.selfId ?? "",
-            "orderNumber" : order.orderNumber ?? "",
-            "orderDate" : order.orderDate ?? Date(),
-            "deliveryDate" : order.deliveryDate ?? "",
-            "clientName" : order.client?.clientName ?? "",
-            "clientId" : order.client?.clientId ?? "",
-            "partnerName" : order.partner?.name ?? "",
-            "partnerId" : order.partner?.selfId ?? "",
-            "manager" : order.manager ?? "",
-            "typePriceName" : order.orderTypePriceName ?? "",
-            "typePriceId" : order.orderTypePriceId ?? "",
-            "comment" : order.comment ?? "",
-            "orderSent" : true,
-            "lastUpdated" : FieldValue.serverTimestamp()
-        ]
-        
-        orderRef.document(order.selfId ?? "").setData(orderData) { err in
-            
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
+    func sendOrder(_ order: Order) {
+        DataBaseService.shared.setOrder(order: order.orderModel) { result in
+            switch result {
+            case .success(_):
                 CoreDataService.mainContext.perform {
                     if let order = Order.getById(id: order.selfId ?? "") {
                         order.lastUpdated = Date.now
                         order.orderSent = true
                         CoreDataService.saveContext()
-                        print("Document \(order.orderNumber ?? "") successfully updated \(Date.now)")
+                        print("Document №\(order.orderNumber ?? "") successfully updated \(Date.now)")
                     }
                 }
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }
-    
 }

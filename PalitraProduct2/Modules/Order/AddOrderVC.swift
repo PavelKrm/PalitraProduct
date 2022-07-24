@@ -63,6 +63,7 @@ final class AddOrderVC: UIViewController {
     private var typePriceName: String = ""
     private var productInOrder: [ProductInOrder] = [] {
         didSet {
+            
             var sumWithoutFee: Double = 0.0
             var sumWithFee: Double = 0.0
             productInOrder.forEach({
@@ -145,6 +146,7 @@ final class AddOrderVC: UIViewController {
                 addingOrder.manager = self.manager
                 addingOrder.orderSent = false
                 addingOrder.orderTypePriceId = self.typePriceId
+                addingOrder.orderTypePriceName = self.typePriceName
                 
                 if let orderClient = Client.getById(id: self.clientId) {
                     addingOrder.client = orderClient

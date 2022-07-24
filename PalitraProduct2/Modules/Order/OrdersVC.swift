@@ -18,6 +18,7 @@ class OrdersVC: UIViewController {
         
         viewModel.update = tableview.reloadData
         viewModel.loadDate()
+        
     }
 
     @IBAction private func addButtonDidTap() {
@@ -37,8 +38,6 @@ class OrdersVC: UIViewController {
 
     }
     
-    
-    
     private func showDeleteAlert(index: IndexPath) {
         let alert = UIAlertController(title: "Удалить заказ?", message: "Заказ будет удален безвозвратно!", preferredStyle: .alert)
         let okButton = UIAlertAction(title: "Ок", style: .destructive, handler: { _ in
@@ -53,10 +52,10 @@ class OrdersVC: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    private func showSendAlert(indexPath: IndexPath) {
+    private func showSendAlert(_ order: Order) {
         let alert = UIAlertController(title: "Отправить заказ?", message: "После отправки заказ нельзя редактировать!", preferredStyle: .alert)
         let okButton = UIAlertAction(title: "Ок", style: .default) { _ in
-            //
+            self.viewModel.sendOrder(order)
         }
         
         let cancelButton = UIAlertAction(title: "Отмена", style: .cancel, handler: { (action : UIAlertAction) -> Void in })
@@ -65,8 +64,12 @@ class OrdersVC: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    private func sentOrder(order: Order) {
+    private func showDontSendAlert() {
+        let alert = UIAlertController(title: "Заказ уже отправлен", message: nil, preferredStyle: .alert)
         
+        let okBatton = UIAlertAction(title: "Ок", style: .cancel, handler: { (action : UIAlertAction) -> Void in })
+        alert.addAction(okBatton)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -88,13 +91,28 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource {
         openOrder(orderId: viewModel.orders[indexPath.row].selfId ?? "")
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let delete = UIContextualAction(style: .destructive, title: "Удалить") { _, _, _ in
+            self.showDeleteAlert(index: indexPath)
+        }
+        
+        let swipeConfig = UISwipeActionsConfiguration(actions: [delete])
+        
+        return swipeConfig
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            showDeleteAlert(index: indexPath)
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let send = UIContextualAction(style: .normal, title: "Отправить") { _, _, _ in
+            if self.viewModel.orders[indexPath.row].orderSent {
+                self.showDontSendAlert()
+            } else {
+                self.showSendAlert(self.viewModel.orders[indexPath.row])
+            }
         }
+        send.backgroundColor = .systemBlue
+        let swipeConfig = UISwipeActionsConfiguration(actions: [send])
+        
+        return swipeConfig
     }
 }

@@ -65,6 +65,7 @@ final class ViewController: UIViewController, PropertyVCDelegate {
     }
     
     private func setOrderProduct(product: Product, quantity: String) {
+        print(Double(product.percentFee))
         var price: Double = 0.0
         product.allPrices.forEach({
             if $0.selfId == ProductVM.typePriceID {

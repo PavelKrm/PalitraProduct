@@ -12,6 +12,14 @@ import CoreData
 @objc(OrderProduct)
 public class OrderProduct: NSManagedObject {
     
+    var costWithFee: Double {
+        return (((price * percentFee) / 100) + price) * Double(quantity)
+    }
+    
+    var cost: Double {
+        return price * Double(quantity)
+    }
+    
     static func getById(id: String) -> OrderProduct? {
         let request = OrderProduct.fetchRequest()
         request.predicate = NSPredicate(format: "\(#keyPath(OrderProduct.selfId)) CONTAINS[cd] \"\(id)\"")
