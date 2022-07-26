@@ -75,6 +75,10 @@
 		EEE0F7EB288D85B6009893D3 /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE0F7EA288D85B6009893D3 /* AuthVC.swift */; };
 		EEE0F7ED288D85CB009893D3 /* AuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE0F7EC288D85CB009893D3 /* AuthVM.swift */; };
 		EEE0F7EF288DDC2B009893D3 /* AuthPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE0F7EE288DDC2B009893D3 /* AuthPickerView.swift */; };
+		EEE0F7F22890106B009893D3 /* AdminVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE0F7F12890106B009893D3 /* AdminVC.swift */; };
+		EEE0F7F428901097009893D3 /* AdminVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE0F7F328901097009893D3 /* AdminVM.swift */; };
+		EEE0F7F7289023EF009893D3 /* SetProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE0F7F6289023EF009893D3 /* SetProfileVC.swift */; };
+		EEE0F7F9289029D8009893D3 /* SetProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE0F7F8289029D8009893D3 /* SetProfileVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +142,10 @@
 		EEE0F7EA288D85B6009893D3 /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
 		EEE0F7EC288D85CB009893D3 /* AuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVM.swift; sourceTree = "<group>"; };
 		EEE0F7EE288DDC2B009893D3 /* AuthPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPickerView.swift; sourceTree = "<group>"; };
+		EEE0F7F12890106B009893D3 /* AdminVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminVC.swift; sourceTree = "<group>"; };
+		EEE0F7F328901097009893D3 /* AdminVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminVM.swift; sourceTree = "<group>"; };
+		EEE0F7F6289023EF009893D3 /* SetProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileVC.swift; sourceTree = "<group>"; };
+		EEE0F7F8289029D8009893D3 /* SetProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +252,7 @@
 		EE06A3DC287DBD970086594D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				EEE0F7F028901052009893D3 /* Admin */,
 				EEE0F7E9288D859C009893D3 /* Authentification */,
 				EE06A4112885F3680086594D /* Group */,
 				EE06A404287DC14F0086594D /* Profile */,
@@ -327,6 +336,7 @@
 		EE06A404287DC14F0086594D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				EEE0F7F5289023D3009893D3 /* SetProfile */,
 				EE06A405287DC15E0086594D /* ProfileVC.swift */,
 				E9932551288189A80018D3CA /* ProfileVM.swift */,
 			);
@@ -369,6 +379,24 @@
 				EEE0F7EC288D85CB009893D3 /* AuthVM.swift */,
 			);
 			path = Authentification;
+			sourceTree = "<group>";
+		};
+		EEE0F7F028901052009893D3 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				EEE0F7F12890106B009893D3 /* AdminVC.swift */,
+				EEE0F7F328901097009893D3 /* AdminVM.swift */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		EEE0F7F5289023D3009893D3 /* SetProfile */ = {
+			isa = PBXGroup;
+			children = (
+				EEE0F7F6289023EF009893D3 /* SetProfileVC.swift */,
+				EEE0F7F8289029D8009893D3 /* SetProfileVM.swift */,
+			);
+			path = SetProfile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -471,6 +499,7 @@
 				EE06A3C6287DBAA10086594D /* Product+CoreDataProperties.swift in Sources */,
 				EE06A3C2287DBAA10086594D /* Order+CoreDataProperties.swift in Sources */,
 				EE06A3FA287DC00E0086594D /* PartnerVC.swift in Sources */,
+				EEE0F7F7289023EF009893D3 /* SetProfileVC.swift in Sources */,
 				EE06A3ED287DBF2C0086594D /* OrdersVM.swift in Sources */,
 				EEE0F7EB288D85B6009893D3 /* AuthVC.swift in Sources */,
 				EE06A3FD287DC0270086594D /* ClientCell.swift in Sources */,
@@ -495,6 +524,7 @@
 				EE06A3A1287DB6EB0086594D /* PalitraProduct2.xcdatamodeld in Sources */,
 				EE06A397287DB6EB0086594D /* AppDelegate.swift in Sources */,
 				EE06A3E7287DBEAD0086594D /* ProductTableViewCell.swift in Sources */,
+				EEE0F7F428901097009893D3 /* AdminVM.swift in Sources */,
 				EE06A406287DC15E0086594D /* ProfileVC.swift in Sources */,
 				EE06A3C5287DBAA10086594D /* Product+CoreDataClass.swift in Sources */,
 				EE06A3C1287DBAA10086594D /* Order+CoreDataClass.swift in Sources */,
@@ -509,9 +539,11 @@
 				EE06A3D0287DBAA10086594D /* Partner+CoreDataProperties.swift in Sources */,
 				EE06A3C9287DBAA10086594D /* Group+CoreDataClass.swift in Sources */,
 				EE06A3CA287DBAA10086594D /* Group+CoreDataProperties.swift in Sources */,
+				EEE0F7F9289029D8009893D3 /* SetProfileVM.swift in Sources */,
 				EE06A3D5287DBBC10086594D /* FirstLoadService.swift in Sources */,
 				EE06A3CB287DBAA10086594D /* Client+CoreDataClass.swift in Sources */,
 				E9932552288189A80018D3CA /* ProfileVM.swift in Sources */,
+				EEE0F7F22890106B009893D3 /* AdminVC.swift in Sources */,
 				EE06A3E5287DBE810086594D /* TypePriceTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

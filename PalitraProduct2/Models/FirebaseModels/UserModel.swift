@@ -6,7 +6,7 @@ struct FBUser: Identifiable {
     var id: String
     var firstname: String
     var lastname: String
-    var avatar: URL?
+    var avatar: String
     var email: String
     var phone: String
     var admin: Bool
@@ -31,7 +31,7 @@ struct FBUser: Identifiable {
         return represent
     }
     
-    init(id: String, firstname: String, lastname: String, avatar: URL?, email: String, phone: String, admin: Bool, acsessApp: Bool ) {
+    init(id: String, firstname: String, lastname: String, avatar: String, email: String, phone: String, admin: Bool, acsessApp: Bool ) {
         
         self.id = id
         self.firstname = firstname
@@ -51,7 +51,7 @@ struct FBUser: Identifiable {
             let id = data["id"] as? String,
             let firstname = data["firstname"] as? String,
             let lastname = data["lastname"] as? String,
-            let avatar = data["avatar"] as? URL,
+            let avatar = data["avatar"] as? String,
             let email = data["email"] as? String,
             let phone = data["phone"] as? String,
             let admin = data["admin"] as? Bool,

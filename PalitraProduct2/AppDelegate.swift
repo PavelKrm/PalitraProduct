@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 import FirebaseCore
 
 @main
@@ -18,17 +19,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         Auth.auth().addStateDidChangeListener { (auth, user) in
+            
             if user == nil {
-                self.showModealAuth()
+                self.showModalAuth()
+                print("Mark authvc present")
+            } else {
+                print("Mark user did auth")
             }
         }
         return true
     }
     
-    private func showModealAuth() {
+    private func showModalAuth() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let authVC = storyboard.instantiateViewController(withIdentifier: "\(AuthVC.self)") as? AuthVC else { return }
-        self.window?.rootViewController?.present(authVC, animated: true, completion: nil)
+        self.window?.rootViewController?.tabBarController?.present(authVC, animated: true, completion: nil)
     }
 
     // MARK: UISceneSession Lifecycle

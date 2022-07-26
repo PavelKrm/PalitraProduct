@@ -28,15 +28,26 @@ final class AuthVC: UIViewController {
     }
     
     @IBOutlet private weak var forgotPassButton: UIButton!
+    private var viewModel: AuthVMProtocol = AuthVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.loginTextField.pickerData = ["Павел", "Ольга", "Наталья", "Полина", "Виктор"]
+        viewModel.getUsers { result in
+            switch result {
+            case .success(let users):
+                self.loginTextField.pickerData = users
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
         self.loginTextField.displayNameHandler = { item in
             return (item as? String) ?? ""
         }
         self.loginTextField.itemSelectionHandler = { index, item in
+            self.viewModel.getFBUser(username: item as? String ?? "")
+           
             print("Выбран \(index), \(item as? String ?? "")")
         }
     }
@@ -46,4 +57,12 @@ final class AuthVC: UIViewController {
         view.endEditing(true)
         loginTextField.resignFirstResponder()
     }
+    
+    @IBAction private func signInButtoDidTap() {
+        viewModel.signIn(pass: passTextField.text ?? "") {
+            self.dismiss(animated: true)
+        }
+        
+    }
+    
 }

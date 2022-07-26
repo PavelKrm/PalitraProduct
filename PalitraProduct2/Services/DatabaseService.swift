@@ -82,7 +82,7 @@ final class DataBaseService {
                      let id = data["id"] as? String,
                      let firstname = data["firstname"] as? String,
                      let lastname = data["lastname"] as? String,
-                     let avatar = data["avatar"] as? URL,
+                     let avatar = data["avatar"] as? String,
                      let email = data["email"] as? String,
                      let phone = data["phone"] as? String,
                      let admin = data["admin"] as? Bool,
