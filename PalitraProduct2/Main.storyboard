@@ -1079,14 +1079,21 @@
                             </imageView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7AV-tJ-7ub">
                                 <rect key="frame" x="100" y="464" width="228" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="7AV-tJ-7ub" secondAttribute="height" multiplier="38:5" id="A9a-8c-yuc"/>
+                                </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Войти"/>
+                                <state key="normal" title="Войти">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KoW-Gf-apq">
                                 <rect key="frame" x="162.66666666666666" y="516.66666666666663" width="102.99999999999997" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Забыли пароль?"/>
+                                <state key="normal" title="Забыли пароль?">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mGk-5U-bh8"/>
@@ -1095,7 +1102,6 @@
                             <constraint firstItem="KoW-Gf-apq" firstAttribute="centerX" secondItem="QpM-jg-0Se" secondAttribute="centerX" id="2EU-n0-Xci"/>
                             <constraint firstItem="mGk-5U-bh8" firstAttribute="trailing" secondItem="zYm-IX-miX" secondAttribute="trailing" constant="50" id="5HV-wO-pTT"/>
                             <constraint firstItem="WaP-gg-U2X" firstAttribute="top" secondItem="zYm-IX-miX" secondAttribute="bottom" constant="8" symbolic="YES" id="7Gh-I5-EUH"/>
-                            <constraint firstItem="7AV-tJ-7ub" firstAttribute="leading" secondItem="mGk-5U-bh8" secondAttribute="leading" constant="100" id="CvU-Vw-JQd"/>
                             <constraint firstItem="KoW-Gf-apq" firstAttribute="centerY" secondItem="QpM-jg-0Se" secondAttribute="centerY" constant="67.5" id="GBl-B3-c2P"/>
                             <constraint firstItem="mGk-5U-bh8" firstAttribute="trailing" secondItem="WaP-gg-U2X" secondAttribute="trailing" constant="50" id="HHX-c1-2KG"/>
                             <constraint firstAttribute="trailing" secondItem="6iK-hn-Dxf" secondAttribute="trailing" constant="20" id="NXs-ty-MQp"/>
@@ -1103,9 +1109,9 @@
                             <constraint firstItem="6iK-hn-Dxf" firstAttribute="centerY" secondItem="QpM-jg-0Se" secondAttribute="centerY" constant="-244" id="ViF-CX-YWm"/>
                             <constraint firstItem="7AV-tJ-7ub" firstAttribute="top" secondItem="WaP-gg-U2X" secondAttribute="bottom" constant="50" id="XZQ-q3-NZK"/>
                             <constraint firstItem="6iK-hn-Dxf" firstAttribute="leading" secondItem="QpM-jg-0Se" secondAttribute="leading" constant="20" id="cj8-el-u9i"/>
+                            <constraint firstItem="7AV-tJ-7ub" firstAttribute="centerX" secondItem="QpM-jg-0Se" secondAttribute="centerX" id="f5i-Jq-r5F"/>
                             <constraint firstItem="zYm-IX-miX" firstAttribute="leading" secondItem="mGk-5U-bh8" secondAttribute="leading" constant="50" id="kQx-ZP-7mR"/>
                             <constraint firstItem="WaP-gg-U2X" firstAttribute="leading" secondItem="mGk-5U-bh8" secondAttribute="leading" constant="50" id="kUy-gD-spS"/>
-                            <constraint firstItem="mGk-5U-bh8" firstAttribute="trailing" secondItem="7AV-tJ-7ub" secondAttribute="trailing" constant="100" id="lQS-TO-WuQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Utf-PQ-U9Z"/>
@@ -1118,7 +1124,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L8f-BJ-blX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1620.5607476635514" y="-1334.1252699784018"/>
+            <point key="canvasLocation" x="1636" y="-1334"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="CPC-w9-P1q">

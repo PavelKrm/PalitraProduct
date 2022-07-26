@@ -24,7 +24,6 @@ final class AuthVC: UIViewController {
             logInButton.layer.borderWidth = 1.0
             logInButton.layer.borderColor = UIColor.systemGray.cgColor
             logInButton.backgroundColor = .systemBlue
-            logInButton.setTitleColor(.lightText, for: .normal)
         }
     }
     
