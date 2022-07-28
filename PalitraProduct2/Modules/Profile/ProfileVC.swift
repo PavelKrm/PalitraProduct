@@ -1,54 +1,78 @@
-//import UIKit
-//
-//final class ProfileVC: UIViewController {
-//    
-//    @IBOutlet private weak var profileImage: UIImageView! {
-//        didSet {
-//            profileImage.layer.cornerRadius = 100.0
-//            profileImage.layer.borderWidth = 1.0
-//            profileImage.layer.borderColor = UIColor.systemBlue.cgColor
-//        }
-//    }
-//    @IBOutlet private weak var fullNameLabel: UILabel!
-//    @IBOutlet private weak var tableview: UITableView! {
-//        didSet {
-//            tableview.delegate = self
-//            tableview.dataSource = self
-//        }
-//    }
-//
-//    private var viewModel: ProfileVMProtocol = ProfileVM()
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//    }
-//    
-//    
-//    @IBAction private func signOut() {
-//        viewModel.signOut()
-//    }
-//    
-//    @IBAction private func editBurBattonDidTap() {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        guard let setProfileVC = storyboard.instantiateViewController(withIdentifier: "\(SetProfileVC.self)") as? SetProfileVC else { return }
-//        setProfileVC.setImage(image: profileImage.image ?? UIImage())
-//        present(setProfileVC, animated: true)
-//    }
-//}
-//
-//extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
-//    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        <#code#>
-//    }
-//    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        <#code#>
-//    }
-//    
-//}
+import UIKit
+
+final class ProfileVC: UIViewController {
+    
+    @IBOutlet private weak var profileImage: UIImageView! {
+        didSet {
+            profileImage.layer.cornerRadius = 100.0
+            profileImage.layer.borderWidth = 1.0
+            profileImage.layer.borderColor = UIColor.systemBlue.cgColor
+            profileImage.clipsToBounds = true
+        }
+    }
+    @IBOutlet private weak var fullNameLabel: UILabel!
+    @IBOutlet private weak var tableview: UITableView! {
+        didSet {
+            tableview.delegate = self
+            tableview.dataSource = self
+        }
+    }
+
+    private var viewModel: ProfileVMProtocol = ProfileVM()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        viewModel.update = tableview.reloadData
+        viewModel.getAvatarCarrentUser { data in
+            let image = UIImage(data: data)
+            self.profileImage.image = image
+        }
+        viewModel.getCurrentUser { user in
+            self.fullNameLabel.text = user.fullname
+        }
+
+    }
+    
+    
+    @IBAction private func signOut() {
+        viewModel.signOut()
+        showModalAuth()
+    }
+    
+    private func showModalAuth() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let authVC = storyboard.instantiateViewController(withIdentifier: "\(AuthVC.self)") as? AuthVC else { return }
+        authVC.modalPresentationStyle = .overFullScreen
+        present(authVC, animated: true)
+    }
+    
+    @IBAction private func editBurBattonDidTap() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let setProfileVC = storyboard.instantiateViewController(withIdentifier: "\(SetProfileVC.self)") as? SetProfileVC else { return }
+//        setProfileVC.setImage(image: profileImage.image ?? UIImage(systemName: "nosign")!)
+        present(setProfileVC, animated: true)
+    }
+}
+
+extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.options.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(ProfileCell.self)") as? ProfileCell
+        if viewModel.userAdmin {
+            cell?.setTitle(title: viewModel.options[indexPath.row].title, image: viewModel.options[indexPath.row].image)
+        } else if !viewModel.options[indexPath.row].admin {
+            cell?.setTitle(title: viewModel.options[indexPath.row].title, image: viewModel.options[indexPath.row].image)
+        }
+        return cell ?? .init()
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+}

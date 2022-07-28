@@ -72,8 +72,8 @@ final class DataBaseService {
         }
     }
     
-    func getUser(user: FBUser, completion: @escaping (Result<FBUser, Error>) -> Void) {
-        usersRef.document(user.id).getDocument { docSnapshot, error in
+    func getUser(userID: String, completion: @escaping (Result<FBUser, Error>) -> Void) {
+        usersRef.document(userID).getDocument { docSnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {

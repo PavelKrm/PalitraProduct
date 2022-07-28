@@ -16,7 +16,9 @@ protocol OrdersVMDelegate {
     
 }
 
-final class OrdersVM: OrdersVMDelegate {
+final class OrdersVM: NSObject, OrdersVMDelegate {
+    
+    private var fetchedResultController: NSFetchedResultsController<Order>?
     
     let db = Firestore.firestore()
     
@@ -29,8 +31,14 @@ final class OrdersVM: OrdersVMDelegate {
     func loadDate() {
         let request = Order.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Order.orderDate), ascending: true)]
-        let orders = try? CoreDataService.mainContext.fetch(request)
-        self.orders = orders ?? []
+        fetchedResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataService.mainContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultController?.delegate = self
+        loadOrders()
+    }
+    
+    func loadOrders() {
+        try? fetchedResultController?.performFetch()
+        self.orders = fetchedResultController?.fetchedObjects ?? []
     }
     
     func removeOrder(order: Order) {
@@ -55,5 +63,13 @@ final class OrdersVM: OrdersVMDelegate {
                 print(error.localizedDescription)
             }
         }
+    }
+}
+
+extension OrdersVM: NSFetchedResultsControllerDelegate {
+ 
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        loadOrders()
+        
     }
 }

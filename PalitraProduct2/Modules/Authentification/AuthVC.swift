@@ -61,6 +61,7 @@ final class AuthVC: UIViewController {
     @IBAction private func signInButtoDidTap() {
         viewModel.signIn(pass: passTextField.text ?? "") {
             self.dismiss(animated: true)
+        // дописать обновление данных каррент юзера
         }
         
     }

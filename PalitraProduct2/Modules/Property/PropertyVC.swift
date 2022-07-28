@@ -28,7 +28,7 @@ class PropertyVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.loadProducts()
+        viewModel.loadData()
         viewModel.update = typePricesTV.reloadData
         
         typePricesTV.delegate = self

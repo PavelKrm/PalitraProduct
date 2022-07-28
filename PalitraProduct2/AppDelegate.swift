@@ -12,30 +12,14 @@ import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            
-            if user == nil {
-                self.showModalAuth()
-                print("Mark authvc present")
-            } else {
-                print("Mark user did auth")
-            }
-        }
+        
         return true
     }
-    
-    private func showModalAuth() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let authVC = storyboard.instantiateViewController(withIdentifier: "\(AuthVC.self)") as? AuthVC else { return }
-        self.window?.rootViewController?.tabBarController?.present(authVC, animated: true, completion: nil)
-    }
-
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

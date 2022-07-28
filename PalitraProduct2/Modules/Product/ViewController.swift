@@ -1,5 +1,6 @@
 import UIKit
 import AEXML
+import FirebaseAuth
 
 final class ViewController: UIViewController, PropertyVCDelegate {
     
@@ -37,8 +38,10 @@ final class ViewController: UIViewController, PropertyVCDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        authVCPresent()
+        
         viewModel.update = tableView.reloadData
-        viewModel.loadProducts()
+        viewModel.loadData()
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -47,9 +50,26 @@ final class ViewController: UIViewController, PropertyVCDelegate {
         definesPresentationContext = true
     }
     
+    private func authVCPresent() {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user == nil {
+                self.showModalAuth()
+                print("Mark authvc present")
+            } else {
+                print("Mark user did auth")
+            }
+        }
+    }
+    
+    private func showModalAuth() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let authVC = storyboard.instantiateViewController(withIdentifier: "\(AuthVC.self)") as? AuthVC else { return }
+        authVC.modalPresentationStyle = .overFullScreen
+        present(authVC, animated: true)
+    }
+    
     func updateDate(typeId: String, typeName: String) {
         tableView.reloadData()
-        
     }
     
     @IBAction private func editButtonDidTap() {

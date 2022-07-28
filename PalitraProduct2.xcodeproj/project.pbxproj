@@ -10,6 +10,8 @@
 		E9029D44288AC7DB0041CDE3 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9029D43288AC7DB0041CDE3 /* DatabaseService.swift */; };
 		E9029D46288E73570041CDE3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9029D45288E73570041CDE3 /* UserModel.swift */; };
 		E9029D48288E7FC20041CDE3 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9029D47288E7FC10041CDE3 /* AuthService.swift */; };
+		E9694F13289091B90031C550 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9694F12289091B90031C550 /* ProfileCell.swift */; };
+		E9694F15289126340031C550 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9694F14289126340031C550 /* StorageService.swift */; };
 		E9869305288F30D4009DFF0C /* AEXML in Frameworks */ = {isa = PBXBuildFile; productRef = E9869304288F30D4009DFF0C /* AEXML */; };
 		E9869308288F3145009DFF0C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E9869307288F3145009DFF0C /* FirebaseAuth */; };
 		E986930A288F3145009DFF0C /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E9869309288F3145009DFF0C /* FirebaseAuthCombine-Community */; };
@@ -79,12 +81,15 @@
 		EEE0F7F428901097009893D3 /* AdminVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE0F7F328901097009893D3 /* AdminVM.swift */; };
 		EEE0F7F7289023EF009893D3 /* SetProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE0F7F6289023EF009893D3 /* SetProfileVC.swift */; };
 		EEE0F7F9289029D8009893D3 /* SetProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE0F7F8289029D8009893D3 /* SetProfileVM.swift */; };
+		EEE0F7FB2892A09E009893D3 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE0F7FA2892A09E009893D3 /* ProfileModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E9029D43288AC7DB0041CDE3 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		E9029D45288E73570041CDE3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		E9029D47288E7FC10041CDE3 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		E9694F12289091B90031C550 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		E9694F14289126340031C550 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		E993252828815A8D0018D3CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E9932551288189A80018D3CA /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		E9E277A0287EBB0D00360F67 /* import_files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = import_files; sourceTree = "<group>"; };
@@ -146,6 +151,7 @@
 		EEE0F7F328901097009893D3 /* AdminVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminVM.swift; sourceTree = "<group>"; };
 		EEE0F7F6289023EF009893D3 /* SetProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileVC.swift; sourceTree = "<group>"; };
 		EEE0F7F8289029D8009893D3 /* SetProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileVM.swift; sourceTree = "<group>"; };
+		EEE0F7FA2892A09E009893D3 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +175,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E9694F11289091930031C550 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E9694F12289091B90031C550 /* ProfileCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		E9E277A3287EF3FF00360F67 /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,6 +259,7 @@
 				E9029D47288E7FC10041CDE3 /* AuthService.swift */,
 				EE06A3D4287DBBC10086594D /* FirstLoadService.swift */,
 				E9029D43288AC7DB0041CDE3 /* DatabaseService.swift */,
+				E9694F14289126340031C550 /* StorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -287,9 +302,9 @@
 			isa = PBXGroup;
 			children = (
 				EE06A3F0287DBF3D0086594D /* Cell */,
+				E9E277A6287EF7FC00360F67 /* ShowOrderVC.swift */,
 				EE06A3EA287DBF210086594D /* OrdersVC.swift */,
 				EE06A3EC287DBF2C0086594D /* OrdersVM.swift */,
-				E9E277A6287EF7FC00360F67 /* ShowOrderVC.swift */,
 				E9E277A8287EF83A00360F67 /* ShowOrderVM.swift */,
 				EE06A3EE287DBF380086594D /* AddOrderVC.swift */,
 			);
@@ -336,6 +351,7 @@
 		EE06A404287DC14F0086594D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E9694F11289091930031C550 /* Cell */,
 				EEE0F7F5289023D3009893D3 /* SetProfile */,
 				EE06A405287DC15E0086594D /* ProfileVC.swift */,
 				E9932551288189A80018D3CA /* ProfileVM.swift */,
@@ -367,6 +383,7 @@
 				E9E277A4287EF47400360F67 /* OrderModel.swift */,
 				EEBC4B9628880424003CBAE3 /* FirebaseChekModel.swift */,
 				E9029D45288E73570041CDE3 /* UserModel.swift */,
+				EEE0F7FA2892A09E009893D3 /* ProfileModel.swift */,
 			);
 			path = FirebaseModels;
 			sourceTree = "<group>";
@@ -503,6 +520,7 @@
 				EE06A3ED287DBF2C0086594D /* OrdersVM.swift in Sources */,
 				EEE0F7EB288D85B6009893D3 /* AuthVC.swift in Sources */,
 				EE06A3FD287DC0270086594D /* ClientCell.swift in Sources */,
+				EEE0F7FB2892A09E009893D3 /* ProfileModel.swift in Sources */,
 				EE06A3CF287DBAA10086594D /* Partner+CoreDataClass.swift in Sources */,
 				EE06A3DA287DBD2E0086594D /* ViewController.swift in Sources */,
 				EE06A4132885F37E0086594D /* GroupVC.swift in Sources */,
@@ -515,6 +533,7 @@
 				EE06A3E2287DBE380086594D /* ProductVM.swift in Sources */,
 				EE06A3C3287DBAA10086594D /* Price+CoreDataClass.swift in Sources */,
 				EEBC4B9728880424003CBAE3 /* FirebaseChekModel.swift in Sources */,
+				E9694F13289091B90031C550 /* ProfileCell.swift in Sources */,
 				EEE0F7EF288DDC2B009893D3 /* AuthPickerView.swift in Sources */,
 				EE06A3CC287DBAA10086594D /* Client+CoreDataProperties.swift in Sources */,
 				E9E277A5287EF47400360F67 /* OrderModel.swift in Sources */,
@@ -538,6 +557,7 @@
 				EE06A3C4287DBAA10086594D /* Price+CoreDataProperties.swift in Sources */,
 				EE06A3D0287DBAA10086594D /* Partner+CoreDataProperties.swift in Sources */,
 				EE06A3C9287DBAA10086594D /* Group+CoreDataClass.swift in Sources */,
+				E9694F15289126340031C550 /* StorageService.swift in Sources */,
 				EE06A3CA287DBAA10086594D /* Group+CoreDataProperties.swift in Sources */,
 				EEE0F7F9289029D8009893D3 /* SetProfileVM.swift in Sources */,
 				EE06A3D5287DBBC10086594D /* FirstLoadService.swift in Sources */,

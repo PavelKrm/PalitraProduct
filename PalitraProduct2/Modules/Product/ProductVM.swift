@@ -6,12 +6,14 @@ protocol ProductVMProtocol {
     var products: [Product] { get }
     var typePrices: [TypePrice] { get }
     var update: (() -> Void)? { get set }
-    func loadProducts()
+    func loadData()
     func loadOrder(orderId: String) -> Order
     
 }
 
-final class ProductVM: ProductVMProtocol {
+final class ProductVM: NSObject, ProductVMProtocol {
+    
+    private var fetchedResultController: NSFetchedResultsController<Product>?
     
     static var typePriceID: String = ""
     static var defaultPriceID: String = ""
@@ -37,12 +39,17 @@ final class ProductVM: ProductVMProtocol {
         }
     }
     
-    func loadProducts() {
+    func loadData() {
         let request = Product.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Product.name), ascending: true)]
-        let products = try? CoreDataService.mainContext.fetch(request)
-        self.products = products ?? []
-        loadTypePrices(product: products?.first ?? Product())
+        fetchedResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataService.mainContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultController?.delegate = self
+        loadProducts()
+    }
+    
+    private func loadProducts() {
+        try? fetchedResultController?.performFetch()
+        self.products = fetchedResultController?.fetchedObjects ?? []
     }
 
     private func loadTypePrices(product: Product) {
@@ -59,5 +66,13 @@ final class ProductVM: ProductVMProtocol {
             print("ERROR: - \(Self.self) order not found")
         }
         return Order()
+    }
+}
+
+extension ProductVM: NSFetchedResultsControllerDelegate {
+ 
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        loadProducts()
+        
     }
 }

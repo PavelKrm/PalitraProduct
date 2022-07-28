@@ -46,7 +46,7 @@ final class AuthVM: AuthVMProtocol {
                 completion(.success(nameUsers))
             case .failure(let error):
                 completion(.failure(error))
-                print(error.localizedDescription)
+                print("Error: - \(error.localizedDescription)")
             }
         }
     }
@@ -54,11 +54,12 @@ final class AuthVM: AuthVMProtocol {
     func signIn(pass: String, completion: @escaping () -> Void) {
         AuthService.shared.signIn(email: self.user.email, password: pass) { result in
             switch result {
-            case .success(_):
-                print("Auth success")
+            case .success(let user):
+                print("Message: - Auth success")
                 completion()
+                self.getCurrentUser(userID: user.uid)
             case .failure(let error):
-                print(error.localizedDescription)
+                print("Error: - \(error.localizedDescription)")
             }
         }
     }
@@ -71,6 +72,45 @@ final class AuthVM: AuthVMProtocol {
             }
         })
         self.user = user
+    }
+    
+    private func getCurrentUser(userID: String){
+        DataBaseService.shared.getUser(userID: userID) { result in
+            switch result {
+            case .success(let user):
+                self.saveProfileDefaults(user: user)
+            case .failure(let error):
+                print("Error: - \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func saveProfileDefaults(user: FBUser) {
+        
+        var image = UIImage(systemName: "nosign")
+        getCurrentAvatar(userID: user.id) { data in
+            let imageData = UIImage(data: data)
+            image = imageData
+        }
+        
+        let userDefaults = UserDefaults.standard
+        let profile = Profile(lastname: user.lastname, firstname: user.fullname, avatar: image, email: user.email, phone: user.phone, admin: user.admin, acsessApp: user.acsessApp)
+        
+        if let data = try? JSONEncoder().encode(profile) {
+            userDefaults.set(data, forKey: "Profile")
+            print("Message: - userDefaults updated")
+        }
+    }
+    
+    private func getCurrentAvatar(userID: String, completion: @escaping (Data) -> Void) {
+        StorageService.shared.getUserImage(userID: userID) { result in
+            switch result {
+            case .success(let data):
+                completion(data)
+            case .failure(let error):
+                print("Error: - \(error.localizedDescription)")
+            }
+        }
     }
 }
 
