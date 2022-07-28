@@ -20,6 +20,10 @@ final class Profile: Codable {
     var admin: Bool
     var acsessApp: Bool
     
+    var fullname: String {
+        return ("\(firstname) \(lastname)")
+    }
+    
     init(lastname: String, firstname: String, avatar: UIImage?, email: String, phone: String, admin: Bool, acsessApp: Bool) {
         self.lastname = lastname
         self.firstname = firstname

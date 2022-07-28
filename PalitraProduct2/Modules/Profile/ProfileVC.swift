@@ -24,14 +24,10 @@ final class ProfileVC: UIViewController {
         super.viewDidLoad()
         
         viewModel.update = tableview.reloadData
-        viewModel.getAvatarCarrentUser { data in
-            let image = UIImage(data: data)
-            self.profileImage.image = image
+        viewModel.getUserDefault { profile in
+            self.profileImage.image = profile.avatar
+            self.fullNameLabel.text = profile.fullname
         }
-        viewModel.getCurrentUser { user in
-            self.fullNameLabel.text = user.fullname
-        }
-
     }
     
     
@@ -58,14 +54,18 @@ final class ProfileVC: UIViewController {
 extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.options.count
+        if viewModel.admin {
+            return viewModel.optionsAdmin.count
+        } else {
+            return viewModel.options.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(ProfileCell.self)") as? ProfileCell
-        if viewModel.userAdmin {
-            cell?.setTitle(title: viewModel.options[indexPath.row].title, image: viewModel.options[indexPath.row].image)
-        } else if !viewModel.options[indexPath.row].admin {
+        if viewModel.admin {
+            cell?.setTitle(title: viewModel.optionsAdmin[indexPath.row].title, image: viewModel.optionsAdmin[indexPath.row].image)
+        } else {
             cell?.setTitle(title: viewModel.options[indexPath.row].title, image: viewModel.options[indexPath.row].image)
         }
         return cell ?? .init()

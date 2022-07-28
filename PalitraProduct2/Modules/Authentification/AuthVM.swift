@@ -74,7 +74,7 @@ final class AuthVM: AuthVMProtocol {
         self.user = user
     }
     
-    private func getCurrentUser(userID: String){
+    private func getCurrentUser(userID: String) {
         DataBaseService.shared.getUser(userID: userID) { result in
             switch result {
             case .success(let user):
@@ -87,18 +87,15 @@ final class AuthVM: AuthVMProtocol {
     
     private func saveProfileDefaults(user: FBUser) {
         
-        var image = UIImage(systemName: "nosign")
         getCurrentAvatar(userID: user.id) { data in
             let imageData = UIImage(data: data)
-            image = imageData
-        }
-        
-        let userDefaults = UserDefaults.standard
-        let profile = Profile(lastname: user.lastname, firstname: user.fullname, avatar: image, email: user.email, phone: user.phone, admin: user.admin, acsessApp: user.acsessApp)
-        
-        if let data = try? JSONEncoder().encode(profile) {
-            userDefaults.set(data, forKey: "Profile")
-            print("Message: - userDefaults updated")
+            let userDefaults = UserDefaults.standard
+            let profile = Profile(lastname: user.lastname, firstname: user.firstname, avatar: imageData, email: user.email, phone: user.phone, admin: user.admin, acsessApp: user.acsessApp)
+            
+            if let data = try? JSONEncoder().encode(profile) {
+                userDefaults.set(data, forKey: "Profile")
+                print("Message: - userDefaults updated")
+            }
         }
     }
     
