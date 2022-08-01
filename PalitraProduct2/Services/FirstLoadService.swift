@@ -75,6 +75,7 @@ final class FirstLoadData {
                     CoreDataService.mainContext.perform {
                         let product = Product(context: CoreDataService.mainContext)
                     
+                        product.lastUpdated = Date.now
                         product.selfId = element["Ид"].value ?? ""
                         product.name = element["Наименование"].value ?? ""
                         product.image = element["Картинка"].value ?? ""
@@ -114,6 +115,7 @@ final class FirstLoadData {
                             CoreDataService.mainContext.perform {
                                 let price = Price(context: CoreDataService.mainContext)
                                 
+                                price.lastUpdated = Date.now
                                 price.selfId = element["ИдТипаЦены"].value ?? ""
                                 price.price = Double(element["ЦенаЗаЕдиницу"].value ?? "") ?? 0.0
                                 price.productId = info["Ид"].value ?? ""

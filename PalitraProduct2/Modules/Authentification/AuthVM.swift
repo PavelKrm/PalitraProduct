@@ -56,8 +56,8 @@ final class AuthVM: AuthVMProtocol {
             switch result {
             case .success(let user):
                 print("Message: - Auth success")
-                completion()
-                self.getCurrentUser(userID: user.uid)
+//                completion()
+                self.getCurrentUser(userID: user.uid, completion: completion)
             case .failure(let error):
                 print("Error: - \(error.localizedDescription)")
             }
@@ -74,18 +74,18 @@ final class AuthVM: AuthVMProtocol {
         self.user = user
     }
     
-    private func getCurrentUser(userID: String) {
+    private func getCurrentUser(userID: String, completion: @escaping () -> Void) {
         DataBaseService.shared.getUser(userID: userID) { result in
             switch result {
             case .success(let user):
-                self.saveProfileDefaults(user: user)
+                self.saveProfileDefaults(user: user, completion: completion)
             case .failure(let error):
                 print("Error: - \(error.localizedDescription)")
             }
         }
     }
     
-    private func saveProfileDefaults(user: FBUser) {
+    private func saveProfileDefaults(user: FBUser, completion: @escaping () -> Void) {
         
         getCurrentAvatar(userID: user.id) { data in
             let imageData = UIImage(data: data)
@@ -95,6 +95,7 @@ final class AuthVM: AuthVMProtocol {
             if let data = try? JSONEncoder().encode(profile) {
                 userDefaults.set(data, forKey: "Profile")
                 print("Message: - userDefaults updated")
+                completion()
             }
         }
     }
@@ -105,6 +106,10 @@ final class AuthVM: AuthVMProtocol {
             case .success(let data):
                 completion(data)
             case .failure(let error):
+                let defaultImage = UIImage(systemName: "camera.badge.ellipsis")
+                if let imageData = defaultImage?.jpegData(compressionQuality: 1.0) {
+                    completion(imageData)
+                }
                 print("Error: - \(error.localizedDescription)")
             }
         }

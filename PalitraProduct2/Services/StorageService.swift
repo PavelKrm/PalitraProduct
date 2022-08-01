@@ -17,7 +17,6 @@ final class StorageService {
     }
     
     func uploadUserImage(userID: String, image: Data, completion: @escaping (Result<String, Error>) -> Void) {
-        
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpg"
         userRef.child(userID).putData(image, metadata: metadata) { metadata, error in
@@ -40,6 +39,20 @@ final class StorageService {
                 return
             }
             completion(.success(data))
+        }
+    }
+    
+    func uploadProductImage(productID: String, image: Data, completion: @escaping (Result<String, Error>) -> Void) {
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpg"
+        productRef.child(productID).putData(image, metadata: metadata) { metadata, error in
+            guard let metadata = metadata else {
+                if let error = error {
+                    completion(.failure(error))
+                }
+                return
+            }
+            completion(.success("Изображение загружено. Размер : \(metadata.size)"))
         }
     }
 }

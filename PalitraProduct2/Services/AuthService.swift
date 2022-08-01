@@ -33,4 +33,23 @@ final class AuthService {
             }
         }
     }
+    
+    func changeEmail(email: String) {
+        auth.currentUser?.updateEmail(to: email) { error in
+            if let error = error {
+                print("Error: - \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func changePassword(pass: String, completion: @escaping (Result< String, Error>) -> Void) {
+        Auth.auth().currentUser?.updatePassword(to: pass) { error in
+            if let error = error {
+                completion(.failure(error))
+                print("Error: - \(error.localizedDescription)")
+            } else {
+                completion(.success("Успешно"))
+            }
+        }
+    }
 }

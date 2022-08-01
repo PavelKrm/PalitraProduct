@@ -28,6 +28,7 @@ final class ProfileVC: UIViewController {
             self.profileImage.image = profile.avatar
             self.fullNameLabel.text = profile.fullname
         }
+        print("ViewDidLoad")
     }
     
     
@@ -46,8 +47,13 @@ final class ProfileVC: UIViewController {
     @IBAction private func editBurBattonDidTap() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let setProfileVC = storyboard.instantiateViewController(withIdentifier: "\(SetProfileVC.self)") as? SetProfileVC else { return }
-//        setProfileVC.setImage(image: profileImage.image ?? UIImage(systemName: "nosign")!)
         present(setProfileVC, animated: true)
+    }
+    
+    private func showAdminVC() {
+        let stroryboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let adminVC = stroryboard.instantiateViewController(withIdentifier: "\(AdminVC.self)") as? AdminVC else { return }
+        navigationController?.pushViewController(adminVC, animated: true)
     }
 }
 
@@ -73,6 +79,21 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        switch  viewModel.tappedTableViewCell(indexPath: indexPath) {
+        case .myClientAdmin:
+            print("мои клиенты")
+        case .myOrdersAdmin:
+            print("Мои заказы")
+        case .adminVC:
+            showAdminVC()
+        case .myClient:
+            print("мои клиенты")
+        case .myOrders:
+            print("Мои заказы")
+        case .none:
+            print("все сломалось")
+        }
+       
     }
 
 }

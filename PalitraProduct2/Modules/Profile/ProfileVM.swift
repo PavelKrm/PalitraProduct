@@ -7,6 +7,15 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import UIKit
 
+enum Options {
+    case myClientAdmin
+    case myOrdersAdmin
+    case adminVC
+    case myClient
+    case myOrders
+    case none
+}
+
 protocol ProfileVMProtocol {
     
     var options: [ProfileTableView] { get }
@@ -18,6 +27,7 @@ protocol ProfileVMProtocol {
     func getCurrentUser(completion: @escaping (FBUser) -> Void)
     func getAvatarCarrentUser(completion: @escaping (Data) -> Void)
     func getUserDefault(completion: @escaping (Profile) -> Void)
+    func tappedTableViewCell(indexPath: IndexPath) -> Options
 }
 
 struct ProfileTableView {
@@ -52,6 +62,9 @@ final class ProfileVM: ProfileVMProtocol {
 
     func signOut() {
         try? Auth.auth().signOut()
+        UserDefaults.standard.removeObject(forKey: "Profile")
+     
+        
     }
     
     func getUserDefault(completion: @escaping (Profile) -> Void) {
@@ -85,5 +98,26 @@ final class ProfileVM: ProfileVMProtocol {
                 }
             }
         }
+    
+    func tappedTableViewCell(indexPath: IndexPath) -> Options {
+        
+        if admin {
+            if optionsAdmin[indexPath.row].title == "Настройки" {
+                return .adminVC
+            } else if optionsAdmin[indexPath.row].title == "Мои заказы" {
+                return .myOrdersAdmin
+            } else {
+                return .myClientAdmin
+            }
+        } else {
+            if options[indexPath.row].title == "Мои клиенты" {
+                return .myClient
+            } else if options[indexPath.row].title == "Мои заказы" {
+                return .myOrders
+            }
+        }
+        return .none
+    }
 
+    
 }

@@ -18,6 +18,37 @@ final class DataBaseService {
         return db.collection("users")
     }
     
+    private var productsRef: CollectionReference {
+        return db.collection("products")
+    }
+    
+    func setProducts(product: ProductModel, completion: @escaping (Result<ProductModel, Error>) -> ()) {
+        productsRef.document(product.id).setData(product.representation) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                self.setProductPrices(to: product.id, prices: product.prices) { result in
+                    switch result {
+                    case .success(_):
+                        print("Message: - ")
+                        completion(.success(product))
+                    case .failure(let error):
+                        print("Error: - \(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+    }
+    
+    private func setProductPrices(to productID: String, prices: [ProductPrice], completion: @escaping (Result<[ProductPrice], Error>) -> ()) {
+        let productPricesRef = productsRef.document(productID).collection("prices")
+        for price in prices {
+            productPricesRef.document(price.id).setData(price.representation)
+        }
+        completion(.success(prices))
+        
+    }
+    
     func setOrder(order: OrderModel, completion: @escaping (Result<OrderModel, Error>) -> ()) {
         ordersRef.document(order.id ?? "").setData(order.representation) { error in
             if let error = error {
@@ -29,7 +60,7 @@ final class DataBaseService {
                         print(products.count)
                         completion(.success(order))
                     case .failure(let error):
-                        print(error.localizedDescription)
+                        print("Error: -", error.localizedDescription)
                     }
                 }
             }
@@ -93,5 +124,4 @@ final class DataBaseService {
             }
         }
     }
-    
 }

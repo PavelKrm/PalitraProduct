@@ -38,7 +38,7 @@ final class AuthVC: UIViewController {
             case .success(let users):
                 self.loginTextField.pickerData = users
             case .failure(let error):
-                print(error.localizedDescription)
+                print("Error: - Users not loaded", error.localizedDescription)
             }
         }
         
@@ -47,8 +47,6 @@ final class AuthVC: UIViewController {
         }
         self.loginTextField.itemSelectionHandler = { index, item in
             self.viewModel.getFBUser(username: item as? String ?? "")
-           
-            print("Выбран \(index), \(item as? String ?? "")")
         }
     }
     
