@@ -51,13 +51,15 @@ final class AdminVM: AdminVMProtocol {
                 switch result {
                 case .success(_):
                     productsSuccess += 1
-                    let image = self.getImage(imagePath: product.image ?? "")
-                    StorageService.shared.uploadProductImage(productID: product.productFB.id, image: image) { result in
-                        switch result {
-                        case .success(_):
-                            imageSuccess += 1
-                        case .failure(let error):
-                            print("Error: - \(error.localizedDescription)")
+                    if (product.image ?? "") != "" {
+                        let image = self.getImage(imagePath: product.image ?? "")
+                        StorageService.shared.uploadProductImage(productID: product.productFB.id, image: image) { result in
+                            switch result {
+                            case .success(_):
+                                imageSuccess += 1
+                            case .failure(let error):
+                                print("Error: - \(error.localizedDescription)")
+                            }
                         }
                     }
                 case .failure(let error):

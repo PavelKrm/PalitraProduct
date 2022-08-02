@@ -84,6 +84,13 @@ final class ViewController: UIViewController, PropertyVCDelegate {
         editButtonDidTap()
     }
     
+    @IBAction func didLeftSwipe() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let groupVC = storyboard.instantiateViewController(withIdentifier: "\(GroupVC.self)") as? GroupVC else { return }
+        groupVC.modalPresentationStyle = .overCurrentContext
+        present(groupVC, animated: false)
+    }
+    
     private func setOrderProduct(product: Product, quantity: String) {
         print(Double(product.percentFee))
         var price: Double = 0.0
@@ -119,19 +126,28 @@ final class ViewController: UIViewController, PropertyVCDelegate {
                     print("Message: Текущий остаток - \(product.quantity)")
                     self.tableView.reloadData()
                 } else {
-//FIXME: - добавить алерт
+                    self.showErrorAlert(quantity: String(product.quantity), product: product)
                     print("Message: Превышен допустимый остаток")
                     print("Message: Текущий остаток - \(product.quantity)")
                 }
                 print("Message: Добавлено в заказ - \(quantityInOrder)")
             }
         })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: { (action : UIAlertAction!) -> Void in })
+        let cancelAction = UIAlertAction(title: "Отмена", style: .destructive, handler: { (action : UIAlertAction!) -> Void in })
         
         
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func showErrorAlert(quantity: String, product: Product) {
+        let alert = UIAlertController(title: "Превышен допустимый остаток", message: "В наличии только \(quantity) шт.", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Ok", style: .default) { _ in
+            self.showAlert(product: product)
+        }
+        alert.addAction(okButton)
+        self.present(alert, animated: true)
     }
     
     @IBAction private func saveButtonDidTap() {

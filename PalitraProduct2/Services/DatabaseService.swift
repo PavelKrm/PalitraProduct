@@ -30,7 +30,6 @@ final class DataBaseService {
                 self.setProductPrices(to: product.id, prices: product.prices) { result in
                     switch result {
                     case .success(_):
-                        print("Message: - ")
                         completion(.success(product))
                     case .failure(let error):
                         print("Error: - \(error.localizedDescription)")

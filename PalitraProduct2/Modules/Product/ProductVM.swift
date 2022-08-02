@@ -29,13 +29,13 @@ final class ProductVM: NSObject, ProductVMProtocol {
     
     var typePrices: [TypePrice] = [] {
         didSet {
-            for type in typePrices {
-                if type.name == "Оптовая" {
-                    Self.defaultPriceID = type.id
-                    Self.defaultPriceName = type.name
-                    Self.typePriceID = type.id
+            typePrices.forEach({
+                if $0.name == "Оптовая" {
+                    Self.defaultPriceID = $0.id
+                    Self.defaultPriceName = $0.name
+                    Self.typePriceID = $0.id
                 }
-            }
+            })
         }
     }
     
@@ -50,6 +50,8 @@ final class ProductVM: NSObject, ProductVMProtocol {
     private func loadProducts() {
         try? fetchedResultController?.performFetch()
         self.products = fetchedResultController?.fetchedObjects ?? []
+        let product = products.last
+        loadTypePrices(product: product ?? Product())
     }
 
     private func loadTypePrices(product: Product) {
@@ -73,6 +75,5 @@ extension ProductVM: NSFetchedResultsControllerDelegate {
  
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         loadProducts()
-        
     }
 }

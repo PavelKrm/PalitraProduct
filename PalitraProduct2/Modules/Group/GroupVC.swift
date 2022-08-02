@@ -2,25 +2,34 @@ import UIKit
 
 final class GroupVC: UIViewController {
     
-    private let tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.register(GroupCell.self, forCellReuseIdentifier: "\(GroupCell.self)")
-        
-        return tableView
-    }()
+    @IBOutlet private weak var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+            tableView.dataSource = self
+        }
+    }
     
-    private var selectCell: NSInteger = -1
+    @IBOutlet weak var viewAnimate: UIView!
+    @IBOutlet weak var xCenterConstraint: NSLayoutConstraint!
+    {
+        didSet {
+            xCenterConstraint.constant -= UIScreen.main.bounds.width
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        showaAnimation()
+    }
+    
     private var viewModel: GroupVMProtocol = GroupVM()
-    private var firstGroupId: String = "a2f53673-6bce-11ec-b76a-b3fbe64f3794"
+    var firstGroupId: String = "a2f53673-6bce-11ec-b76a-b3fbe64f3794"
     private var sectionsGroup: [Section] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.addSubview(tableView)
-        tableView.delegate = self
-        tableView.dataSource = self
         
         viewModel.update = tableView.reloadData
         viewModel.loadGroup(id: firstGroupId)
@@ -28,8 +37,22 @@ final class GroupVC: UIViewController {
         viewModel.groups.forEach({
             sectionsGroup.append(Section(title: $0.name ?? "", id: $0.groupId ?? "", options: Group.getArrayById(id: $0.groupId ?? "") ?? []))
         })
-        
-        tableView.frame = view.bounds
+    }
+    
+    @IBAction func didSwipe() {
+        hideAnimation()
+    }
+    
+    private func showChildGroup(groupID: String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let nextChild = storyboard.instantiateViewController(withIdentifier: "\(GroupVC.self)") as? GroupVC else {
+            
+            print("Error")
+            return
+            
+        }
+        nextChild.firstGroupId = groupID
+        navigationController?.pushViewController(nextChild, animated: true)
     }
 }
 
@@ -53,9 +76,10 @@ extension GroupVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(GroupCell.self)", for: indexPath) as? GroupCell
         
         if indexPath.row == 0 {
-            cell?.setupSectionCell(with: sectionsGroup[indexPath.section])
+            cell?.setTitle(with: sectionsGroup[indexPath.section].title)
+            cell?.backgroundColor = UIColor.systemGray2
         } else {
-            cell?.setupCell(with: sectionsGroup[indexPath.section].options[indexPath.row - 1])
+            cell?.setTitle(with: sectionsGroup[indexPath.section].options[indexPath.row - 1].name ?? "")
         }
         
         return cell ?? .init()
@@ -68,21 +92,26 @@ extension GroupVC: UITableViewDelegate, UITableViewDataSource {
             sectionsGroup[indexPath.section].isOpened = !sectionsGroup[indexPath.section].isOpened
             tableView.reloadSections([indexPath.section], with: .none)
         } else {
-            if selectCell == indexPath.row {
-                selectCell = -1
-            } else {
-                selectCell = indexPath.row
-            }
-            tableView.beginUpdates()
-            tableView.endUpdates()
+           print("tap to \(sectionsGroup[indexPath.section].options[indexPath.row - 1].name ?? "")")
+            showChildGroup(groupID: sectionsGroup[indexPath.section].options[indexPath.row - 1].groupId ?? "")
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if selectCell == indexPath.row {
-            return 200
-        } else {
-            return 50
+    //MARK: - Animation
+    
+    private func showaAnimation() {
+        UIView.animate(withDuration: 0.2) {
+            self.xCenterConstraint.constant += (UIScreen.main.bounds.width / 2)
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    private func hideAnimation() {
+        UIView.animate(withDuration: 0.2) {
+            self.xCenterConstraint.constant -= (UIScreen.main.bounds.width / 2 )
+            self.view.layoutIfNeeded()
+        } completion: { _ in
+            self.dismiss(animated: false)
         }
     }
 }

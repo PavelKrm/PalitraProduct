@@ -27,9 +27,9 @@ class PropertyVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        viewModel.loadData()
+
         viewModel.update = typePricesTV.reloadData
+        viewModel.loadData()
         
         typePricesTV.delegate = self
         typePricesTV.dataSource = self
@@ -43,11 +43,11 @@ class PropertyVC: UIViewController {
     }
     
     private func setTypePriceNameLabel(array: [TypePrice]) {
-        for price in array {
-            if price.id == ProductVM.typePriceID {
-                nameTypePriceLabel.text = price.name
+        array.forEach({
+            if $0.id == ProductVM.typePriceID {
+                nameTypePriceLabel.text = $0.name
             }
-        }
+        })
     }
     
     @IBAction func didSwipe() {

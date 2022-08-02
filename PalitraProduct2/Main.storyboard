@@ -350,6 +350,7 @@
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="LcQ-id-ZF4" appends="YES" id="fcp-eX-YhN"/>
+                            <outletCollection property="gestureRecognizers" destination="HaF-2R-YoU" appends="YES" id="Ic3-oi-i6T"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Товары" id="clK-7v-fWx">
@@ -374,6 +375,11 @@
                 <swipeGestureRecognizer direction="left" id="LcQ-id-ZF4">
                     <connections>
                         <action selector="didSwipe" destination="BYZ-38-t0r" id="gsr-7L-dyv"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="HaF-2R-YoU">
+                    <connections>
+                        <action selector="didLeftSwipe" destination="BYZ-38-t0r" id="ipC-Md-15l"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -626,14 +632,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AdminVCCell" id="rkp-sw-7Y8" customClass="AdminVCCell" customModule="PalitraProduct2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="388" height="42.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="388" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rkp-sw-7Y8" id="GGN-Bh-hkk">
-                                            <rect key="frame" x="0.0" y="0.0" width="388" height="42.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="388" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELM-Ai-N8x">
-                                                    <rect key="frame" x="19.999999999999993" y="11.000000000000002" width="121.33333333333331" height="20.666666666666671"/>
+                                                    <rect key="frame" x="19.999999999999993" y="11.000000000000002" width="121.33333333333331" height="21.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1247,16 +1253,83 @@
         <scene sceneID="4u4-ls-Z5S">
             <objects>
                 <viewController storyboardIdentifier="GroupVC" id="sPv-Al-74h" customClass="GroupVC" customModule="PalitraProduct2" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Vef-ji-1Zj">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="Vef-ji-1Zj">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wrD-Yf-1Lt">
+                                <rect key="frame" x="209" y="0.0" width="219" height="926"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EZp-kE-6hd">
+                                        <rect key="frame" x="8" y="165" width="203" height="601"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" id="xmk-3w-2Dl" customClass="GroupCell" customModule="PalitraProduct2" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="44.666666030883789" width="203" height="37.666667938232422"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xmk-3w-2Dl" id="xsc-Am-T2e">
+                                                    <rect key="frame" x="0.0" y="0.0" width="203" height="37.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8P-3a-c8v">
+                                                            <rect key="frame" x="16" y="11" width="171" height="15"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="r8P-3a-c8v" firstAttribute="leading" secondItem="xsc-Am-T2e" secondAttribute="leadingMargin" id="CNh-DX-CDA"/>
+                                                        <constraint firstItem="r8P-3a-c8v" firstAttribute="trailing" secondItem="xsc-Am-T2e" secondAttribute="trailingMargin" id="Cq0-gn-QTd"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="r8P-3a-c8v" secondAttribute="bottom" constant="0.67000000000000004" id="HVQ-qT-hYm"/>
+                                                        <constraint firstItem="r8P-3a-c8v" firstAttribute="top" secondItem="xsc-Am-T2e" secondAttribute="topMargin" id="SHR-uV-BaB"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="title" destination="r8P-3a-c8v" id="yDJ-tn-QTq"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="219" id="3eN-Xb-2NL"/>
+                                    <constraint firstItem="EZp-kE-6hd" firstAttribute="top" secondItem="wrD-Yf-1Lt" secondAttribute="top" constant="165" id="4Bi-bI-ZQM"/>
+                                    <constraint firstItem="EZp-kE-6hd" firstAttribute="leading" secondItem="wrD-Yf-1Lt" secondAttribute="leading" constant="8" id="EfU-zC-VYa"/>
+                                    <constraint firstAttribute="trailing" secondItem="EZp-kE-6hd" secondAttribute="trailing" constant="8" id="Q0e-ju-Bfi"/>
+                                    <constraint firstAttribute="bottom" secondItem="EZp-kE-6hd" secondAttribute="bottom" constant="160" id="jYg-cW-3u5"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="8Xh-3u-znF"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="wrD-Yf-1Lt" secondAttribute="bottom" id="MEY-8v-4D0"/>
+                            <constraint firstItem="wrD-Yf-1Lt" firstAttribute="top" secondItem="Vef-ji-1Zj" secondAttribute="top" id="mYD-9J-DuT"/>
+                            <constraint firstItem="wrD-Yf-1Lt" firstAttribute="centerX" secondItem="Vef-ji-1Zj" secondAttribute="centerX" constant="104.5" id="sOH-UZ-4dX"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="k0g-rB-kfi" appends="YES" id="yWC-Ya-lIK"/>
+                        </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="r3T-l9-Roq"/>
+                    <connections>
+                        <outlet property="tableView" destination="EZp-kE-6hd" id="tUb-cd-fNu"/>
+                        <outlet property="viewAnimate" destination="wrD-Yf-1Lt" id="wuo-HD-iM2"/>
+                        <outlet property="xCenterConstraint" destination="sOH-UZ-4dX" id="JJ3-xH-nz7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9mM-qs-glD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="k0g-rB-kfi">
+                    <connections>
+                        <action selector="didSwipe" destination="sPv-Al-74h" id="NnC-Mx-Gl1"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-62" y="319"/>
+            <point key="canvasLocation" x="-130" y="319"/>
         </scene>
         <!--Настройки-->
         <scene sceneID="evP-bA-1d6">
@@ -1834,6 +1907,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HX7-xU-0PE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2195" y="1034"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="v3J-HR-3ov">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jxY-2g-wRe" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vks-Qm-HwJ">
+                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sPv-Al-74h" kind="relationship" relationship="rootViewController" id="BLz-wG-pkd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jLv-Ib-5Ne" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1030" y="319"/>
         </scene>
     </scenes>
     <resources>
