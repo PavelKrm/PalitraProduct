@@ -55,4 +55,16 @@ final class StorageService {
             completion(.success("Изображение загружено. Размер : \(metadata.size)"))
         }
     }
+    
+    func getProductImage(productID: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        productRef.child(productID).getData(maxSize: 2 * 1024 * 1024) { data, error in
+            guard let data = data else {
+                if let error = error {
+                    completion(.failure(error))
+                }
+                return
+            }
+            completion(.success(data))
+        }
+    }
 }

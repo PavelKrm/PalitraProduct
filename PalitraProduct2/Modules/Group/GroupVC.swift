@@ -46,7 +46,6 @@ final class GroupVC: UIViewController {
     private func showChildGroup(groupID: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let nextChild = storyboard.instantiateViewController(withIdentifier: "\(GroupVC.self)") as? GroupVC else {
-            
             print("Error")
             return
             

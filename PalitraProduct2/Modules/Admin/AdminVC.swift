@@ -69,6 +69,10 @@ final class AdminVC: UIViewController {
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    @IBAction private func removeCoreData() {
+        viewModel.removeCoreData()
+    }
 }
 
 extension AdminVC: UITableViewDelegate, UITableViewDataSource {

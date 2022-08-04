@@ -5,9 +5,9 @@ import AEXML
 
 final class FirstLoadData {
     
+    static var shared = FirstLoadData()
     
-    
-    static func readXml() {
+    func readXml() {
         let queue = DispatchQueue(label: "readXML", qos: .userInitiated, attributes: .concurrent)
 
         queue.async {
@@ -180,12 +180,9 @@ final class FirstLoadData {
                                             client.registrationDate = partner["ДатаРегистрации"].value ?? ""
                                             client.unp = counter["ИНН"].value ?? ""
                                             client.clientCodeInServer = partner["Code"].value ?? ""
-                                            print("Save")
 
                                             CoreDataService.saveContext()
                                         }
-                                    } else {
-                                        print("no match")
                                     }
                                 }
                             }

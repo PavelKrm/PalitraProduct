@@ -12,14 +12,21 @@ class ProductTableViewCell: UITableViewCell {
     @IBOutlet private weak var typePriceLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var quantityLabel: UILabel!
-    @IBOutlet private weak var imageProduct: UIImageView!
+    @IBOutlet private weak var imageProduct: UIImageView! {
+        didSet {
+            imageProduct.layer.cornerRadius = 5.0
+            
+        }
+    }
     
-    private var product: Product!
+    private var prices: [Price] = []
+    private var percentFee: Int16 = 0
     
     var delegate: PropertyVCDelegate?
     
     override func prepareForReuse() {
         super.prepareForReuse()
+//        imageProduct.image = nil
         collectionView.reloadData()
     }
     
@@ -31,11 +38,14 @@ class ProductTableViewCell: UITableViewCell {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        self.product = product
+        self.prices = product.allPrices
+        self.percentFee = product.percentFee
         
         manufacturerLabel.text = product.manufacturer
         feeLabale.text = "\(product.fee ?? "") \(product.percentFee)%"
         nameLabel.text = product.name
+        #warning("В Firebase еще нет картинок продуктов")
+//        getImageFB(productID: product.selfId ?? "")
         imageProduct.image = getImage(imagePath: product.image ?? "")
         barcodeLabel.text = product.barcode
         quantityLabel.text = "Остаток: \(product.quantity) \(unitViewer(product.unit ?? "", productID: product.selfId ?? ""))"
@@ -70,6 +80,8 @@ class ProductTableViewCell: UITableViewCell {
         let priceWithFee: Double = price * Double(fee) / 100.0 + price
         return NSString(format:"%.2f", priceWithFee)
     }
+    
+    #warning("переделать под enum")
     func unitViewer(_ unit: String, productID: String) -> String {
         if unit == "704 " {
             return "наб."
@@ -91,6 +103,18 @@ class ProductTableViewCell: UITableViewCell {
         }
     }
     
+    private func getImageFB(productID: String) {
+        StorageService.shared.getProductImage(productID: productID) { result in
+            switch result {
+            case .success(let data):
+                let image = UIImage(data: data)
+                self.imageProduct.image = image
+            case .failure(let error):
+                print("Error: - get product image failed. \(error.localizedDescription)")
+            }
+        }
+    }
+    
     private func getImage(imagePath: String) -> UIImage {
         let path = imagePath.split(separator: ".").first
         let type = imagePath.split(separator: ".").last
@@ -105,12 +129,12 @@ class ProductTableViewCell: UITableViewCell {
 extension ProductTableViewCell: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return product.allPrices.count
+        return prices.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(PriceTypeCell.self)", for: indexPath) as? PriceTypeCell
-        cell?.setup(price: product.allPrices[indexPath.row], product: product)
+        cell?.setup(price: prices[indexPath.row], fee: percentFee)
         return cell ?? .init()
     }
     

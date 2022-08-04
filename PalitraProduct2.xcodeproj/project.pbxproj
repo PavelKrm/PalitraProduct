@@ -49,9 +49,9 @@
 		EE06A3CE287DBAA10086594D /* OrderProduct+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3BE287DBAA10086594D /* OrderProduct+CoreDataProperties.swift */; };
 		EE06A3CF287DBAA10086594D /* Partner+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3BF287DBAA10086594D /* Partner+CoreDataClass.swift */; };
 		EE06A3D0287DBAA10086594D /* Partner+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3C0287DBAA10086594D /* Partner+CoreDataProperties.swift */; };
-		EE06A3D3287DBBA00086594D /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3D2287DBBA00086594D /* CoreDataService.swift */; };
-		EE06A3D5287DBBC10086594D /* FirstLoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3D4287DBBC10086594D /* FirstLoadService.swift */; };
-		EE06A3DA287DBD2E0086594D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3D9287DBD2E0086594D /* ViewController.swift */; };
+		EE06A3D3287DBBA00086594D /* CoreDataServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3D2287DBBA00086594D /* CoreDataServiceNew.swift */; };
+		EE06A3D5287DBBC10086594D /* FirstLoadServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3D4287DBBC10086594D /* FirstLoadServiceNew.swift */; };
+		EE06A3DA287DBD2E0086594D /* ProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3D9287DBD2E0086594D /* ProductVC.swift */; };
 		EE06A3E2287DBE380086594D /* ProductVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3E1287DBE380086594D /* ProductVM.swift */; };
 		EE06A3E5287DBE810086594D /* TypePriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3E4287DBE810086594D /* TypePriceTableViewCell.swift */; };
 		EE06A3E7287DBEAD0086594D /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A3E6287DBEAD0086594D /* ProductTableViewCell.swift */; };
@@ -71,6 +71,8 @@
 		EE06A406287DC15E0086594D /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A405287DC15E0086594D /* ProfileVC.swift */; };
 		EE06A4132885F37E0086594D /* GroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A4122885F37E0086594D /* GroupVC.swift */; };
 		EE06A4152885F3A60086594D /* GroupVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06A4142885F3A60086594D /* GroupVM.swift */; };
+		EE778AE2289BCB940063C32B /* FirstLoadDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE778AE1289BCB940063C32B /* FirstLoadDataService.swift */; };
+		EE778AE4289BCBBE0063C32B /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE778AE3289BCBBE0063C32B /* CoreDataService.swift */; };
 		EE9A07232897EEBA003A2B6F /* AddUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A07222897EEBA003A2B6F /* AddUserVC.swift */; };
 		EE9A07252897EEC6003A2B6F /* AddUserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A07242897EEC6003A2B6F /* AddUserVM.swift */; };
 		EE9A07292897F101003A2B6F /* AdminVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A07282897F101003A2B6F /* AdminVCCell.swift */; };
@@ -123,9 +125,9 @@
 		EE06A3BE287DBAA10086594D /* OrderProduct+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderProduct+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EE06A3BF287DBAA10086594D /* Partner+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Partner+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EE06A3C0287DBAA10086594D /* Partner+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Partner+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		EE06A3D2287DBBA00086594D /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
-		EE06A3D4287DBBC10086594D /* FirstLoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLoadService.swift; sourceTree = "<group>"; };
-		EE06A3D9287DBD2E0086594D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EE06A3D2287DBBA00086594D /* CoreDataServiceNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceNew.swift; sourceTree = "<group>"; };
+		EE06A3D4287DBBC10086594D /* FirstLoadServiceNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLoadServiceNew.swift; sourceTree = "<group>"; };
+		EE06A3D9287DBD2E0086594D /* ProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVC.swift; sourceTree = "<group>"; };
 		EE06A3E1287DBE380086594D /* ProductVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVM.swift; sourceTree = "<group>"; };
 		EE06A3E4287DBE810086594D /* TypePriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePriceTableViewCell.swift; sourceTree = "<group>"; };
 		EE06A3E6287DBEAD0086594D /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
@@ -145,6 +147,8 @@
 		EE06A405287DC15E0086594D /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		EE06A4122885F37E0086594D /* GroupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupVC.swift; sourceTree = "<group>"; };
 		EE06A4142885F3A60086594D /* GroupVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupVM.swift; sourceTree = "<group>"; };
+		EE778AE1289BCB940063C32B /* FirstLoadDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLoadDataService.swift; sourceTree = "<group>"; };
+		EE778AE3289BCBBE0063C32B /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		EE9A07222897EEBA003A2B6F /* AddUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserVC.swift; sourceTree = "<group>"; };
 		EE9A07242897EEC6003A2B6F /* AddUserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserVM.swift; sourceTree = "<group>"; };
 		EE9A07282897F101003A2B6F /* AdminVCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminVCCell.swift; sourceTree = "<group>"; };
@@ -263,9 +267,11 @@
 		EE06A3D1287DBB8D0086594D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				EE06A3D2287DBBA00086594D /* CoreDataService.swift */,
+				EE06A3D2287DBBA00086594D /* CoreDataServiceNew.swift */,
+				EE778AE3289BCBBE0063C32B /* CoreDataService.swift */,
 				E9029D47288E7FC10041CDE3 /* AuthService.swift */,
-				EE06A3D4287DBBC10086594D /* FirstLoadService.swift */,
+				EE06A3D4287DBBC10086594D /* FirstLoadServiceNew.swift */,
+				EE778AE1289BCB940063C32B /* FirstLoadDataService.swift */,
 				E9029D43288AC7DB0041CDE3 /* DatabaseService.swift */,
 				E9694F14289126340031C550 /* StorageService.swift */,
 			);
@@ -323,7 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				EE06A3E3287DBE620086594D /* Cell */,
-				EE06A3D9287DBD2E0086594D /* ViewController.swift */,
+				EE06A3D9287DBD2E0086594D /* ProductVC.swift */,
 				EE06A3E1287DBE380086594D /* ProductVM.swift */,
 			);
 			path = Product;
@@ -551,7 +557,8 @@
 				EE9A07292897F101003A2B6F /* AdminVCCell.swift in Sources */,
 				EEE0F7FB2892A09E009893D3 /* ProfileModel.swift in Sources */,
 				EE06A3CF287DBAA10086594D /* Partner+CoreDataClass.swift in Sources */,
-				EE06A3DA287DBD2E0086594D /* ViewController.swift in Sources */,
+				EE06A3DA287DBD2E0086594D /* ProductVC.swift in Sources */,
+				EE778AE2289BCB940063C32B /* FirstLoadDataService.swift in Sources */,
 				EE06A4132885F37E0086594D /* GroupVC.swift in Sources */,
 				E9E277A9287EF83A00360F67 /* ShowOrderVM.swift in Sources */,
 				E9029D46288E73570041CDE3 /* UserModel.swift in Sources */,
@@ -568,7 +575,7 @@
 				EEE0F7EF288DDC2B009893D3 /* AuthPickerView.swift in Sources */,
 				EE06A3CC287DBAA10086594D /* Client+CoreDataProperties.swift in Sources */,
 				E9E277A5287EF47400360F67 /* OrderModel.swift in Sources */,
-				EE06A3D3287DBBA00086594D /* CoreDataService.swift in Sources */,
+				EE06A3D3287DBBA00086594D /* CoreDataServiceNew.swift in Sources */,
 				EE06A3F4287DBF5C0086594D /* ProductOrderCell.swift in Sources */,
 				EE06A3EF287DBF380086594D /* AddOrderVC.swift in Sources */,
 				EE06A3A1287DB6EB0086594D /* PalitraProduct2.xcdatamodeld in Sources */,
@@ -584,6 +591,7 @@
 				EE06A3FF287DC05E0086594D /* PropertyVC.swift in Sources */,
 				EE06A399287DB6EB0086594D /* SceneDelegate.swift in Sources */,
 				EE06A3EB287DBF210086594D /* OrdersVC.swift in Sources */,
+				EE778AE4289BCBBE0063C32B /* CoreDataService.swift in Sources */,
 				EE06A3F2287DBF4B0086594D /* OrderCell.swift in Sources */,
 				EE06A3C4287DBAA10086594D /* Price+CoreDataProperties.swift in Sources */,
 				EE06A3D0287DBAA10086594D /* Partner+CoreDataProperties.swift in Sources */,
@@ -591,7 +599,7 @@
 				E9694F15289126340031C550 /* StorageService.swift in Sources */,
 				EE06A3CA287DBAA10086594D /* Group+CoreDataProperties.swift in Sources */,
 				EEE0F7F9289029D8009893D3 /* SetProfileVM.swift in Sources */,
-				EE06A3D5287DBBC10086594D /* FirstLoadService.swift in Sources */,
+				EE06A3D5287DBBC10086594D /* FirstLoadServiceNew.swift in Sources */,
 				EE06A3CB287DBAA10086594D /* Client+CoreDataClass.swift in Sources */,
 				E9932552288189A80018D3CA /* ProfileVM.swift in Sources */,
 				EEE0F7F22890106B009893D3 /* AdminVC.swift in Sources */,

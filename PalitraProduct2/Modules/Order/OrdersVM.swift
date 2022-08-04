@@ -42,9 +42,19 @@ final class OrdersVM: NSObject, OrdersVMDelegate {
     }
     
     func removeOrder(order: Order) {
+        if order.orderSent {
+            DataBaseService.shared.removeOrder(orderID: order.selfId ?? "") { result in
+                switch result {
+                case .success(let message):
+                    print("Message: - \(message)")
+                case .failure(let error):
+                    print("Error: - \(error.localizedDescription)")
+                }
+            }
+        }
         CoreDataService.mainContext.delete(order)
         CoreDataService.saveContext()
-        
+      
     }
     
     func sendOrder(_ order: Order) {

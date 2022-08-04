@@ -67,16 +67,14 @@ final class AddOrderVC: UIViewController {
             var sumWithoutFee: Double = 0.0
             var sumWithFee: Double = 0.0
             productInOrder.forEach({
-                sumWithoutFee += $0.price
-                sumWithFee += (($0.price * $0.fee) / 100.0) + $0.price
+                sumWithoutFee += $0.price * Double($0.quantity)
+                sumWithFee += ((($0.price * $0.fee) / 100.0) + $0.price) * Double($0.quantity)
             })
             productCountLabel.text = "Всего товаров: \(productInOrder.count)"
             sumWithoutFeeLabel.text = "Сумма без НДС: \(doubleInString(price: sumWithoutFee))"
             sumWithFeeLabel.text = "Сумма c НДС: \(doubleInString(price: sumWithFee))"
         }
     }
-        //FIXME: - изменить после добавления регистрации
-    private var manager: String = "Павел Крампульс"
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
@@ -123,9 +121,10 @@ final class AddOrderVC: UIViewController {
     @IBAction private func selectProductButtonDidTap() {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let productVC = storyboard.instantiateViewController(withIdentifier: "\(ViewController.self)") as? ViewController else {return}
+        guard let productVC = storyboard.instantiateViewController(withIdentifier: "\(ProductVC.self)") as? ProductVC else {return}
         let nc = UINavigationController(rootViewController: productVC)
         productVC.orderDelegate = self
+        productVC.setProductsInOrder(products: productInOrder)
         
         self.present(nc, animated:true, completion: nil)
     }
@@ -138,12 +137,13 @@ final class AddOrderVC: UIViewController {
             CoreDataService.mainContext.perform {
                 let addingOrder = Order(context: CoreDataService.mainContext)
 //FIXME: -  добавить коммент
+                addingOrder.lastUpdated = Date.now
                 addingOrder.selfId = String(Date.now.timeIntervalSince1970)
                 self.orderId = addingOrder.selfId ?? ""
                 addingOrder.orderNumber = dateFormatter.string(from: Date.now)
                 addingOrder.orderDate = Date.now
                 addingOrder.deliveryDate = self.deliveryDate
-                addingOrder.manager = self.manager
+                addingOrder.manager = AuthService.shared.currentUser?.uid
                 addingOrder.orderSent = false
                 addingOrder.orderTypePriceId = self.typePriceId
                 addingOrder.orderTypePriceName = self.typePriceName
@@ -163,10 +163,12 @@ final class AddOrderVC: UIViewController {
         for product in productInOrder {
             CoreDataService.mainContext.perform {
                 let orderProduct = OrderProduct(context: CoreDataService.mainContext)
+                orderProduct.lastUpdated = Date.now
                 orderProduct.selfId = product.id
                 orderProduct.productId = product.productId
                 orderProduct.productName = product.productName
                 orderProduct.quantity = product.quantity
+                orderProduct.currentBalance = product.currentBalance
                 orderProduct.price = product.price
                 orderProduct.percentFee = product.fee
                 
@@ -174,7 +176,7 @@ final class AddOrderVC: UIViewController {
                     orderProduct.order = order
                 }
                 
-                CoreDataService.saveContext() 
+                CoreDataService.saveContext()
             }
         }
        
@@ -184,7 +186,45 @@ final class AddOrderVC: UIViewController {
     func doubleInString(price: Double) -> NSString {
         return NSString(format:"%.2f", price)
     }
+    
+    private func showEditAlert(indexPath: IndexPath) {
+        let product = productInOrder[indexPath.row]
+        let alert = UIAlertController(title: "Исправить количество?", message: "Всего в наличии - \(product.currentBalance) ед.", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "\(product.quantity)"
+            textField.keyboardType = .numberPad
+        }
+        
+        let saveAction = UIAlertAction(title: "Изменить", style: .default, handler: { [weak alert] _ in
+            guard let textFields = alert?.textFields else { return }
+            if let quantityInOrder = textFields[0].text {
+                if product.currentBalance >= Int16(quantityInOrder) ?? 0 {
+                    self.productInOrder[indexPath.row].quantity = Int16(quantityInOrder) ?? 0
+                    self.tableView.reloadData()
+                } else {
+                    self.showErrorAlert(quantity: product.currentBalance, indexPath: indexPath)
+                }
+            }
+        })
+        let cancelAction = UIAlertAction(title: "Отмена", style: .destructive, handler: { (action : UIAlertAction!) -> Void in })
+        
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func showErrorAlert(quantity: Int16, indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Превышен допустимый остаток", message: "В наличии только \(quantity) шт.", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Ok", style: .default) { _ in
+            self.showEditAlert(indexPath: indexPath)
+        }
+        alert.addAction(okButton)
+        self.present(alert, animated: true)
+    }
 }
+
+
 // MARK: - extension AddOrderVC: UITableViewDelegate
 extension AddOrderVC: UITableViewDelegate, UITableViewDataSource {
     
@@ -200,6 +240,23 @@ extension AddOrderVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 83.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        showEditAlert(indexPath: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let delete = UIContextualAction(style: .destructive, title: "Удалить") { _, _, _ in
+            self.productInOrder.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+        
+        let swipeConfig = UISwipeActionsConfiguration(actions: [delete])
+        
+        return swipeConfig
     }
 }
 

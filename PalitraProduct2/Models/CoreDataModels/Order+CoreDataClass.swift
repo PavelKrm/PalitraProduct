@@ -38,12 +38,14 @@ public class Order: NSManagedObject {
             productInOrder.append(ProductInOrder(id: $0.selfId ?? "",
                                                  productId: $0.productId ?? "",
                                                  quantity: $0.quantity,
+                                                 currentBalance: $0.currentBalance,
                                                  price: $0.price,
                                                  productName: $0.productName ?? "",
                                                  fee: $0.percentFee))
         })
         
         let order = OrderModel(id: selfId,
+                               lastUpdated: lastUpdated,
                                orderDate: dateFormatter.string(from: orderDate ?? Date()),
                                orderNumber: orderNumber,
                                deliveryDate: dateFormatter.string(from: deliveryDate ?? Date()),

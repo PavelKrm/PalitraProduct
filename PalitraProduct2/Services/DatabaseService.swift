@@ -56,7 +56,7 @@ final class DataBaseService {
                 self.setProductsInOrder(to: order.id ?? "", orderProducts: order.products) { result in
                     switch result {
                     case .success(let products):
-                        print(products.count)
+                        print("Message: - uploaded \(products.count) products in Order")
                         completion(.success(order))
                     case .failure(let error):
                         print("Error: -", error.localizedDescription)
@@ -120,6 +120,26 @@ final class DataBaseService {
                 
                 let user = FBUser(id: id, firstname: firstname, lastname: lastname, avatar: avatar, email: email, phone: phone, admin: admin, acsessApp: acsessApp)
                 completion(.success(user))
+            }
+        }
+    }
+    
+    func removeOrder(orderID: String, completion: @escaping (Result<String, Error>) -> Void) {
+        ordersRef.document(orderID).delete() { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success("removed successful"))
+            }
+        }
+    }
+    
+    func updateUser(userID: String, firstname: String, lastname: String, phone: String, completion: @escaping (Result<String, Error>) -> Void) {
+        usersRef.document(userID).updateData(["firstname" : firstname, "lastname" : lastname, "phone" : phone]) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success("Message: - user \(firstname) \(lastname) updated"))
             }
         }
     }

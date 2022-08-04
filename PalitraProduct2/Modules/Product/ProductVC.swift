@@ -2,7 +2,7 @@ import UIKit
 import AEXML
 import FirebaseAuth
 
-final class ViewController: UIViewController, PropertyVCDelegate {
+final class ProductVC: UIViewController, PropertyVCDelegate {
     
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -13,6 +13,7 @@ final class ViewController: UIViewController, PropertyVCDelegate {
     
     @IBOutlet private weak var editBarButton: UIBarButtonItem!
     @IBOutlet private weak var saveButton: UIBarButtonItem!
+      
     
     var delegate: PropertyVCDelegate?
     var orderDelegate: AddOrderProductDelegate?
@@ -38,6 +39,11 @@ final class ViewController: UIViewController, PropertyVCDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(orderDelegate)
+        if orderDelegate == nil {
+            saveButton.title = ""
+        }
+        
         authVCPresent()
         
         viewModel.update = tableView.reloadData
@@ -48,6 +54,10 @@ final class ViewController: UIViewController, PropertyVCDelegate {
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+    }
+    
+    func setProductsInOrder(products: [ProductInOrder]) {
+        self.productInOrder = products
     }
     
     private func authVCPresent() {
@@ -73,6 +83,10 @@ final class ViewController: UIViewController, PropertyVCDelegate {
     }
     
     @IBAction private func editButtonDidTap() {
+        didSwipe()
+    }
+    
+    @IBAction func didSwipe() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let propertyVC = storyboard.instantiateViewController(withIdentifier: "\(PropertyVC.self)") as? PropertyVC else {return}
         propertyVC.delegate = self
@@ -80,15 +94,14 @@ final class ViewController: UIViewController, PropertyVCDelegate {
         present(propertyVC, animated: false)
     }
     
-    @IBAction func didSwipe() {
-        editButtonDidTap()
-    }
-    
     @IBAction func didLeftSwipe() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let groupVC = storyboard.instantiateViewController(withIdentifier: "\(GroupVC.self)") as? GroupVC else { return }
-        groupVC.modalPresentationStyle = .overCurrentContext
-        present(groupVC, animated: false)
+        
+        
+        let nc = UINavigationController(rootViewController: groupVC)
+        nc.modalPresentationStyle = .overCurrentContext
+        present(nc, animated: false)
     }
     
     private func setOrderProduct(product: Product, quantity: String) {
@@ -105,6 +118,7 @@ final class ViewController: UIViewController, PropertyVCDelegate {
             ProductInOrder(id: "\(dateFormatter.string(from: Date.now))",
                            productId: product.selfId ?? "",
                            quantity: Int16(quantity) ?? 0,
+                           currentBalance: product.quantity,
                            price: price,
                            productName: product.name,
                            fee: Double(product.percentFee))
@@ -158,7 +172,7 @@ final class ViewController: UIViewController, PropertyVCDelegate {
     
 }
 // MARK: - UITableView
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension ProductVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
@@ -223,8 +237,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
 }
+
+
 // MARK: - extension SerchBar
-extension ViewController: UISearchResultsUpdating {
+extension ProductVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)

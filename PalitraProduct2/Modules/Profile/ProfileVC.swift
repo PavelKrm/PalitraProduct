@@ -47,6 +47,7 @@ final class ProfileVC: UIViewController {
     @IBAction private func editBurBattonDidTap() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let setProfileVC = storyboard.instantiateViewController(withIdentifier: "\(SetProfileVC.self)") as? SetProfileVC else { return }
+        setProfileVC.delegate = self
         present(setProfileVC, animated: true)
     }
     
@@ -96,4 +97,13 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
        
     }
 
+}
+
+extension ProfileVC: SetProfileVCProtocol {
+    func updateProfile(image: UIImage, fullName: String) {
+        profileImage.image = image
+        fullNameLabel.text = fullName
+    }
+    
+    
 }

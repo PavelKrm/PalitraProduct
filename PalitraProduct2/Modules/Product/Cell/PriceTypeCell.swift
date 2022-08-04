@@ -10,14 +10,14 @@ final class PriceTypeCell: UICollectionViewCell {
         return NSString(format:"%.2f", priceWithFee)
     }
     
-    func setup(price: Price, product: Product) {
+    func setup(price: Price, fee: Int16) {
         
         nameTypePriceLabel.text = price.name
-        priceLabel.text = "\(priceWithFee(price: price.price, fee: product.percentFee))"
+        priceLabel.text = "\(priceWithFee(price: price.price, fee: fee))"
             
         layer.cornerRadius = 5.0
-        layer.borderColor = UIColor.black.cgColor
+        layer.borderColor = UIColor.separator.cgColor
         layer.borderWidth = 1.0
-        backgroundColor = .secondarySystemBackground
+//        backgroundColor = .secondarySystemBackground
     }
 }

@@ -19,12 +19,23 @@ final class AddUserVC: UIViewController {
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var accessSwitch: UISwitch!
     @IBOutlet private weak var adminSwitch: UISwitch!
+    @IBOutlet private weak var saveButton: UIButton! {
+        didSet {
+            saveButton.layer.cornerRadius = 5.0
+        }
+    }
     
     private var viewModel: AddUserVMProtocol = AddUserVM()
     var delegate: AdminVCDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+//        chooseDeliveryDateTextField.resignFirstResponder()
     }
     
     @IBAction private func showPicker() {

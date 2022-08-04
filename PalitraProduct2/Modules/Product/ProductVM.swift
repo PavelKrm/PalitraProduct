@@ -50,8 +50,10 @@ final class ProductVM: NSObject, ProductVMProtocol {
     private func loadProducts() {
         try? fetchedResultController?.performFetch()
         self.products = fetchedResultController?.fetchedObjects ?? []
-        let product = products.last
-        loadTypePrices(product: product ?? Product())
+        if !products.isEmpty {
+            let product = products.last
+            loadTypePrices(product: product ?? Product())
+        }
     }
 
     private func loadTypePrices(product: Product) {

@@ -2,17 +2,25 @@
 import Foundation
 import UIKit
 
+protocol SetProfileVCProtocol {
+    
+    func updateProfile(image: UIImage, fullName: String)
+}
+
 final class SetProfileVC: UIViewController {
     
     @IBOutlet private weak var saveButton: UIButton! {
         didSet {
             saveButton.layer.cornerRadius = 5.0
-            saveButton.layer.borderColor = UIColor.systemGray2.cgColor
-            saveButton.layer.borderWidth = 1.0
             saveButton.layer.backgroundColor = UIColor.systemBlue.cgColor
         }
     }
-    @IBOutlet private weak var changeDataSignUp: UIButton!
+    @IBOutlet private weak var changeDataSignUp: UIButton! {
+        didSet {
+            changeDataSignUp.layer.cornerRadius = 5.0
+            changeDataSignUp.layer.backgroundColor = UIColor.systemBlue.cgColor
+        }
+    }
     @IBOutlet private weak var profileImage: UIImageView! {
         didSet {
             profileImage.layer.cornerRadius = 100.0
@@ -25,33 +33,55 @@ final class SetProfileVC: UIViewController {
         didSet {
             nameTextField.layer.borderColor = UIColor.systemBlue.cgColor
             nameTextField.layer.borderWidth = 1.0
-            nameTextField.layer.cornerRadius = 10.0
+            nameTextField.layer.cornerRadius = 5.0
             nameTextField.layer.shadowRadius = 10.0
             nameTextField.layer.shadowColor = UIColor.systemGray5.cgColor
             nameTextField.layer.shadowOpacity = 0.5
             
         }
     }
-    @IBOutlet private weak var lastnameTextField: UITextField!
-    @IBOutlet private weak var phoneTextField: UITextField!
+    @IBOutlet private weak var lastnameTextField: UITextField! {
+        didSet {
+            lastnameTextField.layer.borderColor = UIColor.systemBlue.cgColor
+            lastnameTextField.layer.borderWidth = 1.0
+            lastnameTextField.layer.cornerRadius = 5.0
+            lastnameTextField.layer.shadowRadius = 10.0
+            lastnameTextField.layer.shadowColor = UIColor.systemGray5.cgColor
+            lastnameTextField.layer.shadowOpacity = 0.5
+        }
+    }
+    @IBOutlet private weak var phoneTextField: UITextField! {
+        didSet {
+            phoneTextField.layer.borderColor = UIColor.systemBlue.cgColor
+            phoneTextField.layer.borderWidth = 1.0
+            phoneTextField.layer.cornerRadius = 5.0
+            phoneTextField.layer.shadowRadius = 10.0
+            phoneTextField.layer.shadowColor = UIColor.systemGray5.cgColor
+            phoneTextField.layer.shadowOpacity = 0.5
+        }
+    }
     
     private var viewModel: SetProfileVMProtocol = SetProfileVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.getUserDefault { _ in
+        viewModel.getUserDefault { profile in
 //            profile in
-//            self.profileImage.image = profile.avatar
+            self.profileImage.image = profile.avatar
 //            self.nameTextField.text = profile.firstname
 //            self.lastnameTextField.text = profile.lastname
 //            self.phoneTextField.text = profile.phone
         }
         
         viewModel.getCurrentUser { user in
+            self.nameTextField.text = user.firstname
+            self.lastnameTextField.text = user.lastname
             self.phoneTextField.text = user.phone
         }
     }
+    
+    var delegate: SetProfileVCProtocol?
     
     @IBAction private func showPicker() {
         let pickerVC = UIImagePickerController()
@@ -63,7 +93,10 @@ final class SetProfileVC: UIViewController {
     @IBAction private func saveButtonDidTap() {
         if let image = profileImage.image {
             viewModel.uploadImage(image: image)
+            delegate?.updateProfile(image: image, fullName: "\(self.nameTextField.text ?? "") \(self.lastnameTextField.text ?? "")")
         }
+        
+        
         
         viewModel.saveProfileDefaults(avatar: profileImage.image ?? UIImage(),
                                       firsName: nameTextField.text ?? "",

@@ -15,7 +15,11 @@ class ProductOrderCell: UITableViewCell {
     @IBOutlet private weak var priceWithFeeLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var quantityLabel: UILabel!
-    @IBOutlet private weak var imageProduct: UIImageView!
+    @IBOutlet private weak var imageProduct: UIImageView! {
+        didSet {
+            imageProduct.layer.cornerRadius = 5.0
+        }
+    }
 
     func setupNewOrder(orderProduct: ProductInOrder) {
         let product: Product = Product.getById(id: orderProduct.productId) ?? Product()
@@ -40,6 +44,7 @@ class ProductOrderCell: UITableViewCell {
         priceWithFeeLabel.text = "\(priceWithFee(price: orderProduct.price, fee: product.percentFee))"
     }
     
+    #warning("добавить enum")
     func unitViewer(_ unit: String, productID: String) -> String {
         if unit == "704 " {
             return "наб."

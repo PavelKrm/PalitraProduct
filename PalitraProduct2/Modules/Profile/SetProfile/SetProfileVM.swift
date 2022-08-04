@@ -54,12 +54,21 @@ final class SetProfileVM: SetProfileVMProtocol {
         
             let userDefaults = UserDefaults.standard
         let profile = Profile(lastname: lastname, firstname: firsName, avatar: avatar, email: user.email, phone: phone, admin: user.admin, acsessApp: user.acsessApp)
-            
-            if let data = try? JSONEncoder().encode(profile) {
-                userDefaults.set(data, forKey: "Profile")
-                print("Message: - userDefaults updated")
-                completion()
+      
+        DataBaseService.shared.updateUser(userID: user.id, firstname: firsName, lastname: lastname, phone: phone) { result in
+            switch result {
+            case .success(let message):
+                print(message)
+                if let data = try? JSONEncoder().encode(profile) {
+                    userDefaults.set(data, forKey: "Profile")
+                    print("Message: - userDefaults updated")
+                    completion()
+                }
+            case .failure(let error):
+                print("Error: - can't updated. \(error.localizedDescription)")
             }
+        }
+            
     }
     
     

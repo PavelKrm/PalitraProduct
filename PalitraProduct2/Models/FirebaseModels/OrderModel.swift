@@ -66,6 +66,7 @@ struct ProductInOrder: Identifiable {
     var id: String
     var productId: String
     var quantity: Int16
+    var currentBalance: Int16
     var price: Double
     var productName: String
     var fee: Double
@@ -84,6 +85,7 @@ struct ProductInOrder: Identifiable {
         represent["id"] = self.id
         represent["productId"] = self.productId
         represent["quantity"] = self.quantity
+        represent["currentBalance"] = self.currentBalance
         represent["price"] = self.price
         represent["productName"] = self.productName
         represent["fee"] = self.fee

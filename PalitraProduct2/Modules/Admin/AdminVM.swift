@@ -1,5 +1,6 @@
 
 import Foundation
+import CoreData
 
 protocol AdminVMProtocol {
     
@@ -8,6 +9,7 @@ protocol AdminVMProtocol {
     func firstLoadData()
     func getUsers(completion: @escaping (Result<[FBUser], Error>) -> Void)
     func uploadProductsInFB(completion: @escaping (Result<String, Error>) -> Void)
+    func removeCoreData()
 }
 
 final class AdminVM: AdminVMProtocol {
@@ -21,7 +23,7 @@ final class AdminVM: AdminVMProtocol {
     var update: (() -> Void)?
     
     func firstLoadData() {
-        FirstLoadData.readXml()
+        FirstLoadData.shared.readXml()
     }
     
     func getUsers(completion: @escaping (Result<[FBUser], Error>) -> Void) {
@@ -77,5 +79,104 @@ final class AdminVM: AdminVMProtocol {
         let imagePath = Bundle.main.path(forResource: "\(path ?? "")", ofType: "\(type ?? "")")
         let data = try? Data(contentsOf: URL(fileURLWithPath: imagePath ?? ""))
         return data ?? Data()
+    }
+    
+    func removeCoreData() {
+        removeProducts()
+        removePrices()
+        removeClients()
+        removePartners()
+        removeGroup()
+        removeContacts()
+        removeOrders()
+        removeProductInOrder()
+    }
+    
+    private func removeProducts() {
+        let request = Product.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Product.name), ascending: true)]
+        let products = try? CoreDataService.mainContext.fetch(request)
+        
+        products?.forEach({
+            CoreDataService.mainContext.delete($0)
+            CoreDataService.saveContext()
+        })
+    }
+    
+    private func removePrices() {
+        let request = Price.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Price.name), ascending: true)]
+        let products = try? CoreDataService.mainContext.fetch(request)
+        
+        products?.forEach({
+            CoreDataService.mainContext.delete($0)
+            CoreDataService.saveContext()
+        })
+    }
+    
+    private func removeClients() {
+        let request = Client.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Client.clientName), ascending: true)]
+        let products = try? CoreDataService.mainContext.fetch(request)
+        
+        products?.forEach({
+            CoreDataService.mainContext.delete($0)
+            CoreDataService.saveContext()
+        })
+    }
+    
+    private func removePartners() {
+        let request = Partner.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Partner.name), ascending: true)]
+        let products = try? CoreDataService.mainContext.fetch(request)
+        
+        products?.forEach({
+            CoreDataService.mainContext.delete($0)
+            CoreDataService.saveContext()
+        })
+    }
+    
+    private func removeGroup() {
+        let request = Group.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Group.name), ascending: true)]
+        let products = try? CoreDataService.mainContext.fetch(request)
+        
+        products?.forEach({
+            CoreDataService.mainContext.delete($0)
+            CoreDataService.saveContext()
+        })
+    }
+    
+    private func removeContacts() {
+        let request = Contact.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Contact.type), ascending: true)]
+        let products = try? CoreDataService.mainContext.fetch(request)
+        
+        products?.forEach({
+            CoreDataService.mainContext.delete($0)
+            CoreDataService.saveContext()
+        })
+    }
+    
+    private func removeOrders() {
+        let request = Order.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Order.orderNumber), ascending: true)]
+        let products = try? CoreDataService.mainContext.fetch(request)
+        
+        products?.forEach({
+            CoreDataService.mainContext.delete($0)
+            CoreDataService.saveContext()
+        })
+    }
+    
+    private func removeProductInOrder() {
+        let request = OrderProduct.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(OrderProduct.productName), ascending: true)]
+        let products = try? CoreDataService.mainContext.fetch(request)
+        
+        products?.forEach({
+            CoreDataService.mainContext.delete($0)
+            CoreDataService.saveContext()
+        })
     }
 }
