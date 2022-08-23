@@ -6,7 +6,6 @@ protocol AuthVMProtocol {
     
     var users: [FBUser] { get }
     var update: (([String]) -> [String])? { get set}
-    var nameUsers: [String] { get }
     
     func getFBUser(username: String)
     func getUsers(completion: @escaping (Result<[String], Error>) -> Void)
@@ -16,11 +15,8 @@ protocol AuthVMProtocol {
 
 final class AuthVM: AuthVMProtocol {
     
-    var nameUsers: [String] = [] {
-        didSet {
-//            update?(nameUsers)
-        }
-    }
+    var nameUsers: [String] = []
+        
     
     private var user: FBUser!
     

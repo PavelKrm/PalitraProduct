@@ -18,6 +18,8 @@ final class ProductVC: UIViewController, PropertyVCDelegate {
     var delegate: PropertyVCDelegate?
     var orderDelegate: AddOrderProductDelegate?
     
+    let groupVC = GroupVC()
+    
     private var selectCell: NSInteger = -1
 
     private var viewModel: ProductVMProtocol = ProductVM()
@@ -39,7 +41,8 @@ final class ProductVC: UIViewController, PropertyVCDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(orderDelegate)
+//        setupGroupVC()
+
         if orderDelegate == nil {
             saveButton.title = ""
         }
@@ -55,6 +58,17 @@ final class ProductVC: UIViewController, PropertyVCDelegate {
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
+    
+    private func setupGroupVC() {
+        
+        addChild(groupVC)
+        self.view.addSubview(groupVC.view)
+        groupVC.didMove(toParent: self)
+        groupVC.view.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width / 2, height: self.view.bounds.height)
+        groupVC.view.isHidden = true
+    }
+    
+    
     
     func setProductsInOrder(products: [ProductInOrder]) {
         self.productInOrder = products
@@ -95,10 +109,12 @@ final class ProductVC: UIViewController, PropertyVCDelegate {
     }
     
     @IBAction func didLeftSwipe() {
+        
+//        groupVC.view.isHidden = false
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let groupVC = storyboard.instantiateViewController(withIdentifier: "\(GroupVC.self)") as? GroupVC else { return }
-        
-        
+
+
         let nc = UINavigationController(rootViewController: groupVC)
         nc.modalPresentationStyle = .overCurrentContext
         present(nc, animated: false)

@@ -22,6 +22,27 @@ final class DataBaseService {
         return db.collection("products")
     }
     
+    private var groupRef: CollectionReference {
+        return db.collection("group")
+    }
+    
+    func setGroup(group: GroupModel, completion: @escaping (Result<GroupModel, Error>) -> ()) {
+//        groupRef.document(group.id).setData(group.representation) { error in
+//            if let error = error {
+//                completion(.failure(error))
+//            } else {
+//                self.setProductPrices(to: product.id, prices: product.prices) { result in
+//                    switch result {
+//                    case .success(_):
+//                        completion(.success(product))
+//                    case .failure(let error):
+//                        print("Error: - \(error.localizedDescription)")
+//                    }
+//                }
+//            }
+//        }
+    }
+    
     func setProducts(product: ProductModel, completion: @escaping (Result<ProductModel, Error>) -> ()) {
         productsRef.document(product.id).setData(product.representation) { error in
             if let error = error {
