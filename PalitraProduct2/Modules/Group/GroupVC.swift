@@ -2,6 +2,7 @@ import UIKit
 
 final class GroupVC: UIViewController {
     
+    @IBOutlet weak var navigationTitle: UINavigationItem!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -9,28 +10,16 @@ final class GroupVC: UIViewController {
         }
     }
     
-    @IBOutlet weak var viewAnimate: UIView!
-    @IBOutlet weak var xCenterConstraint: NSLayoutConstraint!
-    {
-        didSet {
-            xCenterConstraint.constant -= UIScreen.main.bounds.width
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        showaAnimation()
-    }
-    
     private var viewModel: GroupVMProtocol = GroupVM()
+
     var firstGroupId: String = "a2f53673-6bce-11ec-b76a-b3fbe64f3794"
+    var backBarButtonTitle: String = ""
     private var sectionsGroup: [Section] = []
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        navigationTitle.backButtonTitle = backBarButtonTitle
         viewModel.update = tableView.reloadData
         viewModel.loadGroup(id: firstGroupId)
         
@@ -39,11 +28,7 @@ final class GroupVC: UIViewController {
         })
     }
     
-    @IBAction func didSwipe() {
-        hideAnimation()
-    }
-    
-    private func showChildGroup(groupID: String) {
+    private func showChildGroup(groupID: String, title: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let nextChild = storyboard.instantiateViewController(withIdentifier: "\(GroupVC.self)") as? GroupVC else {
             print("Error")
@@ -51,6 +36,7 @@ final class GroupVC: UIViewController {
             
         }
         nextChild.firstGroupId = groupID
+        navigationTitle.backButtonTitle = title
         navigationController?.pushViewController(nextChild, animated: true)
     }
 }
@@ -76,7 +62,7 @@ extension GroupVC: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.row == 0 {
             cell?.setTitle(with: sectionsGroup[indexPath.section].title)
-            cell?.backgroundColor = UIColor.systemGray2
+            cell?.backgroundColor = UIColor.systemGray5
         } else {
             cell?.setTitle(with: sectionsGroup[indexPath.section].options[indexPath.row - 1].name ?? "")
         }
@@ -92,28 +78,10 @@ extension GroupVC: UITableViewDelegate, UITableViewDataSource {
             tableView.reloadSections([indexPath.section], with: .none)
         } else {
            print("tap to \(sectionsGroup[indexPath.section].options[indexPath.row - 1].name ?? "")")
-            showChildGroup(groupID: sectionsGroup[indexPath.section].options[indexPath.row - 1].groupId ?? "")
+            showChildGroup(groupID: sectionsGroup[indexPath.section].options[indexPath.row - 1].groupId ?? "", title: sectionsGroup[indexPath.section].options[indexPath.row - 1].name ?? "")
         }
     }
     
-    //MARK: - Animation
-    
-    private func showaAnimation() {
-        UIView.animate(withDuration: 0.2) {
-            self.xCenterConstraint.constant += (UIScreen.main.bounds.width / 2)
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    private func hideAnimation() {
-        UIView.animate(withDuration: 0.2) {
-            self.xCenterConstraint.constant -= (UIScreen.main.bounds.width / 2 )
-            self.view.layoutIfNeeded()
-        } completion: { _ in
-            self.dismiss(animated: false)
-        }
-    }
 }
-
 
 

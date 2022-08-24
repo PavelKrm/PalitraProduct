@@ -4,6 +4,11 @@ import FirebaseAuth
 
 final class ProductVC: UIViewController, PropertyVCDelegate {
     
+    @IBOutlet private weak var sideView: UIView!
+    @IBOutlet private weak var xCenterConstraintSideView: NSLayoutConstraint!
+    @IBOutlet private weak var productView: UIView!
+    @IBOutlet private weak var xCenterConstraintProductView: NSLayoutConstraint!
+    
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -14,11 +19,8 @@ final class ProductVC: UIViewController, PropertyVCDelegate {
     @IBOutlet private weak var editBarButton: UIBarButtonItem!
     @IBOutlet private weak var saveButton: UIBarButtonItem!
       
-    
     var delegate: PropertyVCDelegate?
     var orderDelegate: AddOrderProductDelegate?
-    
-    let groupVC = GroupVC()
     
     private var selectCell: NSInteger = -1
 
@@ -40,8 +42,6 @@ final class ProductVC: UIViewController, PropertyVCDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        setupGroupVC()
 
         if orderDelegate == nil {
             saveButton.title = ""
@@ -58,18 +58,7 @@ final class ProductVC: UIViewController, PropertyVCDelegate {
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
-    
-    private func setupGroupVC() {
-        
-        addChild(groupVC)
-        self.view.addSubview(groupVC.view)
-        groupVC.didMove(toParent: self)
-        groupVC.view.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width / 2, height: self.view.bounds.height)
-        groupVC.view.isHidden = true
-    }
-    
-    
-    
+
     func setProductsInOrder(products: [ProductInOrder]) {
         self.productInOrder = products
     }
@@ -101,23 +90,29 @@ final class ProductVC: UIViewController, PropertyVCDelegate {
     }
     
     @IBAction func didSwipe() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let propertyVC = storyboard.instantiateViewController(withIdentifier: "\(PropertyVC.self)") as? PropertyVC else {return}
-        propertyVC.delegate = self
-        propertyVC.modalPresentationStyle = .overCurrentContext
-        present(propertyVC, animated: false)
+        if xCenterConstraintProductView.constant != 0 {
+            UIView.animate(withDuration: 0.2) {
+                           self.xCenterConstraintSideView.constant -= 250
+                           self.xCenterConstraintProductView.constant -= 230
+                           self.view.layoutIfNeeded()
+                       }
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let propertyVC = storyboard.instantiateViewController(withIdentifier: "\(PropertyVC.self)") as? PropertyVC else {return}
+            propertyVC.delegate = self
+            propertyVC.modalPresentationStyle = .overCurrentContext
+            present(propertyVC, animated: false)
+        }
     }
     
     @IBAction func didLeftSwipe() {
-        
-//        groupVC.view.isHidden = false
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let groupVC = storyboard.instantiateViewController(withIdentifier: "\(GroupVC.self)") as? GroupVC else { return }
-
-
-        let nc = UINavigationController(rootViewController: groupVC)
-        nc.modalPresentationStyle = .overCurrentContext
-        present(nc, animated: false)
+        if xCenterConstraintProductView.constant == 0 {
+            UIView.animate(withDuration: 0.2) {
+                self.xCenterConstraintSideView.constant += 250
+                self.xCenterConstraintProductView.constant += 230
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
     private func setOrderProduct(product: Product, quantity: String) {
