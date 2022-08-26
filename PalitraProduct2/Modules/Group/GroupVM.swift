@@ -21,6 +21,4 @@ final class GroupVM: GroupVMProtocol {
     func loadGroup(id: String) {
         self.groups = Group.getArrayById(id: id) ?? []
     }
-    
-   
 }

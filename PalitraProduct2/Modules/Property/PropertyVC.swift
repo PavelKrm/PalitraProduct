@@ -29,7 +29,7 @@ class PropertyVC: UIViewController {
         super.viewDidLoad()
 
         viewModel.update = typePricesTV.reloadData
-        viewModel.loadData()
+        viewModel.loadData(predicate: "")
         
         typePricesTV.delegate = self
         typePricesTV.dataSource = self

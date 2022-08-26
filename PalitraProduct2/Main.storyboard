@@ -1919,6 +1919,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Eca-qR-E9F"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="rbf-DV-QTg" firstAttribute="top" secondItem="9Gf-Y6-yfX" secondAttribute="top" constant="50" id="3Lz-ZE-0fI"/>
@@ -1937,10 +1938,10 @@
             </objects>
             <point key="canvasLocation" x="1487.3831775700933" y="329.48164146868254"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--SideNC-->
         <scene sceneID="Miq-sH-vLQ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wx4-gg-w53" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SideNC" automaticallyAdjustsScrollViewInsets="NO" id="wx4-gg-w53" customClass="SideNC" customModule="PalitraProduct2" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vJl-bf-qSi">
                         <rect key="frame" x="0.0" y="44" width="240" height="44"/>

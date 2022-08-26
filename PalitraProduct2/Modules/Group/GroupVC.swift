@@ -12,6 +12,7 @@ final class GroupVC: UIViewController {
     
     private var viewModel: GroupVMProtocol = GroupVM()
 
+    var delegate: SelectedGroupDelegate?
     var firstGroupId: String = "a2f53673-6bce-11ec-b76a-b3fbe64f3794"
     var backBarButtonTitle: String = ""
     private var sectionsGroup: [Section] = []
@@ -29,15 +30,21 @@ final class GroupVC: UIViewController {
     }
     
     private func showChildGroup(groupID: String, title: String) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let nextChild = storyboard.instantiateViewController(withIdentifier: "\(GroupVC.self)") as? GroupVC else {
-            print("Error")
-            return
-            
+        
+        let arrayGroup: [Group] = Group.getArrayById(id: groupID) ?? []
+        if arrayGroup.isEmpty {
+            print("Group is empty")
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let nextChild = storyboard.instantiateViewController(withIdentifier: "\(GroupVC.self)") as? GroupVC else {
+                print("Error")
+                return
+            }
+            nextChild.delegate = delegate
+            nextChild.firstGroupId = groupID
+            navigationTitle.backButtonTitle = title
+            navigationController?.pushViewController(nextChild, animated: true)
         }
-        nextChild.firstGroupId = groupID
-        navigationTitle.backButtonTitle = title
-        navigationController?.pushViewController(nextChild, animated: true)
     }
 }
 
@@ -74,11 +81,14 @@ extension GroupVC: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         if indexPath.row == 0 {
+            
             sectionsGroup[indexPath.section].isOpened = !sectionsGroup[indexPath.section].isOpened
             tableView.reloadSections([indexPath.section], with: .none)
+            delegate?.showSelectGroup(groupID: sectionsGroup[indexPath.section].id)
         } else {
-           print("tap to \(sectionsGroup[indexPath.section].options[indexPath.row - 1].name ?? "")")
+            
             showChildGroup(groupID: sectionsGroup[indexPath.section].options[indexPath.row - 1].groupId ?? "", title: sectionsGroup[indexPath.section].options[indexPath.row - 1].name ?? "")
+            delegate?.showSelectGroup(groupID: sectionsGroup[indexPath.section].options[indexPath.row - 1].groupId ?? "")
         }
     }
     

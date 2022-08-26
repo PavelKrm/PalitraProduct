@@ -6,7 +6,7 @@ protocol ProductVMProtocol {
     var products: [Product] { get }
     var typePrices: [TypePrice] { get }
     var update: (() -> Void)? { get set }
-    func loadData()
+    func loadData(predicate: String)
     func loadOrder(orderId: String) -> Order
     
 }
@@ -39,12 +39,22 @@ final class ProductVM: NSObject, ProductVMProtocol {
         }
     }
     
-    func loadData() {
-        let request = Product.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Product.name), ascending: true)]
-        fetchedResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataService.mainContext, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultController?.delegate = self
-        loadProducts()
+    func loadData(predicate: String) {
+        if predicate == "" {
+            let request = Product.fetchRequest()
+                    request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Product.name), ascending: true)]
+                    fetchedResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataService.mainContext, sectionNameKeyPath: nil, cacheName: nil)
+                    fetchedResultController?.delegate = self
+                    loadProducts()
+        } else {
+            let request = Product.fetchRequest()
+            request.predicate = NSPredicate(format: "\(#keyPath(Product.groupId)) CONTAINS[cd] \"\(predicate)\"")
+                    request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Product.name), ascending: true)]
+                    fetchedResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataService.mainContext, sectionNameKeyPath: nil, cacheName: nil)
+                    fetchedResultController?.delegate = self
+                    loadProducts()
+        }
+        
     }
     
     private func loadProducts() {

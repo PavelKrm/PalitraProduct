@@ -2,6 +2,10 @@ import UIKit
 import AEXML
 import FirebaseAuth
 
+protocol SelectedGroupDelegate {
+    func showSelectGroup(groupID: String)
+}
+
 final class ProductVC: UIViewController, PropertyVCDelegate {
     
     @IBOutlet private weak var sideView: UIView!
@@ -27,7 +31,7 @@ final class ProductVC: UIViewController, PropertyVCDelegate {
     private var viewModel: ProductVMProtocol = ProductVM()
     private var productInOrder: [ProductInOrder] = []
     
-    // searchBar --------------------------------------------------------------------
+    //MARK: setup searchBar
     private let searchController = UISearchController(searchResultsController: nil)
     private var sortedArray: [Product] = []
     private var searchBarIsEmpty: Bool {
@@ -37,8 +41,7 @@ final class ProductVC: UIViewController, PropertyVCDelegate {
     private var isFiltering: Bool {
         return searchController.isActive && !searchBarIsEmpty
     }
-    
-    // ---------- --------------------------------------------------------------------
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,13 +53,25 @@ final class ProductVC: UIViewController, PropertyVCDelegate {
         authVCPresent()
         
         viewModel.update = tableView.reloadData
-        viewModel.loadData()
+        viewModel.loadData(predicate: "")
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+    }
+    
+    private func reloadTableViewWithSelectedGroup(groupID: String) {
+        viewModel.loadData(predicate: groupID)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if let nc = segue.destination as? SideNC {
+            nc.sideMenuDelegate = self
+        }
     }
 
     func setProductsInOrder(products: [ProductInOrder]) {
@@ -262,5 +277,12 @@ extension ProductVC: UISearchResultsUpdating {
             return product.name.lowercased().contains(text.lowercased())
         })
         tableView.reloadData()
+    }
+}
+
+// MARK: - extension SelectedGroupDelegate
+extension ProductVC: SelectedGroupDelegate {
+    func showSelectGroup(groupID: String) {
+        viewModel.loadData(predicate: groupID)
     }
 }
