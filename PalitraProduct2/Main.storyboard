@@ -165,7 +165,7 @@
         <!--Товары-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ProductVC" id="BYZ-38-t0r" customClass="ProductVC" customModule="PalitraProduct2" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProductsVC" id="BYZ-38-t0r" customClass="ProductsVC" customModule="PalitraProduct2" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -280,7 +280,7 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddg-i6-QVf">
-                                                                                <rect key="frame" x="23.666666666666668" y="28" width="34.666666666666657" height="18"/>
+                                                                                <rect key="frame" x="23.666666666666671" y="28" width="35" height="18"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -638,7 +638,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3701" y="1033"/>
+            <point key="canvasLocation" x="4333" y="1034"/>
         </scene>
         <!--AdminVC-->
         <scene sceneID="SG0-DD-aNz">
@@ -677,7 +677,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELM-Ai-N8x">
-                                                    <rect key="frame" x="19.999999999999993" y="11.000000000000002" width="121.33333333333331" height="21.666666666666671"/>
+                                                    <rect key="frame" x="20.000000000000007" y="11.000000000000002" width="121.66666666666669" height="21.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1046,7 +1046,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Товары" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhL-3p-F9F">
-                                <rect key="frame" x="184.33333333333334" y="345" width="59.333333333333343" height="21"/>
+                                <rect key="frame" x="184.66666666666666" y="345" width="59" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1245,7 +1245,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ENU-Pf-jeJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1464" y="1034"/>
+            <point key="canvasLocation" x="5882" y="1034"/>
         </scene>
         <!--PartnerVC-->
         <scene sceneID="yaG-d9-2us">
@@ -1300,7 +1300,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gxv-yO-aXd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2934" y="1034"/>
+            <point key="canvasLocation" x="3568" y="1034"/>
         </scene>
         <!--Настройки-->
         <scene sceneID="evP-bA-1d6">
@@ -1603,7 +1603,35 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ma-EX-MVC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="721.96261682242982" y="1034.7732181425486"/>
+            <point key="canvasLocation" x="5142" y="1033"/>
+        </scene>
+        <!--Товар-->
+        <scene sceneID="ZUu-E1-gM2">
+            <objects>
+                <viewController storyboardIdentifier="ProductVC" title="Товар" id="o8r-OI-aW9" customClass="ProductVC" customModule="PalitraProduct2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s7w-S0-f2f">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cIi-SR-0Sb">
+                                <rect key="frame" x="94" y="133" width="240" height="245"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9le-EI-4MT">
+                                <rect key="frame" x="20" y="453" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Eqa-YU-Ejp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3d7-7G-svV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2092.9906542056074" y="1033.477321814255"/>
         </scene>
         <!--Заказ-->
         <scene sceneID="sfM-xQ-G4p">
@@ -1687,7 +1715,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Товары" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jg7-FP-L9R">
-                                <rect key="frame" x="184.33333333333334" y="301" width="59.333333333333343" height="21"/>
+                                <rect key="frame" x="184.66666666666666" y="301" width="59" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1877,7 +1905,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HX7-xU-0PE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2195" y="1034"/>
+            <point key="canvasLocation" x="2826" y="1034"/>
         </scene>
         <!--GroupVC-->
         <scene sceneID="Aw1-Tl-HjV">
@@ -1888,7 +1916,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rbf-DV-QTg">
-                                <rect key="frame" x="0.0" y="50" width="240" height="655"/>
+                                <rect key="frame" x="0.0" y="90" width="240" height="615"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" id="qBz-rU-I5H" customClass="GroupCell" customModule="PalitraProduct2" customModuleProvider="target">
@@ -1918,19 +1946,31 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTV-4A-hfu">
+                                <rect key="frame" x="37" y="50" width="166" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Показать все товары"/>
+                                <connections>
+                                    <action selector="showAllProductButtonDidTap" destination="cM1-lL-xet" eventType="touchUpInside" id="7Cf-Mp-Mdf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Eca-qR-E9F"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="rbf-DV-QTg" firstAttribute="top" secondItem="9Gf-Y6-yfX" secondAttribute="top" constant="50" id="3Lz-ZE-0fI"/>
+                            <constraint firstItem="rbf-DV-QTg" firstAttribute="top" secondItem="9Gf-Y6-yfX" secondAttribute="top" constant="90" id="3Lz-ZE-0fI"/>
                             <constraint firstItem="rbf-DV-QTg" firstAttribute="leading" secondItem="9Gf-Y6-yfX" secondAttribute="leading" id="CXf-gZ-uqM"/>
+                            <constraint firstItem="PTV-4A-hfu" firstAttribute="top" secondItem="9Gf-Y6-yfX" secondAttribute="top" constant="50" id="ZPE-2b-3r7"/>
+                            <constraint firstItem="rbf-DV-QTg" firstAttribute="top" secondItem="PTV-4A-hfu" secondAttribute="bottom" constant="9" id="eVd-3b-0R4"/>
                             <constraint firstAttribute="bottom" secondItem="rbf-DV-QTg" secondAttribute="bottom" constant="50" id="iFb-En-I0j"/>
+                            <constraint firstItem="PTV-4A-hfu" firstAttribute="centerX" secondItem="9Gf-Y6-yfX" secondAttribute="centerX" id="iy5-n4-vj4"/>
                             <constraint firstAttribute="trailing" secondItem="rbf-DV-QTg" secondAttribute="trailing" id="zse-fZ-Suj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ezQ-zo-i1H"/>
                     <connections>
                         <outlet property="navigationTitle" destination="ezQ-zo-i1H" id="XOq-a8-zxy"/>
+                        <outlet property="showAllProductButton" destination="PTV-4A-hfu" id="Fsc-0a-ZXA"/>
                         <outlet property="tableView" destination="rbf-DV-QTg" id="Ac2-us-wva"/>
                     </connections>
                 </viewController>

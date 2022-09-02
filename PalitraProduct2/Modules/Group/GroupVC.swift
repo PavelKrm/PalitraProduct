@@ -3,6 +3,15 @@ import UIKit
 final class GroupVC: UIViewController {
     
     @IBOutlet weak var navigationTitle: UINavigationItem!
+    @IBOutlet private weak var showAllProductButton: UIButton!
+//    {
+//        didSet {
+//            showAllProductButton.layer.cornerRadius = 5.0
+//            showAllProductButton.layer.borderColor = UIColor.blue.cgColor
+//            showAllProductButton.layer.borderWidth = 1.0
+//        }
+//    }
+    
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -27,6 +36,11 @@ final class GroupVC: UIViewController {
         viewModel.groups.forEach({
             sectionsGroup.append(Section(title: $0.name ?? "", id: $0.groupId ?? "", options: Group.getArrayById(id: $0.groupId ?? "") ?? []))
         })
+    }
+    
+    @IBAction private func showAllProductButtonDidTap() {
+        
+        delegate?.showProductsSelectedGroup(groupID: "")
     }
     
     private func showChildGroup(groupID: String, title: String) {
@@ -84,11 +98,11 @@ extension GroupVC: UITableViewDelegate, UITableViewDataSource {
             
             sectionsGroup[indexPath.section].isOpened = !sectionsGroup[indexPath.section].isOpened
             tableView.reloadSections([indexPath.section], with: .none)
-            delegate?.showSelectGroup(groupID: sectionsGroup[indexPath.section].id)
+            delegate?.showProductsSelectedGroup(groupID: sectionsGroup[indexPath.section].id)
         } else {
             
             showChildGroup(groupID: sectionsGroup[indexPath.section].options[indexPath.row - 1].groupId ?? "", title: sectionsGroup[indexPath.section].options[indexPath.row - 1].name ?? "")
-            delegate?.showSelectGroup(groupID: sectionsGroup[indexPath.section].options[indexPath.row - 1].groupId ?? "")
+            delegate?.showProductsSelectedGroup(groupID: sectionsGroup[indexPath.section].options[indexPath.row - 1].groupId ?? "")
         }
     }
     

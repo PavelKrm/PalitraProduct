@@ -121,7 +121,7 @@ final class AddOrderVC: UIViewController {
     @IBAction private func selectProductButtonDidTap() {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let productVC = storyboard.instantiateViewController(withIdentifier: "\(ProductVC.self)") as? ProductVC else {return}
+        guard let productVC = storyboard.instantiateViewController(withIdentifier: "\(ProductsVC.self)") as? ProductsVC else {return}
         let nc = UINavigationController(rootViewController: productVC)
         productVC.orderDelegate = self
         productVC.setProductsInOrder(products: productInOrder)

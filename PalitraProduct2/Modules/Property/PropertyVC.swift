@@ -23,7 +23,7 @@ class PropertyVC: UIViewController {
     }
  
     var delegate: PropertyVCDelegate?
-    private var viewModel: ProductVMProtocol = ProductVM()
+    private var viewModel: ProductVMProtocol = ProductsVM()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class PropertyVC: UIViewController {
     
     private func setTypePriceNameLabel(array: [TypePrice]) {
         array.forEach({
-            if $0.id == ProductVM.typePriceID {
+            if $0.id == ProductsVM.typePriceID {
                 nameTypePriceLabel.text = $0.name
             }
         })
@@ -70,7 +70,7 @@ extension PropertyVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        ProductVM.typePriceID = viewModel.typePrices[indexPath.row].id
+        ProductsVM.typePriceID = viewModel.typePrices[indexPath.row].id
         nameTypePriceLabel.text = viewModel.typePrices[indexPath.row].name
         delegate?.updateDate(typeId: viewModel.typePrices[indexPath.row].id, typeName: viewModel.typePrices[indexPath.row].name)
         dismiss(animated: true)
