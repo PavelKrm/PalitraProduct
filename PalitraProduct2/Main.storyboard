@@ -737,11 +737,27 @@
                                     <action selector="removeCoreData" destination="CFV-w1-0v9" eventType="touchUpInside" id="SCM-z8-z4g"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Всего товаров:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKq-pq-q83">
+                                <rect key="frame" x="20" y="502" width="120" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProductCount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87M-Em-aZx">
+                                <rect key="frame" x="189" y="502" width="50" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="xYL-6N-21Q"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OqK-Q9-nlb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="OqK-Q9-nlb" firstAttribute="trailing" secondItem="dvn-RG-YbR" secondAttribute="trailing" constant="20" id="1Me-8C-qWr"/>
+                            <constraint firstItem="chI-lo-qxX" firstAttribute="top" secondItem="87M-Em-aZx" secondAttribute="bottom" constant="8" symbolic="YES" id="3kX-tj-vRd"/>
                             <constraint firstItem="O0a-Qx-93F" firstAttribute="leading" secondItem="chI-lo-qxX" secondAttribute="trailing" constant="74" id="48U-FC-7s8"/>
                             <constraint firstItem="OqK-Q9-nlb" firstAttribute="bottom" secondItem="niL-Jl-c1r" secondAttribute="bottom" constant="20" id="4Fd-hU-qH1"/>
                             <constraint firstItem="4ZW-Ng-cYp" firstAttribute="top" secondItem="dvn-RG-YbR" secondAttribute="bottom" constant="20" id="4cx-gF-nV3"/>
@@ -749,8 +765,11 @@
                             <constraint firstItem="cgj-Mt-idO" firstAttribute="top" secondItem="4ZW-Ng-cYp" secondAttribute="bottom" constant="20" id="H3w-AX-sJo"/>
                             <constraint firstItem="cgj-Mt-idO" firstAttribute="leading" secondItem="OqK-Q9-nlb" secondAttribute="leading" constant="20" id="Mlv-bS-8Dq"/>
                             <constraint firstItem="dvn-RG-YbR" firstAttribute="top" secondItem="OqK-Q9-nlb" secondAttribute="top" constant="50" id="Mwd-YV-1xt"/>
+                            <constraint firstItem="pR3-SU-zRf" firstAttribute="top" secondItem="bKq-pq-q83" secondAttribute="bottom" constant="8" symbolic="YES" id="OFm-WK-XSB"/>
                             <constraint firstItem="OqK-Q9-nlb" firstAttribute="trailing" secondItem="cgj-Mt-idO" secondAttribute="trailing" constant="20" id="P5Z-CW-Vcu"/>
                             <constraint firstItem="chI-lo-qxX" firstAttribute="leading" secondItem="pR3-SU-zRf" secondAttribute="trailing" constant="21" id="PtX-Cx-zTS"/>
+                            <constraint firstItem="pR3-SU-zRf" firstAttribute="leading" secondItem="bKq-pq-q83" secondAttribute="leading" id="RIV-Fr-dxw"/>
+                            <constraint firstItem="chI-lo-qxX" firstAttribute="leading" secondItem="87M-Em-aZx" secondAttribute="leading" id="SZB-6F-hRQ"/>
                             <constraint firstItem="pR3-SU-zRf" firstAttribute="leading" secondItem="OqK-Q9-nlb" secondAttribute="leading" constant="20" id="Weo-DP-xQA"/>
                             <constraint firstItem="pR3-SU-zRf" firstAttribute="top" secondItem="dvn-RG-YbR" secondAttribute="bottom" constant="407" id="bD8-df-jQP"/>
                             <constraint firstItem="4ZW-Ng-cYp" firstAttribute="leading" secondItem="OqK-Q9-nlb" secondAttribute="leading" constant="20" id="eOd-3x-RiB"/>
@@ -765,6 +784,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="productCountLabel" destination="87M-Em-aZx" id="h2A-7S-4oS"/>
                         <outlet property="tableView" destination="niL-Jl-c1r" id="G3U-hF-bjz"/>
                         <outlet property="usersCountLabel" destination="chI-lo-qxX" id="Y0x-Fv-IJr"/>
                     </connections>

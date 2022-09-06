@@ -31,7 +31,7 @@ struct FBUser: Identifiable {
         return represent
     }
     
-    init(id: String, firstname: String, lastname: String, avatar: String, email: String, phone: String, admin: Bool, acsessApp: Bool ) {
+    internal init(id: String, firstname: String, lastname: String, avatar: String, email: String, phone: String, admin: Bool, acsessApp: Bool ) {
         
         self.id = id
         self.firstname = firstname

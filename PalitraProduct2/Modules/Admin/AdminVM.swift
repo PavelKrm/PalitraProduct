@@ -10,6 +10,7 @@ protocol AdminVMProtocol {
     func getUsers(completion: @escaping (Result<[FBUser], Error>) -> Void)
     func uploadProductsInFB(completion: @escaping (Result<String, Error>) -> Void)
     func removeCoreData()
+    func getPrductsCountInFB(completion: @escaping (String) -> Void)
 }
 
 final class AdminVM: AdminVMProtocol {
@@ -90,6 +91,17 @@ final class AdminVM: AdminVMProtocol {
         removeContacts()
         removeOrders()
         removeProductInOrder()
+    }
+    
+    func getPrductsCountInFB(completion: @escaping (String) -> ()) {
+        DataBaseService.shared.getProducts { result in
+            switch result {
+            case .success(let products):
+                completion("\(products.count)")
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
+            }
+        }
     }
     
     private func removeProducts() {

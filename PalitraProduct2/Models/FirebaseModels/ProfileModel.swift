@@ -25,6 +25,7 @@ final class Profile: Codable {
     }
     
     init(lastname: String, firstname: String, avatar: UIImage?, email: String, phone: String, admin: Bool, acsessApp: Bool) {
+        
         self.lastname = lastname
         self.firstname = firstname
         self.avatar = avatar
@@ -32,7 +33,6 @@ final class Profile: Codable {
         self.phone = phone
         self.admin = admin
         self.acsessApp = acsessApp
-        
     }
     
     func encode(to encoder: Encoder) throws {

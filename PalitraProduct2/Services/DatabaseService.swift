@@ -43,6 +43,22 @@ final class DataBaseService {
 //        }
     }
     
+    func getProducts(completion: @escaping (Result<[ProductModel], Error>) -> ()) {
+        productsRef.getDocuments { querySnapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else if let querySnapshot = querySnapshot {
+                var products = [ProductModel]()
+                for document in querySnapshot.documents {
+                    if let product = ProductModel(doc: document) {
+                        products.append(product)
+                    }
+                }
+                completion(.success(products))
+            }
+        }
+    }
+    
     func setProducts(product: ProductModel, completion: @escaping (Result<ProductModel, Error>) -> ()) {
         productsRef.document(product.id).setData(product.representation) { error in
             if let error = error {

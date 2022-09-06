@@ -8,6 +8,7 @@ protocol AdminVCDelegate {
 
 final class AdminVC: UIViewController {
     
+    @IBOutlet private weak var productCountLabel: UILabel!
     @IBOutlet private weak var usersCountLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -29,6 +30,12 @@ final class AdminVC: UIViewController {
                 self.showErrorAlert(with: "Ошибка", and: error.localizedDescription)
             }
         }
+        
+        // Resource exhausted: Quota exceeded.
+        productCountLabel.text = "29674"
+//        viewModel.getPrductsCountInFB { result in
+//            self.productCountLabel.text = result
+//        }
     }
     
     @IBAction private func addUser() {

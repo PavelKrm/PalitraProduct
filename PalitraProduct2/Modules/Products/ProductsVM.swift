@@ -60,6 +60,8 @@ final class ProductsVM: NSObject, ProductVMProtocol {
     private func loadProducts() {
         try? fetchedResultController?.performFetch()
         self.products = fetchedResultController?.fetchedObjects ?? []
+        // chek products count
+        print("Message: all products count - \(fetchedResultController?.fetchedObjects?.count ?? 0)")
         if !products.isEmpty {
             let product = products.last
             loadTypePrices(product: product ?? Product())

@@ -40,6 +40,8 @@ final class PartnerVC: UIViewController {
     
     func setup(client: Client) {
         self.client = client
+        //check all partner
+        print("Message: all partner count - \(client.allPartner.count)")
     }
     
     

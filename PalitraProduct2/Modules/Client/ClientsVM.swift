@@ -24,6 +24,8 @@ final class ClientsVM: ClientsVMProtocol {
         request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Client.clientName), ascending: true)]
         let clients = try? CoreDataService.mainContext.fetch(request)
         self.clients = clients ?? []
+        // chek clients count
+        print("Message: all clients count - \(clients?.count ?? 0)")
     }
     
     

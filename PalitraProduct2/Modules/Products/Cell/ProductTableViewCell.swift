@@ -26,7 +26,7 @@ class ProductTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-//        imageProduct.image = nil
+
         collectionView.reloadData()
     }
     
@@ -44,7 +44,6 @@ class ProductTableViewCell: UITableViewCell {
         manufacturerLabel.text = product.manufacturer
         feeLabale.text = "\(product.fee ?? "") \(product.percentFee)%"
         nameLabel.text = product.name
-        #warning("В Firebase еще нет картинок продуктов")
 //        getImageFB(productID: product.selfId ?? "")
         imageProduct.image = getImage(imagePath: product.image ?? "")
         barcodeLabel.text = product.barcode
@@ -55,7 +54,7 @@ class ProductTableViewCell: UITableViewCell {
                 if $0.price == 0.00 {
                     typePriceLabel.text = ProductsVM.defaultPriceName
                     typePriceLabel.textColor = .red
-                    let price: Double = searchDefaultPrice(product)
+                    let price: Double = searchDefaultTypePrice(product)
                     priceLabel.text = "\(priceWithFee(price: price, fee: product.percentFee)) руб. за \(unitViewer(product.unit ?? "", productID: product.selfId ?? ""))"
                 } else {
                     typePriceLabel.textColor = .gray
@@ -66,7 +65,7 @@ class ProductTableViewCell: UITableViewCell {
         
     }
    
-    func searchDefaultPrice(_ product: Product) -> Double {
+    func searchDefaultTypePrice(_ product: Product) -> Double {
         var price: Double = 0.00
         product.allPrices.forEach({
             if $0.selfId == ProductsVM.defaultPriceID {

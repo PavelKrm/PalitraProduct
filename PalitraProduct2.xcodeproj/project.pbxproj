@@ -260,10 +260,10 @@
 		EE06A3B0287DBA840086594D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E9E277A3287EF3FF00360F67 /* CoreDataModels */,
 				EEE0F7E828882741009893D3 /* FirebaseModels */,
 				EE06A400287DC0E30086594D /* TypePriceModel.swift */,
 				EEBC4B902886C9C5003CBAE3 /* GroupVCModel.swift */,
-				E9E277A3287EF3FF00360F67 /* CoreDataModels */,
 			);
 			path = Models;
 			sourceTree = "<group>";
